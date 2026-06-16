@@ -5,7 +5,7 @@ permalink: /terms/
 
 # HomeSafe Terms & Emergency Services Disclaimer
 
-Last updated: June 5, 2026
+Last updated: June 17, 2026
 
 HomeSafe ranks route options by publicly available safety signals, including Apple Maps points of interest, time of day, weather, and user reports. HomeSafe is decision support. It is not a substitute for your judgement.
 
@@ -32,6 +32,6 @@ HomeSafe is provided as-is. Scores and signals are heuristics derived from publi
 - Route scores, safety signals, contacts, trip logs, and AI Bestie conversations are processed and stored on device.
 - GenesisCipher Labs does not receive your location, routes, contacts, or reports.
 - Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather.
-- If CloudKit sync is enabled in a future build, reports sync to your private iCloud database controlled by Apple; GenesisCipher Labs does not receive them.
+- Community safety reports you choose to submit are shared with other HomeSafe users by design. They sync through a public Apple CloudKit database (container `iCloud.com.genesiscipherlabs.HomeSafe`) hosted by Apple; each report carries no account or user ID, expires automatically after 90 days, and is never received by GenesisCipher Labs.
 
 By using HomeSafe, you acknowledge that HomeSafe is a routing and location-sharing aid, not an emergency-services intermediary.

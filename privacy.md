@@ -7,7 +7,7 @@ permalink: /privacy/
 
 Last updated: June 17, 2026
 
-GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under the EU/UK General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act, 2023 (DPDP Act).
+GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). HomeSafe is currently distributed on the **Indian** App Store only. Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
 
 > HomeSafe is decision support, not a guarantee of safety, and it never contacts emergency services for you. See our [Terms & Emergency Services Disclaimer](/terms/).
 
@@ -25,12 +25,12 @@ GenesisCipher Labs is the controller for the limited processing described here. 
 
 ## What we process, why, and the legal basis
 
-| Data | Where it is processed | Why | GDPR legal basis |
+| Data | Where it is processed | Why | Lawful basis (DPDP Act) |
 |---|---|---|---|
-| Precise location (GPS) | On your device | Plan and score routes, determine day/night, show the map, reverse-geocode the area name, detect off-route drift and arrival during a trip | Performance of the service you request (Art. 6(1)(b)); your consent via the iOS location permission (Art. 6(1)(a)) |
-| Trusted contacts (name, phone) | On your device | Only to open your system Messages composer when **you** choose to share your location | Performance of the service / your consent |
-| Trip journal, recent places, saved Home/Work | On your device | Convenience and your private history (never uploaded) | Legitimate interest (Art. 6(1)(f)) / performance of the service |
-| Community safety reports (category, coordinate, time, optional note) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.) | Your consent each time you submit; our legitimate interest in a community safety layer |
+| Precise location (GPS) | On your device | Plan and score routes, determine day/night, show the map, reverse-geocode the area name, detect off-route drift and arrival during a trip | Your consent via the iOS location permission, for the specified purpose for which you voluntarily provided the data |
+| Trusted contacts (name, phone) | On your device | Only to open your system Messages composer when **you** choose to share your location | Your consent / the specified purpose you voluntarily provided the data for |
+| Trip journal, recent places, saved Home/Work | On your device | Convenience and your private history (never uploaded) | The specified purpose you voluntarily provided the data for |
+| Community safety reports (category, coordinate, time, optional note) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.) | Your consent each time you submit |
 | Optional motion data | On your device | Detect pace mismatch / wandering for the optional Drink-Safety mode | Your consent via the iOS motion permission |
 
 We do **not** process special-category data, we do **not** profile you for advertising, and we do **not** make solely-automated decisions producing legal effects. Safety scores are heuristics shown to you for your own decision; they are not a judgment about you.
@@ -51,9 +51,9 @@ Community reports are public by design — a poorly-lit corner one person flags 
 - Reports automatically expire after 90 days, and we may remove reports that violate this policy.
 - Reports carry no account or user identifier.
 
-## International transfers
+## Where requests are processed
 
-Apple and the Overpass host may process requests on infrastructure outside your country. Where this involves transfers from the EEA/UK, the relevant safeguards (such as Standard Contractual Clauses) are those maintained by Apple and the respective host. Because we do not receive or store your data on our own servers, we do not initiate any additional cross-border transfer.
+Apple's MapKit, reverse-geocoding, and CloudKit services run on Apple infrastructure that may be located outside India; the public Overpass endpoint is similarly run by a third party that may be located outside India. Those transfers are made directly between your device and the respective provider under their own terms — we do not receive, store, or re-transfer your data on our own servers, and we do not initiate any additional cross-border transfer.
 
 ## Retention
 
@@ -62,13 +62,13 @@ Apple and the Overpass host may process requests on infrastructure outside your 
 
 ## Your rights
 
-Under the GDPR (Arts. 15–22) and the DPDP Act, you can **access, correct, delete, export (port), object to, and restrict** processing, and **withdraw consent** at any time.
+Under the DPDP Act, you can **access, correct, update, erase, and grieve** the processing of your personal data, and **withdraw consent** at any time. We will respond without undue delay and in any case within the timelines required by the Act once it is notified.
 
 How to exercise them — most data never leaves your device, so you are in direct control:
 - **View / export / delete everything:** open **Settings → Privacy & Data** in the app to see what is stored, export it as a file, or erase it in one tap.
 - **Location & motion:** revoke or limit access in **iOS Settings → Privacy & Security**.
 - **Your community reports:** delete them in-app; they also expire after 90 days.
-- **Help or complaints:** email **genesiscipherlabs@gmail.com**. You also have the right to lodge a complaint with your data-protection authority (your EU/UK supervisory authority, or, in India, the Data Protection Board once operational).
+- **Grievance / complaints:** email **genesiscipherlabs@gmail.com** — this is the grievance contact under the DPDP Act. You also have the right to lodge a complaint with the **Data Protection Board of India** once it is operational.
 
 ## Children
 
@@ -76,7 +76,7 @@ HomeSafe is not directed to children. We do not knowingly process the personal d
 
 ## Security
 
-Data on your device is protected by iOS app sandboxing and device encryption. Community reports in CloudKit are secured by Apple. Because we hold no central database of your personal data, there is no company server for an attacker to breach. If a security issue affecting users' data ever arises, we will notify affected users and the relevant authorities without undue delay, consistent with GDPR and the DPDP Act.
+Data on your device is protected by iOS app sandboxing and device encryption. Community reports in CloudKit are secured by Apple. Because we hold no central database of your personal data, there is no company server for an attacker to breach. If a security issue affecting users' data ever arises, we will notify affected users and the Data Protection Board of India without undue delay, consistent with the DPDP Act.
 
 ## Changes
 

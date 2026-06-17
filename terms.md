@@ -29,9 +29,10 @@ HomeSafe is provided as-is. Scores and signals are heuristics derived from publi
 
 ## Data handling
 
-- Route scores, safety signals, contacts, trip logs, and AI Bestie conversations are processed and stored on device.
-- GenesisCipher Labs does not receive your location, routes, contacts, or reports.
-- Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather.
-- Community safety reports you choose to submit are shared with other HomeSafe users by design. They sync through a public Apple CloudKit database (container `iCloud.com.genesiscipherlabs.HomeSafe`) hosted by Apple; each report carries no account or user ID, expires automatically after 90 days, and is never received by GenesisCipher Labs.
+- Route scores, safety signals, contacts, trip logs, recent and saved places, and AI Bestie conversations are processed and stored on your device only.
+- GenesisCipher Labs operates no server that receives your location, routes, contacts, or trips, and does not sell or share personal data.
+- Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather; a public OpenStreetMap (Overpass) service may be queried for street-lighting data near your route. Those requests go to those providers, not to us.
+- Community safety reports you choose to submit are shared with other HomeSafe users by design: they sync through a public Apple CloudKit database. Each report carries no account or user ID, expires automatically after 90 days, is moderated, and is hosted by Apple — we never receive it.
+- You can view, export, or delete your on-device data at any time in Settings → Privacy & Data, and revoke location access in iOS Settings. See our [Privacy Policy](/privacy/) for GDPR / India DPDP details.
 
 By using HomeSafe, you acknowledge that HomeSafe is a routing and location-sharing aid, not an emergency-services intermediary.

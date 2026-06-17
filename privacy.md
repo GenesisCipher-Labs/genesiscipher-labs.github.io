@@ -1,50 +1,89 @@
+---
+title: HomeSafe Privacy Policy
+permalink: /privacy/
+---
+
 # HomeSafe Privacy Policy
 
-**Last updated: June 17, 2026**
+Last updated: June 17, 2026
 
-HomeSafe is a personal navigation tool that helps you compare route options based on safety signals available from public map data. It is built privacy-first: your location, routes, saved places, contacts, and reports are processed and stored on your device, and GenesisCipher Labs does not operate servers that receive your data.
+GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under the EU/UK General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act, 2023 (DPDP Act).
 
-This policy covers the HomeSafe apps on both **iOS** and **Android**. The apps are functionally the same; where they differ is the mapping provider each platform uses, noted below. **The Android app is currently in development and not yet released; the Android-specific details below describe how it will behave once it ships.**
+> HomeSafe is decision support, not a guarantee of safety, and it never contacts emergency services for you. See our [Terms & Emergency Services Disclaimer](/terms/).
 
-## Data we collect
+## The short version
 
-**Precise location.** When you grant location permission, HomeSafe reads your device's current location to suggest nearby starting points, plot routes, and match routes against safety signals like nearby hospitals, police stations, metro entrances, pharmacies, and 24-hour stores. While a trip is active, it also measures how far you have drifted from your route to suggest a safer re-route. HomeSafe uses the "while using the app" location permission. The one exception is an **active trip**: so that turn-by-turn guidance and off-route detection keep working when your screen is locked or the app is backgrounded, location updates continue for the duration of that trip — your device shows the system background-location indicator the whole time. Updates stop as soon as the trip ends, and HomeSafe does not track you outside an active trip. Your location is never transmitted to GenesisCipher Labs.
+- Your location, routes, trip history, saved places, contacts, and AI Bestie conversations are processed and stored **on your device only**.
+- We, GenesisCipher Labs, **never receive** that data. We do not run analytics servers, ad networks, or trackers, and we do not sell or share personal data.
+- Two kinds of requests leave your device, and only to deliver a feature you asked for: (1) requests to **Apple** (Maps directions and points of interest, reverse geocoding, optional weather, and the community-reports sync), and (2) a request to a public **OpenStreetMap (Overpass)** service for street-lighting data near your route.
+- **Community safety reports** you choose to submit are shared with other HomeSafe users by design, through Apple's **public CloudKit** database. They carry no account or user ID, auto-expire after 90 days, and are moderated.
+- You can view, export, and delete your on-device data at any time in **Settings → Privacy & Data**, and revoke location access in iOS Settings.
 
-**Maps, routing, and search.** To draw maps, compute routes, and look up places, the relevant coordinates and search text are sent from your device to the mapping provider for your platform — never to GenesisCipher Labs:
+## Who is the data controller
 
-- **On iOS,** this is handled by **Apple MapKit and Core Location**, under [Apple's Maps & Privacy policy](https://www.apple.com/legal/privacy/data/en/apple-maps/). HomeSafe does not log, store, or transmit your searches to its own servers.
-- **On Android,** there is no key-free Apple equivalent, so HomeSafe uses free, public **OpenStreetMap** services. Coordinates are sent directly from your device to these third-party services to function: map tiles from OpenStreetMap, route directions from OSRM (`routing.openstreetmap.de`, which receives your start, destination, and route coordinates), nearby points of interest from Overpass (`overpass-api.de`, which receives the route's bounding-box area), and place search from Nominatim (`nominatim.openstreetmap.org`, which receives your search text and a location bias). These requests carry no account or user ID, are not linked to your identity, and are governed by the OpenStreetMap Foundation's policies.
+GenesisCipher Labs is the controller for the limited processing described here. Because almost all processing happens on your device, your device — and the platform providers below acting as processors — do most of the work. Contact for privacy questions, data-rights requests, and grievances (including the grievance contact required under the DPDP Act): **genesiscipherlabs@gmail.com**.
 
-**On-device data.** The following is stored solely on your device (iOS UserDefaults / Android private storage) and never leaves it: saved and recent places, emergency contacts you add, your temporary active-trip snapshot, your trip history log, and in-app "Safety Bestie" conversations. Clearing or uninstalling the app removes all of it.
+## What we process, why, and the legal basis
 
-**Community safety reports (shared).** When you choose to submit a community safety report (for example, flagging poor lighting or an isolated spot), that report is — by design — shared with other HomeSafe users so the community can see flagged locations. On iOS, reports sync through a **public Apple CloudKit database** in the container `iCloud.com.genesiscipherlabs.HomeSafe`; the database is operated by Apple, not by GenesisCipher Labs, and we never receive your reports. A report contains the location, category, and time you submit — it carries **no account or user ID** and is not linked to your identity. Reports **expire automatically after 90 days**. Submitting a report is always your choice; if you do not submit one, nothing is shared.
+| Data | Where it is processed | Why | GDPR legal basis |
+|---|---|---|---|
+| Precise location (GPS) | On your device | Plan and score routes, determine day/night, show the map, reverse-geocode the area name, detect off-route drift and arrival during a trip | Performance of the service you request (Art. 6(1)(b)); your consent via the iOS location permission (Art. 6(1)(a)) |
+| Trusted contacts (name, phone) | On your device | Only to open your system Messages composer when **you** choose to share your location | Performance of the service / your consent |
+| Trip journal, recent places, saved Home/Work | On your device | Convenience and your private history (never uploaded) | Legitimate interest (Art. 6(1)(f)) / performance of the service |
+| Community safety reports (category, coordinate, time, optional note) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.) | Your consent each time you submit; our legitimate interest in a community safety layer |
+| Optional motion data | On your device | Detect pace mismatch / wandering for the optional Drink-Safety mode | Your consent via the iOS motion permission |
 
-## Data we do not collect
+We do **not** process special-category data, we do **not** profile you for advertising, and we do **not** make solely-automated decisions producing legal effects. Safety scores are heuristics shown to you for your own decision; they are not a judgment about you.
 
-- We do not run analytics, telemetry, or crash reporting services.
-- We do not use advertising identifiers and do not track you across apps or websites.
-- We do not operate user accounts. There is no sign-in.
-- We do not maintain servers that receive your data.
-- We do not sell, rent, or share personal data for advertising or marketing.
+## Who else receives data (processors and third parties)
 
-## Emergency / SOS features
+- **Apple Inc.** acts as our processor and/or an independent controller for: MapKit directions and points-of-interest search, reverse geocoding, optional Apple WeatherKit (only when enabled in a future build), and CloudKit (the public database that broadcasts community reports). These requests are made directly from your device to Apple under Apple's privacy terms. We never receive the underlying data.
+- **OpenStreetMap / Overpass API.** To estimate street lighting along a candidate route, your device sends the route's coordinates to a public Overpass API endpoint. The Overpass host may log request metadata (such as IP address) per its own policies. Results are cached on your device for 24 hours. No account or identifier is sent.
 
-HomeSafe is decision support, not an emergency service. It does not contact, relay, or forward your location to 112, 1091, 1098, 181, or any emergency line, and has no partnership with any emergency service. When you choose to use SOS, HomeSafe only opens your phone's dialer pre-filled with an emergency number (you decide whether to call) and opens the system share sheet with a location link (you decide who receives it). Your contacts' phone numbers leave your device only through actions you explicitly take in your own dialer or messaging app.
+We have no other third-party recipients. There are no advertising SDKs, no analytics SDKs, and no data brokers.
 
-## Permissions
+## Community reports, moderation, and defamation
 
-- **Location:** required for route planning, scoring, and off-route detection. Granted as "while using the app"; during an active trip, updates continue in the background (with the system background-location indicator shown) so navigation and off-route detection survive a locked screen, and stop when the trip ends. You can revoke it at any time in your device settings (iOS: Settings → Privacy & Security → Location Services). Without it, the app cannot calculate routes.
-- **Internet / network state (Android):** required to load maps, routes, search, and points of interest from the public services above.
+Community reports are public by design — a poorly-lit corner one person flags should warn the next person. To keep them safe and lawful:
+
+- Reports describe a **place and a condition**, never a verdict on a neighbourhood and never an accusation against an identifiable person or community. The app's content policy blocks notes that contain phone numbers, emails, links, slurs, hate speech, or generalisations about a community before they are published.
+- You can **hide any report** you believe is false or abusive, and you can delete reports you authored.
+- Reports automatically expire after 90 days, and we may remove reports that violate this policy.
+- Reports carry no account or user identifier.
+
+## International transfers
+
+Apple and the Overpass host may process requests on infrastructure outside your country. Where this involves transfers from the EEA/UK, the relevant safeguards (such as Standard Contractual Clauses) are those maintained by Apple and the respective host. Because we do not receive or store your data on our own servers, we do not initiate any additional cross-border transfer.
+
+## Retention
+
+- On-device data (location use, trips, recents, saved places, contacts, Bestie chats) is kept only on your device and only until you delete it or uninstall the app. Active-trip resume data is discarded automatically a couple of hours after a trip.
+- Community reports auto-expire after 90 days in CloudKit.
+
+## Your rights
+
+Under the GDPR (Arts. 15–22) and the DPDP Act, you can **access, correct, delete, export (port), object to, and restrict** processing, and **withdraw consent** at any time.
+
+How to exercise them — most data never leaves your device, so you are in direct control:
+- **View / export / delete everything:** open **Settings → Privacy & Data** in the app to see what is stored, export it as a file, or erase it in one tap.
+- **Location & motion:** revoke or limit access in **iOS Settings → Privacy & Security**.
+- **Your community reports:** delete them in-app; they also expire after 90 days.
+- **Help or complaints:** email **genesiscipherlabs@gmail.com**. You also have the right to lodge a complaint with your data-protection authority (your EU/UK supervisory authority, or, in India, the Data Protection Board once operational).
 
 ## Children
 
-HomeSafe is not directed at children under 13 and we do not knowingly collect data from them.
+HomeSafe is not directed to children. We do not knowingly process the personal data of a child without verifiable parental consent as required by the DPDP Act. If you believe a child has used the app, contact us and we will help you delete the data (which, being on-device, you can also clear directly).
 
-## Changes to this policy
+## Security
 
-We will update the "Last updated" date above when this policy changes. Material changes will be reflected in a new app release.
+Data on your device is protected by iOS app sandboxing and device encryption. Community reports in CloudKit are secured by Apple. Because we hold no central database of your personal data, there is no company server for an attacker to breach. If a security issue affecting users' data ever arises, we will notify affected users and the relevant authorities without undue delay, consistent with GDPR and the DPDP Act.
+
+## Changes
+
+We will update this page when our practices change and revise the "Last updated" date. Material changes that affect on-device data handling are also reflected in the in-app terms you accept.
 
 ## Contact
 
-Questions about this policy:
-GenesisCipher Labs — genesiscipherlabs@gmail.com
+GenesisCipher Labs — **genesiscipherlabs@gmail.com**
+
+*This policy describes HomeSafe's actual on-device behaviour. It is provided in good faith and should be reviewed by qualified counsel before publication in your specific jurisdiction.*

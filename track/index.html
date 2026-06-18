@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="referrer" content="no-referrer" />
+<title>HomeSafe — live until she arrives</title>
+<!-- Leaflet (map) + OpenStreetMap tiles: no map API token needed, on-brand with HomeSafe's OSM use. -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root{
+    --bg:#0b0e17; --card:rgba(20,24,38,.82); --stroke:rgba(255,255,255,.10);
+    --mint:#5ce0a0; --indigo:#7d8cff; --amber:#ffc24b; --coral:#ff6b6b; --ink:#eef1f8; --muted:#9aa3bd;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif}
+  #map{position:fixed;inset:0;background:var(--bg)}
+  .leaflet-container{background:#0b0e17;font-family:inherit}
+  /* Top brand bar */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;gap:9px;
+    padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;
+    background:linear-gradient(180deg,rgba(11,14,23,.92),rgba(11,14,23,0))}
+  .brand{font-weight:800;letter-spacing:.2px;font-size:15px}
+  .live{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-weight:800;font-size:12px;
+    letter-spacing:.6px;color:var(--mint);text-transform:uppercase}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(92,224,160,.7);
+    animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,224,160,.6)}70%{box-shadow:0 0 0 9px rgba(92,224,160,0)}100%{box-shadow:0 0 0 0 rgba(92,224,160,0)}}
+  /* Bottom status card */
+  .card{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:600;
+    background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--stroke);border-radius:22px;padding:16px 18px;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);transition:transform .35s ease,opacity .35s ease}
+  .dest{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:3px}
+  .dest b{color:var(--ink)}
+  .row{display:flex;align-items:baseline;gap:14px;margin-top:6px}
+  .eta{font-size:30px;font-weight:850;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+  .eta small{font-size:14px;font-weight:700;color:var(--muted);margin-left:3px}
+  .km{font-size:15px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+  .score{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:13px;
+    padding:7px 12px;border-radius:999px;background:rgba(125,140,255,.16);border:1px solid rgba(125,140,255,.32)}
+  .score .num{font-size:16px;font-variant-numeric:tabular-nums}
+  .foot{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);font-weight:600}
+  .ago{margin-left:auto;font-variant-numeric:tabular-nums}
+  /* Puck */
+  .puck-wrap{position:relative}
+  .puck{width:18px;height:18px;border-radius:50%;background:var(--indigo);border:3px solid #fff;
+    box-shadow:0 0 0 6px rgba(125,140,255,.28),0 2px 8px rgba(0,0,0,.5)}
+  .puck-ring{position:absolute;inset:-12px;border-radius:50%;border:2px solid rgba(125,140,255,.45);
+    animation:ring 2.4s infinite ease-out}
+  @keyframes ring{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+  .dest-pin{width:14px;height:14px;border-radius:50% 50% 50% 0;background:var(--mint);transform:rotate(-45deg);
+    border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  /* End overlay */
+  .overlay{position:fixed;inset:0;z-index:700;display:none;align-items:center;justify-content:center;
+    background:rgba(8,11,20,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .overlay.show{display:flex;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .endcard{text-align:center;padding:34px 30px;max-width:340px}
+  .endmark{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;
+    font-size:44px;background:rgba(92,224,160,.16);border:1px solid rgba(92,224,160,.4)}
+  .endtitle{font-size:24px;font-weight:850;margin-bottom:8px}
+  .endsub{font-size:14.5px;color:var(--muted);line-height:1.45}
+  .privacy{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 2px);z-index:590;
+    text-align:center;font-size:10.5px;color:rgba(154,163,189,.7);pointer-events:none}
+  .demoflag{position:fixed;top:calc(env(safe-area-inset-top) + 52px);right:14px;z-index:600;
+    font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--amber);
+    background:rgba(255,194,75,.14);border:1px solid rgba(255,194,75,.34);padding:4px 9px;border-radius:999px;display:none}
+</style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="topbar">
+    <span style="font-size:17px">🛡️</span>
+    <span class="brand">HomeSafe</span>
+    <span class="live" id="liveBadge"><span class="dot"></span>Live</span>
+  </div>
+  <div class="demoflag" id="demoFlag">Demo</div>
+
+  <div class="card" id="card">
+    <div class="dest">On the way to <b id="destName">…</b></div>
+    <div class="row">
+      <div class="eta"><span id="etaMin">—</span><small>min</small></div>
+      <div class="km"><span id="distKm">—</span> km left</div>
+      <div class="score" title="HomeSafe safety rating — a rating from available signals, not a guarantee">
+        <span>🛡️</span><span class="num" id="score">—</span>
+      </div>
+    </div>
+    <div class="foot">
+      <span id="modeLine">Following live</span>
+      <span class="ago" id="ago">updated just now</span>
+    </div>
+  </div>
+
+  <div class="privacy">Shared by her, just for this trip — this link expires when she arrives.</div>
+
+  <div class="overlay" id="overlay">
+    <div class="endcard">
+      <div class="endmark" id="endMark">💚</div>
+      <div class="endtitle" id="endTitle">She made it</div>
+      <div class="endsub" id="endSub">This trip has ended and the live link has closed. Thanks for watching her get there safe.</div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- CloudKit JS — only used in LIVE mode to read the public token-keyed record. Demo mode needs nothing. -->
+  <script src="https://cdn.apple-cloudkit.com/ck/2/cloudkit.js"></script>
+  <script>
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FOUNDER CONFIG — fill these two in to go live (see docs/GuardianLiveLink.md).
+  // Until then, every link still runs in DEMO mode so you can see the experience.
+  // ─────────────────────────────────────────────────────────────────────────────
+  const CONFIG = {
+    containerIdentifier: 'iCloud.com.genesiscipherlabs.HomeSafe',
+    apiToken: 'e45bb154d2506aaabc24647fa59d184e0a7ca17fc583cba983448290dec561e3',  // CloudKit JS read token ("track")
+    // 'development' while testing from Xcode on a device (debug builds write to the Development DB).
+    // Switch to 'production' when shipping to the App Store (after Deploy Schema to Production).
+    environment: 'development',
+    recordType: 'GuardianTrip',   // recordName == the share token (see the iOS GuardianLinkPublisher)
+    pollMs: 7000,                 // how often the guardian's browser refreshes
+    staleSeconds: 180             // no fresh update for this long → treat the trip as ended
+  };
+
+  // ── Map setup (Leaflet + OSM, dark-tuned) ──
+  const map = L.map('map', { zoomControl:false, attributionControl:false }).setView([28.6139,77.2090], 14);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19, subdomains:'abcd'
+  }).addTo(map);
+  L.control.attribution({prefix:false, position:'topright'})
+    .addAttribution('© OpenStreetMap, © CARTO').addTo(map);
+
+  const puckIcon = L.divIcon({className:'', html:'<div class="puck-wrap"><div class="puck-ring"></div><div class="puck"></div></div>', iconSize:[18,18], iconAnchor:[9,9]});
+  const destIcon = L.divIcon({className:'', html:'<div class="dest-pin"></div>', iconSize:[14,14], iconAnchor:[7,14]});
+  let puck=null, destMarker=null, trail=null, lastUpdateMs=Date.now();
+
+  function render(s){ // s: {lat,lng,course,etaMin,distKm,score,dest,transport}
+    const ll=[s.lat,s.lng];
+    if(!puck){ puck=L.marker(ll,{icon:puckIcon,zIndexOffset:1000}).addTo(map); }
+    else puck.setLatLng(ll);
+    if(s.destLat!=null && s.destLng!=null){
+      if(!destMarker) destMarker=L.marker([s.destLat,s.destLng],{icon:destIcon}).addTo(map);
+    }
+    map.setView(ll, Math.max(map.getZoom(),15), {animate:true});
+    document.getElementById('destName').textContent = s.dest || 'her destination';
+    document.getElementById('etaMin').textContent = (s.etaMin==null?'—':s.etaMin);
+    document.getElementById('distKm').textContent = (s.distKm==null?'—':s.distKm.toFixed(1));
+    document.getElementById('score').textContent = (s.score==null?'—':s.score);
+    lastUpdateMs = Date.now();
+  }
+
+  function showEnded(arrived){
+    document.getElementById('liveBadge').style.display='none';
+    document.getElementById('endMark').textContent = arrived ? '💚' : '🛡️';
+    document.getElementById('endTitle').textContent = arrived ? 'She made it' : 'Trip ended';
+    document.getElementById('endSub').textContent = arrived
+      ? 'This trip has ended and the live link has closed. Thanks for watching her get there safe.'
+      : 'The live link has closed. If you’re worried and can’t reach her, give her a call.';
+    document.getElementById('overlay').classList.add('show');
+  }
+
+  // "updated Ns ago" ticker.
+  setInterval(()=>{
+    const sec=Math.round((Date.now()-lastUpdateMs)/1000);
+    const el=document.getElementById('ago');
+    el.textContent = sec<5?'updated just now':sec<60?('updated '+sec+'s ago'):('updated '+Math.round(sec/60)+'m ago');
+  },1000);
+
+  // ── LIVE mode: read the public token-keyed CloudKit record, poll, render. ──
+  function runLive(token){
+    if(!CONFIG.apiToken){ // not configured yet → fall back to demo so the page is never blank.
+      return runDemo(true);
+    }
+    try{
+      CloudKit.configure({ containers:[{
+        containerIdentifier:CONFIG.containerIdentifier,
+        apiTokenAuth:{ apiToken:CONFIG.apiToken, persist:false },
+        environment:CONFIG.environment
+      }]});
+    }catch(e){ return runDemo(true); }
+    const db = CloudKit.getDefaultContainer().publicCloudDatabase;
+    let misses=0;
+    async function tick(){
+      try{
+        const resp = await db.fetchRecords(token);
+        const rec = resp && resp.records && resp.records[0];
+        if(!rec || rec.deleted){ misses++; if(misses>=2) return showEnded(true); return; }
+        const f = rec.fields || {};
+        const val = k => (f[k] && f[k].value!=null) ? f[k].value : null;
+        const modified = rec.modified && rec.modified.timestamp ? rec.modified.timestamp : Date.now();
+        if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded(true);
+        misses=0;
+        render({
+          lat:val('latitude'), lng:val('longitude'), course:val('course'),
+          etaMin:val('etaMinutes'), distKm:val('distanceKm'), score:val('score'),
+          dest:val('destinationLabel'),
+          destLat:val('destinationLatitude'), destLng:val('destinationLongitude')
+        });
+      }catch(e){ misses++; if(misses>=3) showEnded(false); }
+    }
+    document.getElementById('modeLine').textContent='Following live';
+    tick(); setInterval(tick, CONFIG.pollMs);
+  }
+
+  // ── DEMO mode: a scripted Delhi trip so the experience is visible with zero backend. ──
+  function runDemo(fellBack){
+    document.getElementById('demoFlag').style.display='block';
+    if(fellBack) document.getElementById('modeLine').textContent='Demo — add your CloudKit token to go live';
+    // Connaught Place → Khan Market, a few waypoints.
+    const route=[[28.6315,77.2167],[28.6280,77.2190],[28.6230,77.2210],[28.6170,77.2235],
+                 [28.6100,77.2250],[28.6040,77.2262],[28.6000,77.2272]];
+    const dest=route[route.length-1];
+    destMarker=L.marker(dest,{icon:destIcon}).addTo(map);
+    trail=L.polyline([route[0]],{color:'#7d8cff',weight:5,opacity:.55}).addTo(map);
+    map.fitBounds(L.latLngBounds(route).pad(0.35));
+    const totalMs=42000, started=Date.now();
+    function lerp(a,b,t){return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t];}
+    function frame(){
+      const t=Math.min(1,(Date.now()-started)/totalMs);
+      const seg=t*(route.length-1), i=Math.min(route.length-2,Math.floor(seg));
+      const pos=lerp(route[i],route[i+1],seg-i);
+      trail.addLatLng(pos);
+      render({lat:pos[0],lng:pos[1],course:0,
+        etaMin:Math.max(0,Math.round(9*(1-t))), distKm:Math.max(0,(3.4*(1-t))),
+        score:82, dest:'Khan Market, Delhi', destLat:dest[0], destLng:dest[1]});
+      if(t<1) requestAnimationFrame(frame); else setTimeout(()=>showEnded(true),900);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ── Route by the URL fragment (token never leaves the browser). ──
+  const hash=(location.hash||'').replace(/^#/,'').trim();
+  if(!hash || hash.toLowerCase()==='demo') runDemo(false);
+  else runLive(hash);
+  </script>
+</body>
+</html>

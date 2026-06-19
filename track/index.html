@@ -116,10 +116,11 @@
   // ─────────────────────────────────────────────────────────────────────────────
   const CONFIG = {
     containerIdentifier: 'iCloud.com.genesiscipherlabs.HomeSafe',
-    apiToken: 'e45bb154d2506aaabc24647fa59d184e0a7ca17fc583cba983448290dec561e3',  // CloudKit JS read token ("track")
-    // 'development' while testing from Xcode on a device (debug builds write to the Development DB).
-    // Switch to 'production' when shipping to the App Store (after Deploy Schema to Production).
-    environment: 'development',
+    apiToken: 'b416f1db90fa1d48d35d9d15ed859a296551bc1eef9779f18c34d62c8ade4230',  // CloudKit JS read token ("track-prod", Production env, origin-restricted to genesiscipher-labs.github.io)
+    // 'production' — schema deployed to Production 2026-06-19; App Store release builds
+    // (and TestFlight) write to the Production DB. Flip back to 'development' only if
+    // testing schema changes from a fresh debug build before redeploying.
+    environment: 'production',
     recordType: 'GuardianTrip',   // recordName == the share token (see the iOS GuardianLinkPublisher)
     pollMs: 7000,                 // how often the guardian's browser refreshes
     staleSeconds: 180             // no fresh update for this long → treat the trip as ended

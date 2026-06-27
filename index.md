@@ -12,7 +12,7 @@ HomeSafe ranks route options by safety signals from public map data, not ETA alo
 
 HomeSafe is available on iOS. The Android app is in development — coming soon.
 
-- [HomeSafe Privacy Policy](./privacy)
+- [HomeSafe Privacy Policy](./privacy/)
 - [HomeSafe Terms & Emergency Services Disclaimer](./terms/)
 
 ## Contact

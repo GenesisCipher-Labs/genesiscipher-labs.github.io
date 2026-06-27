@@ -7,7 +7,7 @@ permalink: /terms/
 
 Last updated: June 20, 2026
 
-HomeSafe ranks route options by publicly available safety signals, including Apple Maps points of interest, time of day, weather, and user reports. HomeSafe is decision support. It is not a substitute for your judgement.
+HomeSafe ranks route options by publicly available safety signals, including Apple Maps points of interest, time of day, street-lighting data, and user reports. HomeSafe is decision support. It is not a substitute for your judgement.
 
 ## What HomeSafe does not do
 
@@ -31,9 +31,9 @@ HomeSafe is provided as-is. Scores and signals are heuristics derived from publi
 
 - Route scores, safety signals, contacts, trip logs, recent and saved places, and AI Bestie conversations are processed and stored on your device only.
 - GenesisCipher Labs operates no server that receives your location, routes, contacts, or trips, and does not sell or share personal data.
-- Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather; a public OpenStreetMap (Overpass) service may be queried for street-lighting data near your route. Those requests go to those providers, not to us.
+- Apple Maps may be queried directly from your device for directions and points of interest; a public OpenStreetMap (Overpass) service may be queried for street-lighting data near your route. Those requests go to those providers, not to us.
 - Community safety reports you choose to submit are shared with other HomeSafe users by design: they sync through a public Apple CloudKit database. Each report carries no account or user ID, expires automatically after 90 days, is moderated, and is hosted by Apple — we never receive it.
 - If you choose to share a Guardian Live-Link with someone you trust during a trip, your live coordinate, ETA, distance, score, transport, and destination label are published to a public Apple CloudKit record — keyed by an unguessable per-trip token in the URL fragment, carrying no name, phone, home address, or saved place — only while that trip is active. It is deleted automatically the moment you arrive, end the trip, tap Stop sharing, or after six hours, whichever comes first.
-- You can view, export, or delete your on-device data at any time in Settings → Privacy & Data, and revoke location access in iOS Settings. See our [Privacy Policy](/privacy/) for GDPR / India DPDP details.
+- You can view, export, or delete your on-device data at any time in Settings → Privacy & Data, and revoke location access in iOS Settings. See our [Privacy Policy](/privacy/) for India DPDP details.
 
 By using HomeSafe, you acknowledge that HomeSafe is a routing and location-sharing aid, not an emergency-services intermediary.

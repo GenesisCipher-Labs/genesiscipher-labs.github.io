@@ -111,12 +111,17 @@
   <script src="https://cdn.apple-cloudkit.com/ck/2/cloudkit.js"></script>
   <script>
   // ─────────────────────────────────────────────────────────────────────────────
-  // FOUNDER CONFIG — fill these two in to go live (see docs/GuardianLiveLink.md).
+  // FOUNDER CONFIG — fill these two in to go live (see ../docs/GuardianLiveLink.md).
   // Until then, every link still runs in DEMO mode so you can see the experience.
   // ─────────────────────────────────────────────────────────────────────────────
   const CONFIG = {
     containerIdentifier: 'iCloud.com.genesiscipherlabs.HomeSafe',
-    apiToken: 'b416f1db90fa1d48d35d9d15ed859a296551bc1eef9779f18c34d62c8ade4230',  // CloudKit JS read token ("track-prod", Production env, origin-restricted to genesiscipher-labs.github.io)
+    // CloudKit JS API token "track-prod" (Production env). Intended scope: PUBLIC-DATABASE READ-ONLY,
+    // origin-restricted to genesiscipher-labs.github.io in the CloudKit Dashboard. It can only fetch the
+    // token-keyed GuardianTrip records this page reads — it grants no write access and no access to any
+    // private database, so it is safe to ship in this public client. (Keep the Dashboard restriction in
+    // sync: read-only + origin-locked; never widen it to write or private scopes.)
+    apiToken: 'b416f1db90fa1d48d35d9d15ed859a296551bc1eef9779f18c34d62c8ade4230',
     // 'production' — schema deployed to Production 2026-06-19; App Store release builds
     // (and TestFlight) write to the Production DB. Flip back to 'development' only if
     // testing schema changes from a fresh debug build before redeploying.
@@ -153,13 +158,19 @@
     lastUpdateMs = Date.now();
   }
 
+  // The positive "Made it safe" is reserved for a POSITIVELY-CONFIRMED arrival only (the phone writes an
+  // explicit endReason==='arrived' tombstone just before it purges the trip). Every other termination —
+  // a record that went stale, was deleted, expired, a stopped share, or a fetch error — resolves to the
+  // NEUTRAL "Live sharing ended" state. Silence is not proof of a safe arrival: a dead phone, lost signal,
+  // or manually-stopped share must never be shown as "Made it safe", because that false reassurance is the
+  // dangerous failure mode for a personal-safety viewer.
   function showEnded(arrived){
     document.getElementById('liveBadge').style.display='none';
     document.getElementById('endMark').textContent = arrived ? '💚' : '🛡️';
-    document.getElementById('endTitle').textContent = arrived ? 'Made it safe' : 'Trip ended';
+    document.getElementById('endTitle').textContent = arrived ? 'Made it safe' : 'Live sharing ended';
     document.getElementById('endSub').textContent = arrived
       ? 'This trip has ended and the live link has closed — thanks for keeping watch. 💚'
-      : 'The live link has closed. If you can’t reach them and you’re worried, give them a call.';
+      : 'The live link has closed — this doesn’t confirm they arrived. If you can’t reach them and you’re worried, give them a call.';
     document.getElementById('overlay').classList.add('show');
   }
 
@@ -188,11 +199,19 @@
       try{
         const resp = await db.fetchRecords(token);
         const rec = resp && resp.records && resp.records[0];
-        if(!rec || rec.deleted){ misses++; if(misses>=2) return showEnded(true); return; }
+        // Missing / deleted record: the trip is gone but we can't tell HOW it ended (arrived vs stopped
+        // vs phone died). Never assume a safe arrival from an absent record — end NEUTRALLY.
+        if(!rec || rec.deleted){ misses++; if(misses>=2) return showEnded(false); return; }
         const f = rec.fields || {};
         const val = k => (f[k] && f[k].value!=null) ? f[k].value : null;
+        // Explicit terminal tombstone the phone writes just before it purges the trip. This is the ONLY
+        // signal that can show the positive "Made it safe" — and only when it says 'arrived'.
+        const endReason = val('endReason');
+        if(endReason!=null) return showEnded(String(endReason).toLowerCase()==='arrived');
         const modified = rec.modified && rec.modified.timestamp ? rec.modified.timestamp : Date.now();
-        if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded(true);
+        // No fresh update for a long time → the phone may have died or lost signal. Silence is not an
+        // arrival, so end NEUTRALLY rather than falsely reassuring the watcher.
+        if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded(false);
         misses=0;
         render({
           lat:val('latitude'), lng:val('longitude'), course:val('course'),

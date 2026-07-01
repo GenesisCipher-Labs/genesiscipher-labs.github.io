@@ -5,7 +5,7 @@ permalink: /terms/
 
 # HomeSafe Terms & Emergency Services Disclaimer
 
-Last updated: June 20, 2026
+Last updated: June 27, 2026
 
 HomeSafe ranks route options by publicly available safety signals, including Apple Maps points of interest, time of day, street-lighting data, and user reports. HomeSafe is decision support. It is not a substitute for your judgement.
 

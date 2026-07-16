@@ -5,7 +5,7 @@ permalink: /privacy/
 
 # HomeSafe Privacy Policy
 
-Last updated: June 20, 2026
+Last updated: July 17, 2026
 
 GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). HomeSafe is currently distributed on the **Indian** App Store only. Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
 
@@ -15,7 +15,7 @@ GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sha
 
 - Your location, routes, trip history, saved places, contacts, and AI Bestie conversations are processed and stored **on your device only**.
 - We, GenesisCipher Labs, **never receive** that data. We do not run analytics servers, ad networks, or trackers, and we do not sell or share personal data.
-- Two kinds of requests leave your device, and only to deliver a feature you asked for: (1) requests to **Apple** (Maps directions and points of interest, reverse geocoding, weather *(only if enabled in a future build — not active today)*, the community-reports sync, and the optional Guardian Live-Link publish below), and (2) a request to a public **OpenStreetMap (Overpass)** service for street-lighting data near your route.
+- Two kinds of requests leave your device, and only to deliver a feature you asked for: (1) requests to **Apple** (Maps directions and points of interest, reverse geocoding, weather near your route's start and end, the community-reports sync, and the optional Guardian Live-Link publish below), and (2) a request to a public **OpenStreetMap (Overpass)** service for street-lighting data near your route.
 - **Community safety reports** you choose to submit are shared with other HomeSafe users by design, through Apple's **public CloudKit** database. They carry no account or user ID, auto-expire after 90 days, and are moderated.
 - **Guardian Live-Link** (opt-in, per trip): if you tap "Share live" during a trip and **send the link** from the system Messages composer, your live coordinate, ETA, distance, safety score, transport mode, and destination *label* are published to a public Apple CloudKit record while the trip is active. The record is keyed by an unguessable 160-bit token (the secret link), carries **no name, phone, home address, or saved place**, and is **deleted automatically the moment you arrive, end the trip, tap Stop sharing, or 6 hours pass — whichever comes first**. Cancelling the composer publishes nothing.
 - You can view, export, and delete your on-device data at any time in **Settings → Privacy & Data**, and revoke location access in iOS Settings.
@@ -39,7 +39,7 @@ We do **not** process special-category data, we do **not** profile you for adver
 
 ## Who else receives data (processors and third parties)
 
-- **Apple Inc.** acts as our processor and/or an independent controller for: MapKit directions and points-of-interest search, reverse geocoding, optional Apple WeatherKit (only when enabled in a future build), and CloudKit (the public database that broadcasts community reports). These requests are made directly from your device to Apple under Apple's privacy terms. We never receive the underlying data.
+- **Apple Inc.** acts as our processor and/or an independent controller for: MapKit directions and points-of-interest search, reverse geocoding, Apple WeatherKit (weather near your route, used to flag conditions like heavy rain), and CloudKit (the public database that broadcasts community reports). These requests are made directly from your device to Apple under Apple's privacy terms. We never receive the underlying data.
 - **OpenStreetMap / Overpass API.** To estimate street lighting along a candidate route, your device sends the route's coordinates to a public Overpass API endpoint. The Overpass host may log request metadata (such as IP address) per its own policies. Results are cached on your device for 24 hours. No account or identifier is sent.
 
 We have no other third-party recipients. There are no advertising SDKs, no analytics SDKs, and no data brokers.

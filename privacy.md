@@ -5,7 +5,7 @@ permalink: /privacy/
 
 # HomeSafe Privacy Policy
 
-Last updated: July 17, 2026
+Last updated: July 19, 2026
 
 GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). HomeSafe is currently distributed on the **Indian** App Store only. Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
 
@@ -15,8 +15,8 @@ GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sha
 
 - Your location, routes, trip history, saved places, contacts, and AI Bestie conversations are processed and stored **on your device only**.
 - We, GenesisCipher Labs, **never receive** that data. We do not run analytics servers, ad networks, or trackers, and we do not sell or share personal data.
-- Two kinds of requests leave your device, and only to deliver a feature you asked for: (1) requests to **Apple** (Maps directions and points of interest, reverse geocoding, weather near your route's start and end, the community-reports sync, and the optional Guardian Live-Link publish below), and (2) a request to a public **OpenStreetMap (Overpass)** service for street-lighting data near your route.
-- **Community safety reports** you choose to submit are shared with other HomeSafe users by design, through Apple's **public CloudKit** database. They carry no account or user ID, auto-expire after 90 days, and are moderated.
+- Three kinds of requests leave your device, and only to deliver a feature you asked for: (1) requests to **Apple** (Maps directions and points of interest, reverse geocoding, weather near your route's start and end, the community-reports sync, and the optional Guardian Live-Link publish below), (2) a request to a public **OpenStreetMap (Overpass)** service for street-lighting data near your route, and (3) a request to **Open-Meteo** for the local temperature, air quality, and rain outlook.
+- **Community safety reports** you choose to submit are shared with other HomeSafe users by design, through Apple's **public CloudKit** database. They are moderated and carry no name, phone, or email — but, like every record in a public database, they carry the opaque account identifier Apple assigns your device for this app. After 90 days the app stops showing and stops scoring a report, but the record stays in Apple's database until it is deleted. **You can delete any report you submitted at any time** in Settings → Privacy & Data → My flags.
 - **Guardian Live-Link** (opt-in, per trip): if you tap "Share live" during a trip and **send the link** from the system Messages composer, your live coordinate, ETA, distance, safety score, transport mode, and destination *label* are published to a public Apple CloudKit record while the trip is active. The record is keyed by an unguessable 160-bit token (the secret link) and carries **no name, phone, home address, or saved place**. **Your location data is deleted from the record the moment you arrive** — what remains is a brief, non-locating "arrived" confirmation so your recipient sees you made it, removed the next time the app runs. **Ending the trip or tapping Stop sharing deletes the record entirely.** Sharing stops after 6 hours in any case, and a deletion the app could not complete in the moment (for example, offline) is completed on its next launch. Cancelling the composer publishes nothing.
 - You can view, export, and delete your on-device data at any time in **Settings → Privacy & Data**, and revoke location access in iOS Settings.
 
@@ -31,7 +31,7 @@ GenesisCipher Labs is the controller for the limited processing described here. 
 | Precise location (GPS) | On your device | Plan and score routes, determine day/night, show the map, reverse-geocode the area name, detect off-route drift and arrival during a trip | Your consent via the iOS location permission, for the specified purpose for which you voluntarily provided the data |
 | Trusted contacts (name, phone) | On your device | Only to open your system Messages composer when **you** choose to share your location | Your consent / the specified purpose you voluntarily provided the data for |
 | Trip journal, recent places, saved Home/Work | On your device | Convenience and your private history (never uploaded) | The specified purpose you voluntarily provided the data for |
-| Community safety reports (category, coordinate, time, optional note) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.) | Your consent each time you submit |
+| Community safety reports (category, coordinate, time, optional note, plus the opaque creator identifier Apple stamps on every public record) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.); the creator identifier lets the app count *distinct* authors on device, so repeat submissions from one person cannot manufacture agreement | Your consent each time you submit |
 | Guardian Live-Link (live coordinate, ETA, distance, score, transport, destination label) | Apple **public** CloudKit, keyed by a per-trip unguessable token; viewed by your recipient in any browser at `genesiscipher-labs.github.io/track/` | Let a person you trust watch you reach your destination, without needing the app, only while a trip is active | Your specific consent each trip — minted only when you tap **Share live** and **send** the iMessage; location data deleted on arrival (a brief, non-locating "arrived" marker remains), the whole record on stop/end; sharing stops after 6 hours |
 | Optional motion data | On your device | Detect pace mismatch / wandering for the optional Drink-Safety mode | Your consent via the iOS motion permission |
 
@@ -41,8 +41,9 @@ We do **not** process special-category data, we do **not** profile you for adver
 
 - **Apple Inc.** acts as our processor and/or an independent controller for: MapKit directions and points-of-interest search, reverse geocoding, Apple WeatherKit (weather near your route, used to flag conditions like heavy rain), and CloudKit (the public database that broadcasts community reports). These requests are made directly from your device to Apple under Apple's privacy terms. We never receive the underlying data.
 - **OpenStreetMap / Overpass API.** To estimate street lighting along a candidate route, your device sends the route's coordinates to a public Overpass API endpoint. The Overpass host may log request metadata (such as IP address) per its own policies. Results are cached on your device for 24 hours. No account or identifier is sent.
+- **Open-Meteo.** To show the local temperature, air quality, and short-range rain outlook, your device sends a coordinate near you to Open-Meteo's free public weather and air-quality endpoints. Open-Meteo may log request metadata (such as IP address) per its own policies. Results are cached on your device for 30 minutes against a coarse (roughly 11 km) grid cell, so moving around a city reuses one reading. No account or identifier is sent, and this reading is displayed to you only — it is never an input to a safety score.
 
-We have no other third-party recipients. There are no advertising SDKs, no analytics SDKs, and no data brokers.
+Those three — Apple, the Overpass host, and Open-Meteo — are our only third-party recipients. There are no advertising SDKs, no analytics SDKs, and no data brokers.
 
 ## Guardian Live-Link — how the live share works
 
@@ -59,9 +60,9 @@ The recipient can only watch — there is no reverse channel from the link back 
 Community reports are public by design — a poorly-lit corner one person flags should warn the next person. To keep them safe and lawful:
 
 - Reports describe a **place and a condition**, never a verdict on a neighbourhood and never an accusation against an identifiable person or community. The app's content policy blocks notes that contain phone numbers, emails, links, slurs, hate speech, or generalisations about a community before they are published.
-- You can **hide any report** you believe is false or abusive, and you can delete reports you authored.
-- Reports automatically expire after 90 days, and we may remove reports that violate this policy.
-- Reports carry no account or user identifier.
+- **You can delete any report you submitted, at any time.** Open **Settings → Privacy & Data → My flags**: it lists what this device published — including older flags the app has already stopped displaying — and removing one deletes it from the shared map as well as from your device. Erasing all your data in the same screen deletes them too. There is currently **no in-app control to hide someone else's report**; if you believe a report is false or abusive, email us at **genesiscipherlabs@gmail.com** and we can remove it.
+- **What "90 days" does, precisely.** After 90 days the app stops displaying a report and stops counting it toward any score. That is a rule applied by the app on your device — it is **not** deletion. The underlying record remains in Apple's public database, readable by the app, until someone deletes it: either its author (above) or us, on request. We say this plainly because the earlier wording — "reports expire automatically after 90 days" — described the app's behaviour as though it were the database's, and it is not.
+- Reports carry **no name, phone number, or email address**. They do carry the account identifier Apple stamps on every record written to a public CloudKit database, which other readers of that database can see. It is an opaque value assigned by Apple, different for every app, and it cannot be used to look you up unless you have separately granted that app permission to discover you. The app reads it for one purpose — counting distinct authors so that several people flagging the same corner reads differently from one person flagging it several times — and stores it on your device only as a salted hash, so it does not appear in your data export in a form anyone could correlate.
 
 ## Where requests are processed
 
@@ -70,7 +71,7 @@ Apple's MapKit, reverse-geocoding, and CloudKit services run on Apple infrastruc
 ## Retention
 
 - On-device data (location use, trips, recents, saved places, contacts, Bestie chats) is kept only on your device and only until you delete it or uninstall the app. Active-trip resume data is discarded automatically a couple of hours after a trip.
-- Community reports auto-expire after 90 days in CloudKit.
+- Community reports are kept in Apple's public CloudKit database until they are deleted — by you, from **Settings → Privacy & Data → My flags**, or by us on request. There is no automatic server-side deletion: CloudKit does not expire records on a timer. The app independently stops displaying and stops scoring a report once it is 90 days old, but that is a display and scoring rule, not retention.
 
 ## Your rights
 
@@ -79,7 +80,7 @@ Under the DPDP Act, you can **access, correct, update, erase, and grieve** the p
 How to exercise them — most data never leaves your device, so you are in direct control:
 - **View / export / delete everything:** open **Settings → Privacy & Data** in the app to see what is stored, export it as a file, or erase it in one tap.
 - **Location & motion:** revoke or limit access in **iOS Settings → Privacy & Security**.
-- **Your community reports:** delete them in-app; they also expire after 90 days.
+- **Your community reports:** delete them yourself in **Settings → Privacy & Data → My flags** — this removes them from the shared map, not just from your phone. They are not deleted by the passage of time, so use this control if you want one gone.
 - **Grievance / complaints:** email **genesiscipherlabs@gmail.com** — this is the grievance contact under the DPDP Act. You also have the right to lodge a complaint with the **Data Protection Board of India** once it is operational.
 
 ## Children

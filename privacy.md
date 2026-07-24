@@ -5,7 +5,7 @@ permalink: /privacy/
 
 # HomeSafe Privacy Policy
 
-Last updated: July 19, 2026
+Last updated: July 24, 2026
 
 GenesisCipher Labs ("we", "us") builds HomeSafe, a route-choice and location-sharing aid for five Indian metros (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad). HomeSafe is currently distributed on the **Indian** App Store only. Privacy is the architecture, not a footnote: **HomeSafe runs on your device and we do not operate a server that receives your location, routes, contacts, or trips.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
 
@@ -34,6 +34,9 @@ GenesisCipher Labs is the controller for the limited processing described here. 
 | Community safety reports (category, coordinate, time, optional note, plus the opaque creator identifier Apple stamps on every public record) | Apple **public** CloudKit | Warn other users about on-ground conditions (poor lighting, waterlogging, no transport, etc.); the creator identifier lets the app count *distinct* authors on device, so repeat submissions from one person cannot manufacture agreement | Your consent each time you submit |
 | Guardian Live-Link (live coordinate, ETA, distance, score, transport, destination label) | Apple **public** CloudKit, keyed by a per-trip unguessable token; viewed by your recipient in any browser at `genesiscipher-labs.github.io/track/` | Let a person you trust watch you reach your destination, without needing the app, only while a trip is active | Your specific consent each trip — minted only when you tap **Share live** and **send** the iMessage; location data deleted on arrival (a brief, non-locating "arrived" marker remains), the whole record on stop/end; sharing stops after 6 hours |
 | Optional motion data | On your device | Detect pace mismatch / wandering for the optional Drink-Safety mode | Your consent via the iOS motion permission |
+| Speech, when you tap the mic button in the AI Bestie chat | On your device | Transcribe what you say into a typed question for the Bestie | Your consent via the iOS microphone and speech-recognition permissions |
+
+The mic is used **only** while you hold the mic button in the Bestie chat. Speech is transcribed **on your device** using Apple's on-device speech recognition; the audio is never recorded, never stored, and never uploaded, and the transcription stays on your device like the rest of your Bestie conversation. If on-device speech recognition is not available, the mic button is not shown.
 
 We do **not** process special-category data, we do **not** profile you for advertising, and we do **not** make solely-automated decisions producing legal effects. Safety scores are heuristics shown to you for your own decision; they are not a judgment about you.
 

@@ -5,7 +5,7 @@ permalink: /terms/
 
 # HomeSafe Terms & Emergency Services Disclaimer
 
-Last updated: July 19, 2026
+Last updated: July 24, 2026
 
 HomeSafe ranks route options by publicly available safety signals, including Apple Maps points of interest, time of day, street-lighting data, weather, and user reports. HomeSafe is decision support. It is not a substitute for your judgement.
 
@@ -31,6 +31,7 @@ HomeSafe is provided as-is. Scores and signals are heuristics derived from publi
 
 - Route scores, safety signals, contacts, trip logs, recent and saved places, and AI Bestie conversations are processed and stored on your device only.
 - GenesisCipher Labs operates no server that receives your location, routes, contacts, or trips, and does not sell or share personal data.
+- If you tap the mic button in the AI Bestie chat, your speech is transcribed on your device using Apple's on-device speech recognition. The audio is never recorded, stored, or uploaded, and the transcription stays on your device like the rest of your Bestie conversation. If on-device speech recognition is unavailable, the mic button is not shown.
 - Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather near your route; a public OpenStreetMap (Overpass) service may be queried for street-lighting data near your route; and Open-Meteo may be queried for the local temperature, air quality, and rain outlook. Those requests go to those providers, not to us.
 - Community safety reports you choose to submit are shared with other HomeSafe users by design: they sync through a public Apple CloudKit database, are moderated, and are hosted by Apple — we never receive them. A report carries no name, phone number, or email address, but like every record in a public database it carries the opaque account identifier Apple assigns your device for this app, which other readers of that database can see.
 - After 90 days HomeSafe stops displaying a community report and stops counting it toward any score. That is a rule the app applies on your device, not deletion: the record remains in Apple's public database until it is deleted. You can delete any report you submitted at any time in Settings → Privacy & Data → My flags, which removes it from the shared map as well as from your device; you can also write to us to have one removed.

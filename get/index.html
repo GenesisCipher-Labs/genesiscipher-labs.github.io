@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0e17" />
+<title>HomeSafe — get anywhere the smart way</title>
+<meta name="description" content="HomeSafe helps you get anywhere the smart way across Delhi NCR, Mumbai, Bengaluru, Pune and Hyderabad — and lets the people who love you know you made it. Privacy-first, on-device, no account." />
+<!-- Social/preview (Open Graph). Image is optional — the founder can add /get/og.png later. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="HomeSafe — get anywhere the smart way" />
+<meta property="og:description" content="The travel app for your city that isn't the one charging you. Get home the smart way, and your people know you made it." />
+<meta property="og:url" content="https://genesiscipher-labs.github.io/get/" />
+<style>
+  :root{
+    --bg:#0b0e17; --card:rgba(20,24,38,.72); --stroke:rgba(255,255,255,.10);
+    --mint:#5ce0a0; --indigo:#7d8cff; --amber:#ffc24b; --ink:#eef1f8; --muted:#9aa3bd;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  /* Soft aurora wash behind the content, on-brand with the app's hero. */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(60% 45% at 20% 8%, rgba(125,140,255,.20), transparent 60%),
+      radial-gradient(55% 40% at 85% 12%, rgba(92,224,160,.16), transparent 60%),
+      radial-gradient(70% 50% at 50% 100%, rgba(125,140,255,.10), transparent 60%)}
+  .wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 40px) 22px calc(env(safe-area-inset-bottom) + 40px);
+    min-height:100dvh;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:.2px}
+  .brand .shield{font-size:20px}
+  .hero{margin-top:auto;padding-top:34px}
+  h1{font-size:34px;line-height:1.12;font-weight:850;letter-spacing:-.5px;margin:0 0 14px}
+  h1 .accent{color:var(--mint)}
+  .sub{font-size:16px;line-height:1.5;color:var(--muted);margin:0 0 26px;max-width:30ch}
+  .points{list-style:none;margin:0 0 30px;padding:0;display:flex;flex-direction:column;gap:13px}
+  .points li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.4;font-weight:600}
+  .points .ic{flex:0 0 auto;width:26px;height:26px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    font-size:14px;background:rgba(125,140,255,.16);border:1px solid rgba(125,140,255,.28)}
+  .points b{font-weight:800}
+  .points span.d{display:block;color:var(--muted);font-weight:500;font-size:13px;margin-top:1px}
+  /* App Store button */
+  .store{display:inline-flex;align-items:center;gap:11px;text-decoration:none;
+    padding:15px 26px;border-radius:16px;background:#fff;color:#000;font-weight:700;
+    box-shadow:0 12px 34px rgba(0,0,0,.4);transition:transform .15s ease}
+  .store:active{transform:scale(.97)}
+  .store .apple{font-size:26px;line-height:0;margin-top:-2px}
+  .store .lines{display:flex;flex-direction:column;line-height:1.05}
+  .store .lines small{font-size:11px;font-weight:600;opacity:.7}
+  .store .lines strong{font-size:19px;font-weight:800;letter-spacing:-.2px}
+  .meta{margin-top:16px;font-size:12.5px;color:var(--muted);font-weight:600}
+  .foot{margin-top:34px;display:flex;gap:16px;align-items:center;font-size:12px;color:var(--muted)}
+  .foot a{color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(154,163,189,.3)}
+  .rating-note{font-size:11px;color:rgba(154,163,189,.72);margin-top:22px;line-height:1.45;max-width:34ch}
+  @media (max-width:380px){ h1{font-size:30px} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><span class="shield">🛡️</span><span>HomeSafe</span></div>
+
+    <div class="hero">
+      <h1>Get anywhere the <span class="accent">smart way</span> — and your people know you made it.</h1>
+      <p class="sub">The travel app for your city that isn't the one charging you. Real local know-how, the fairest way to get home, and a quiet way to let the people who love you follow along.</p>
+
+      <ul class="points">
+        <li><span class="ic">🧭</span><span><b>Your whole journey, not just the ride.</b><span class="d">The walk, the wait, the auto, the metro, the walk home — rated on the signals actually around you.</span></span></li>
+        <li><span class="ic">🔒</span><span><b>Privacy-first.</b><span class="d">On-device, no account, no sign-up. We never sell your location.</span></span></li>
+        <li><span class="ic">💚</span><span><b>Share a live trip.</b><span class="d">Send a link and the people you trust watch you get home — it closes the moment you arrive.</span></span></li>
+      </ul>
+
+      <!-- The real product URL lives in the MARKUP, not only in script: with JS blocked or broken an
+           href="#" made the one button this page exists for a dead control. The script below still
+           runs and may re-point it, so there remains a single place to change the URL. -->
+      <a class="store" id="storeLink" href="https://apps.apple.com/in/app/homesafe-safest-travel-routes/id6775227516" target="_blank" rel="noopener" aria-label="Download HomeSafe on the App Store">
+        <span class="apple"></span>
+        <span class="lines"><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+      <div class="meta">For iPhone · Delhi NCR · Mumbai · Bengaluru · Pune · Hyderabad</div>
+
+      <p class="rating-note">HomeSafe rates routes safer based on available signals — never a guarantee of safety. HomeSafe does not contact emergency services on your behalf.</p>
+    </div>
+
+    <div class="foot">
+      <a href="https://genesiscipher-labs.github.io/privacy/">Privacy</a>
+      <a href="https://genesiscipher-labs.github.io/terms/">Terms</a>
+      <span style="margin-left:auto">© GenesisCipher Labs</span>
+    </div>
+  </div>
+
+  <script>
+  // HomeSafe – Safest Travel Routes, live on the India App Store (id6775227516).
+  // If the product page is ever relocated, update APP_STORE_URL; the search fallback
+  // keeps the button alive if it's ever blanked.
+  var APP_STORE_URL = 'https://apps.apple.com/in/app/homesafe-safest-travel-routes/id6775227516';
+  var FALLBACK_SEARCH = 'https://apps.apple.com/in/search?term=HomeSafe%20safety';
+  document.getElementById('storeLink').href = APP_STORE_URL || FALLBACK_SEARCH;
+  </script>
+</body>
+</html>

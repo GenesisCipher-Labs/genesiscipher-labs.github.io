@@ -69,6 +69,19 @@
   .demoflag{position:fixed;top:calc(env(safe-area-inset-top) + 52px);right:14px;z-index:600;
     font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--amber);
     background:rgba(255,194,75,.14);border:1px solid rgba(255,194,75,.34);padding:4px 9px;border-radius:999px;display:none}
+  /* Install CTA — a tasteful "get the app" affordance. Persistent + subtle on the live card;
+     prominent ONLY on the genuine arrival end-state (never the 'silent'/'closed' worry states —
+     a growth prompt on a fear moment is a dark pattern). */
+  .cardcta{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;
+    padding-top:11px;border-top:1px solid var(--stroke);
+    font-size:12px;font-weight:700;color:var(--indigo);text-decoration:none}
+  .cardcta .arrow{opacity:.7}
+  .endcta{margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.45}
+  .getapp{display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+    padding:13px 24px;border-radius:999px;font-weight:800;font-size:15px;text-decoration:none;
+    color:#07130d;background:linear-gradient(135deg,var(--mint),#8fe9c6);
+    box-shadow:0 10px 28px rgba(92,224,160,.4)}
+  .getapp .arrow{opacity:.65;font-weight:700}
 </style>
 </head>
 <body>
@@ -93,6 +106,7 @@
       <span id="modeLine">Following live</span>
       <span class="ago" id="ago">updated just now</span>
     </div>
+    <a class="cardcta" href="https://genesiscipher-labs.github.io/get/" target="_blank" rel="noopener">🛡️ Get HomeSafe — plan your own safe trips <span class="arrow">↗</span></a>
   </div>
 
   <div class="privacy">Shared just for this trip — the link closes the moment they arrive.</div>
@@ -102,6 +116,8 @@
       <div class="endmark" id="endMark">💚</div>
       <div class="endtitle" id="endTitle">Made it safe</div>
       <div class="endsub" id="endSub">This trip has ended and the live link has closed — thanks for keeping watch. 💚</div>
+      <div class="endcta" id="endCta" style="display:none">Plan safer trips and let your people follow along, too.</div>
+      <a class="getapp" id="getApp" href="https://genesiscipher-labs.github.io/get/" target="_blank" rel="noopener" style="display:none">Get HomeSafe <span class="arrow">↗</span></a>
     </div>
   </div>
 
@@ -158,19 +174,42 @@
     lastUpdateMs = Date.now();
   }
 
-  // The positive "Made it safe" is reserved for a POSITIVELY-CONFIRMED arrival only (the phone writes an
-  // explicit endReason==='arrived' tombstone just before it purges the trip). Every other termination —
-  // a record that went stale, was deleted, expired, a stopped share, or a fetch error — resolves to the
-  // NEUTRAL "Live sharing ended" state. Silence is not proof of a safe arrival: a dead phone, lost signal,
-  // or manually-stopped share must never be shown as "Made it safe", because that false reassurance is the
-  // dangerous failure mode for a personal-safety viewer.
-  function showEnded(arrived){
+  // THREE end states, and ONLY the arrival tombstone may claim the green one.
+  //
+  // This page used to take a boolean, and both of its inferences were BACKWARDS:
+  //   • record deleted (a purge — she cancelled, or ended early)      → "Made it safe 💚"
+  //   • no fresh update for 180 s (HER PHONE DIED MID-WALK)           → "Made it safe 💚"
+  //   • the real arrival (tombstone, no coords → render threw → catch) → the neutral fallback
+  // So the one event this whole net exists to catch — updates stop — told her trusted person
+  // she got home safe, and an actual arrival showed the ambiguous message. The phone has been
+  // writing an `endReason == "arrived"` tombstone since 2026-07-14 for exactly this; the page
+  // (last touched at v1.2.0 prep) had never heard of it. `grep -c endReason` was 0.
+  //
+  // 'arrived' is now claimable ONLY by that tombstone. Silence is its own state and says so —
+  // a guardian being told "safe" when the truth is "we don't know" is the worst output this
+  // page can produce.
+  function showEnded(state){   // 'arrived' | 'closed' | 'silent'
     document.getElementById('liveBadge').style.display='none';
-    document.getElementById('endMark').textContent = arrived ? '💚' : '🛡️';
-    document.getElementById('endTitle').textContent = arrived ? 'Made it safe' : 'Live sharing ended';
-    document.getElementById('endSub').textContent = arrived
-      ? 'This trip has ended and the live link has closed — thanks for keeping watch. 💚'
-      : 'The live link has closed — this doesn’t confirm they arrived. If you can’t reach them and you’re worried, give them a call.';
+    var mark, title, sub;
+    if(state === 'arrived'){
+      mark = '💚'; title = 'Made it safe';
+      sub = 'They arrived and the live link has closed — thanks for keeping watch. 💚';
+    } else if(state === 'silent'){
+      mark = '🛡️'; title = 'No updates for a few minutes';
+      sub = 'Their phone has stopped sending updates. That can just be a dead battery or no signal — but if you can’t reach them and you’re worried, give them a call.';
+    } else {
+      mark = '🛡️'; title = 'Trip ended';
+      sub = 'The live link has closed. If you can’t reach them and you’re worried, give them a call.';
+    }
+    document.getElementById('endMark').textContent = mark;
+    document.getElementById('endTitle').textContent = title;
+    document.getElementById('endSub').textContent = sub;
+    // Growth CTA shows ONLY on a genuine arrival — never on 'silent' (phone died / worried) or
+    // 'closed'. This only READS `state`; it adds no showEnded() call, so the legal-mirror
+    // staleness/purge guard (which forbids showEnded(true|'arrived') in those branches) is untouched.
+    var isArrival = (state === 'arrived');
+    document.getElementById('getApp').style.display = isArrival ? 'inline-flex' : 'none';
+    document.getElementById('endCta').style.display = isArrival ? 'block' : 'none';
     document.getElementById('overlay').classList.add('show');
   }
 
@@ -199,19 +238,26 @@
       try{
         const resp = await db.fetchRecords(token);
         const rec = resp && resp.records && resp.records[0];
-        // Missing / deleted record: the trip is gone but we can't tell HOW it ended (arrived vs stopped
-        // vs phone died). Never assume a safe arrival from an absent record — end NEUTRALLY.
-        if(!rec || rec.deleted){ misses++; if(misses>=2) return showEnded(false); return; }
+        // A purge means the link was closed — she cancelled, ended early, or the cold-launch
+        // janitor cleaned up an orphan. It does NOT mean she arrived; an arrival writes the
+        // tombstone below instead. (This branch used to claim 'Made it safe'.)
+        if(!rec || rec.deleted){ misses++; if(misses>=2) return showEnded('closed'); return; }
         const f = rec.fields || {};
         const val = k => (f[k] && f[k].value!=null) ? f[k].value : null;
-        // Explicit terminal tombstone the phone writes just before it purges the trip. This is the ONLY
-        // signal that can show the positive "Made it safe" — and only when it says 'arrived'.
-        const endReason = val('endReason');
-        if(endReason!=null) return showEnded(String(endReason).toLowerCase()==='arrived');
+
+        // THE ARRIVAL TOMBSTONE — checked FIRST, and that ordering is load-bearing. The record
+        // carries `endReason == "arrived"` and deliberately NO coordinates, so falling through to
+        // render() would throw on `L.marker([null,null])`, land in the catch, and resolve the one
+        // genuinely good outcome as the neutral fallback. This is the ONLY thing on this page
+        // allowed to say "Made it safe".
+        if(val('endReason') === 'arrived') return showEnded('arrived');
+
         const modified = rec.modified && rec.modified.timestamp ? rec.modified.timestamp : Date.now();
-        // No fresh update for a long time → the phone may have died or lost signal. Silence is not an
-        // arrival, so end NEUTRALLY rather than falsely reassuring the watcher.
-        if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded(false);
+        // Updates stopped. Dead battery, no signal — or something wrong. We do not know, so we
+        // say we do not know. (This branch used to claim 'Made it safe', which is the single most
+        // dangerous thing this page could tell a guardian: it fires precisely when the trip stops
+        // reporting, which is the event the net exists to surface.)
+        if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded('silent');
         misses=0;
         render({
           lat:val('latitude'), lng:val('longitude'), course:val('course'),
@@ -219,7 +265,7 @@
           dest:val('destinationLabel'),
           destLat:val('destinationLatitude'), destLng:val('destinationLongitude')
         });
-      }catch(e){ misses++; if(misses>=3) showEnded(false); }
+      }catch(e){ misses++; if(misses>=3) showEnded('closed'); }
     }
     document.getElementById('modeLine').textContent='Following live';
     tick(); setInterval(tick, CONFIG.pollMs);
@@ -246,7 +292,9 @@
       render({lat:pos[0],lng:pos[1],course:0,
         etaMin:Math.max(0,Math.round(9*(1-t))), distKm:Math.max(0,(3.4*(1-t))),
         score:82, dest:'Khan Market, Delhi', destLat:dest[0], destLng:dest[1]});
-      if(t<1) requestAnimationFrame(frame); else setTimeout(()=>showEnded(true),900);
+      // The scripted demo trip completes, so it genuinely IS an arrival — 'arrived', not the
+      // old boolean `true` (which would now fall through to 'closed' and demo the wrong state).
+      if(t<1) requestAnimationFrame(frame); else setTimeout(()=>showEnded('arrived'),900);
     }
     requestAnimationFrame(frame);
   }

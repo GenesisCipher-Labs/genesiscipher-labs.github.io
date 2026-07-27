@@ -8,10 +8,11 @@ We build private, on-device mobile tools — for personal safety and for creator
 
 ## HomeSafe
 
-HomeSafe ranks route options by safety signals from public map data, not ETA alone. v1.0 launches in Delhi NCR, Mumbai, Bengaluru, Pune, and Hyderabad.
+HomeSafe ranks route options by safety signals from public map data, not ETA alone. It covers Delhi NCR, Mumbai, Bengaluru, Pune, and Hyderabad.
 
 HomeSafe is available on iOS. The Android app is in development — coming soon.
 
+- [Get HomeSafe on the App Store](https://apps.apple.com/in/app/homesafe-safest-travel-routes/id6775227516)
 - [HomeSafe Privacy Policy](./privacy/)
 - [HomeSafe Terms & Emergency Services Disclaimer](./terms/)
 

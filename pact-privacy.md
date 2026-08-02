@@ -5,7 +5,7 @@ permalink: /pact/privacy/
 
 # Pact Privacy Policy
 
-Last updated: July 14, 2026
+Last updated: August 3, 2026
 
 GenesisCipher Labs ("we", "us") builds Pact, an invoicing and payment-tracking app for Indian creators and freelancers — it turns a brand-deal email into a GST-compliant invoice and tracks when you get paid. Privacy is the architecture, not a footnote: **Pact runs entirely on your device and we do not operate any server that receives your data.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
 
@@ -42,6 +42,15 @@ Pact can read a pasted or shared brand-deal email and pre-fill the deal for you.
 
 - **Pasting or sharing text.** You can paste a deal email from the clipboard, or send it to Pact from another app (such as Mail or Gmail) using the iOS/macOS Share Sheet. Text shared to Pact is handed to the app through a private **App Group** container on your device (`group.com.genesiscipherlabs.Pact`) and is read and cleared by the app — it is never uploaded. A shared web link is stored only as text; Pact does not fetch it.
 - **Typing it in.** You enter your profile and can edit any extracted field manually.
+
+## How data leaves Pact — always because you sent it
+
+Pact never transmits anything by itself. Everything below happens only when you tap something, and in each case you choose the destination:
+
+- **Sharing an invoice.** You send the invoice PDF through the standard Share Sheet — to mail, a messaging app, Files, or by dragging it out on iPad and Mac. Where it goes and who receives it is entirely your choice, and it is then governed by whichever app or service you chose.
+- **Exporting your book.** *Export all invoices* builds a zip — every invoice PDF, a CSV ledger, and a GST/TDS summary — and hands it to that same Share Sheet. It is assembled on your device and goes nowhere until you send it.
+- **Folder backup.** If you nominate a backup folder, Pact writes a dated zip of that same pack into it, at most once a day. Pact only ever writes a file. **If the folder you choose sits inside iCloud Drive, Dropbox, Google Drive or a similar service, that service will sync the file under its own terms and privacy policy** — which is usually the point of choosing such a folder, but is worth choosing deliberately. Pick a purely local folder if you would rather nothing sync.
+- **Payment and follow-up links.** A rupee invoice can carry a UPI QR code, and a follow-up can be sent over WhatsApp. Both are ordinary links built on your device from details you entered; opening one hands off to that app, which is then governed by its own terms. Pact contacts no payment gateway, takes no commission, and has no part in the payment itself.
 
 ## Who else receives data (processors and third parties)
 

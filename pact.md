@@ -6,10 +6,10 @@ permalink: /pact/
 # Pact — Brand Deal Invoices
 
 Pact turns a brand's collaboration email into a professional, GST-compliant
-invoice — in seconds, entirely on your iPhone. Built for Indian creators and
+invoice — in seconds, entirely on your device. Built for Indian creators and
 freelancers who are tired of chasing payments and wrestling with spreadsheets.
 
-Pact is available on iOS and macOS.
+Pact is one purchase across iPhone, iPad and Mac.
 
 ## How it works
 
@@ -24,11 +24,19 @@ Pact is available on iOS and macOS.
 
 Pact reads your emails entirely on your device — using Apple Intelligence where
 available, or its built-in parser otherwise. Your deals and earnings never leave
-your iPhone. No account, no cloud, no tracking.
+your device. No account, no cloud, no tracking.
+
+Getting your data out is free and always will be: export every invoice PDF plus
+a CSV ledger and a GST/TDS summary whenever you like, and nominate a folder for
+a dated daily backup.
 
 ## Support
 
-Questions, feedback, or need a hand? Email us at
+Common questions — GST registration, place of supply, TDS, foreign currency,
+backups, and what Pact deliberately doesn't do — are answered on the
+**[Pact support page](./support/)**.
+
+Anything else: email
 [genesiscipherlabs@gmail.com](mailto:genesiscipherlabs@gmail.com) and we'll get
 back to you.
 
@@ -36,3 +44,4 @@ back to you.
 
 - [Pact Privacy Policy](./privacy/)
 - [Pact Terms of Use](./terms/)
+- [Pact Support](./support/)

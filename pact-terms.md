@@ -5,14 +5,14 @@ permalink: /pact/terms/
 
 # Pact Terms of Use
 
-Last updated: July 14, 2026
+Last updated: August 3, 2026
 
 Pact is an invoicing and payment-tracking app for Indian creators and freelancers, made by GenesisCipher Labs. It turns brand-deal messages into GST-formatted invoices and reminds you when a payment is due. By using Pact you agree to these terms.
 
 ## What Pact is — and is not
 
 - Pact is a **productivity and record-keeping tool**. It is **not** accounting, tax, legal, or financial advice, and using it does not create a professional relationship with us.
-- Pact helps you format invoices and estimate GST (CGST+SGST, IGST, export/zero-rated, or a bill of supply) from the details you and it enter. **You are responsible for verifying every invoice** — the amounts, the GST treatment, the GSTIN/PAN, the place of supply, and any statutory filing — before you issue it or rely on it. Automated extraction can be wrong; you confirm each field.
+- Pact helps you format invoices and work out GST (CGST+SGST for an in-state supply, IGST for an inter-state one, zero-rated for an export, or no tax at all if you are not GST-registered) from the details you and it enter. **You are responsible for verifying every invoice** — the amounts, the GST treatment, the GSTIN/PAN, the place of supply, and any statutory filing — before you issue it or rely on it. Automated extraction can be wrong; you confirm each field.
 - Pact does **not** file returns, remit tax, send invoices, collect payments, or contact your clients for you. Any email you send from a Pact draft is sent by you, from your own account.
 
 Pact is provided **as-is**, without warranties of any kind. To the maximum extent permitted by law, GenesisCipher Labs is not liable for any loss arising from your use of the app, including incorrect invoices, missed reminders, or unpaid amounts. Always keep your own records and consult a qualified professional for tax and legal matters.
@@ -25,7 +25,9 @@ Pact is provided **as-is**, without warranties of any kind. To the maximum exten
 
 ## Subscriptions
 
-Pact is free to use for a limited number of invoices. **Pact Pro** and **Pact Business** are auto-renewable subscriptions, offered monthly or yearly, that unlock unlimited invoices and additional features.
+Pact is free to use for a limited number of invoices. **Pact Pro** is an auto-renewable subscription — offered weekly, monthly, 3-monthly or 6-monthly — that unlocks unlimited invoices, your own logo on the invoice, export invoicing for brands outside India, and AI-drafted follow-ups.
+
+Exporting your invoices and backing them up to a folder are **free** and are not part of any subscription.
 
 - Payment is charged to your **Apple Account** at confirmation of purchase.
 - A subscription **renews automatically** for the same period unless you cancel at least **24 hours before** the current period ends. Your Apple Account is charged for renewal within 24 hours before the period ends.

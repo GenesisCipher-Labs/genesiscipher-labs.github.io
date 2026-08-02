@@ -20,8 +20,10 @@ HomeSafe is available on iOS. The Android app is in development — coming soon.
 
 Pact turns a brand-deal email into a GST-compliant invoice and tracks when you get paid — built for Indian creators and freelancers. Everything runs on your device.
 
-Pact is available on iOS and macOS.
+Pact is one purchase across iPhone, iPad and Mac.
 
+- [About Pact](./pact/)
+- [Pact Support & FAQ](./pact/support/)
 - [Pact Privacy Policy](./pact/privacy/)
 - [Pact Terms of Use](./pact/terms/)
 

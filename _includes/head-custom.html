@@ -1,0 +1,261 @@
+{%- comment -%}
+================================================================================
+_includes/head-custom.html — structured data and Apple metadata
+
+WHAT THIS FILE IS
+jekyll-theme-primer's default layout ends its <head> with:
+
+    <!-- start custom head snippets, customize with your own
+         _includes/head-custom.html file -->
+    {% include head-custom.html %}
+    <!-- end custom head snippets -->
+
+The theme ships its own version containing nothing but two inert comments (a
+Google Analytics placeholder and a commented favicon line). Placing this file in
+the site repo's _includes/ overrides it. It is included AFTER {% seo %}, so
+everything below sits alongside jekyll-seo-tag's own output rather than fighting
+it. seo-tag emits a generic {"@type":"WebPage"} block; the nodes below are the
+ones that actually describe the product, and multiple JSON-LD blocks on one page
+are valid and expected.
+
+WHERE THE FACTS COME FROM
+Every string is read from _data/. Nothing is hard-coded here except the
+page-matching logic. That is deliberate: llms.txt reads the same files, so the
+JSON-LD and the plain-text summary cannot disagree.
+
+  _data/pact.yml — authored. The product facts, edited by hand when a Pact
+                   release changes what the app can do.
+  _data/faq.yml  — GENERATED from pact-faq.md by tools/build-faq-data.rb. Never
+                   edit it; edit the page and re-run the script. Google requires
+                   an answer in FAQPage markup to be visible on the page, and
+                   deriving it is the only way to keep that true through edits.
+
+THE AGGREGATERATING DECISION — READ BEFORE "FIXING" THIS
+There is deliberately no aggregateRating property below, and adding one would be
+a mistake. Pact's rating count is in the low single digits — measured the same day
+as 1 via the iTunes lookup API and 2 on the App Store product page, which is
+itself the point: it is small enough to move on a single review. Google requires
+that a rating declared in markup be sourced from users and be VISIBLE on the page
+carrying the markup; neither holds here. Beyond compliance, a five-star average
+over one or two ratings reads as fabricated to a human and carries no weight with
+a ranker.
+Apple's own product page already publishes a real SoftwareApplication
+aggregateRating for this app, so the correct move is `sameAs` pointing at it and
+no rating of our own — let the authoritative source carry it. This is the same
+rule the app itself follows when it omits a GSTIN, an LUT or a place of supply
+it was never told, rather than printing an assumption. Revisit only when the
+rating count is in the dozens AND the rating is rendered on this page.
+
+Also deliberately absent, for the same reason — add each only when the fact
+exists: `logo` on Organization (no logo asset is hosted here), `softwareVersion`
+(it would be stale the day after any release), `address` and `foundingDate`,
+`sameAs` social profiles, and any `review`.
+================================================================================
+{%- endcomment -%}
+
+{%- assign url = page.url -%}
+{%- assign in_pact = false -%}
+{%- if url contains '/pact' -%}{%- assign in_pact = true -%}{%- endif -%}
+{%- assign is_pact_home = false -%}
+{%- if url == '/pact/' -%}{%- assign is_pact_home = true -%}{%- endif -%}
+{%- assign is_faq = false -%}
+{%- if url == site.data.faq.page_url -%}{%- assign is_faq = true -%}{%- endif -%}
+{%- assign is_home = false -%}
+{%- if url == '/' -%}{%- assign is_home = true -%}{%- endif -%}
+{%- assign pact = site.data.pact -%}
+
+{%- comment -%}
+Favicon. There is no favicon.ico on this host today (/favicon.ico returns 404),
+so browser tabs and bookmark lists show a blank page glyph. Drop one at the repo
+root and uncomment the next line — nothing else is needed.
+{%- endcomment -%}
+{%- comment -%} <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}"> {%- endcomment -%}
+
+{%- comment -%}
+Anything the config marked `sitemap: false` is internal documentation rather
+than a marketing page. Keep it out of search results too, but let crawlers
+follow its links.
+{%- endcomment -%}
+{%- if page.sitemap == false %}
+<meta name="robots" content="noindex,follow">
+{%- endif %}
+
+{%- if in_pact %}
+{%- comment -%}
+Apple's Smart App Banner. On an iPhone or iPad, Safari renders a native install
+strip at the top of the page linking straight to the App Store. This is the
+cheapest conversion fix available on a site whose /pact/ URL is printed on every
+free-tier invoice PDF — a document that reaches a brand's accounts-payable desk.
+Scoped to /pact* only; the homepage lists two apps and should not preselect one.
+{%- endcomment %}
+<meta name="apple-itunes-app" content="app-id={{ pact.app_store_id }}">
+{%- endif %}
+
+{%- if is_pact_home %}
+{%- comment -%}
+SoftwareApplication + Organization for the Pact product page.
+
+`offers.price` of "0" is the correct and required representation of a free
+download; it is not a subscription price, and no subscription price appears
+anywhere in this file. The offer's description states in words that a paid
+subscription exists, which is what guideline 2.3.2 asks a listing to disclose,
+without naming a figure Apple renders per storefront.
+{%- endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ pact.page_url }}#app",
+      "name": {{ pact.full_name | strip | jsonify }},
+      "alternateName": {{ pact.name | strip | jsonify }},
+      "description": {{ pact.summary | strip | jsonify }},
+      "abstract": {{ pact.audience | strip | jsonify }},
+      "applicationCategory": {{ pact.category | strip | jsonify }},
+      "applicationSubCategory": {{ pact.secondary_category | strip | jsonify }},
+      "operatingSystem": {{ pact.operating_system | strip | jsonify }},
+      "inLanguage": {{ pact.interface_language_code | strip | jsonify }},
+      "url": "{{ pact.page_url }}",
+      "installUrl": "{{ pact.app_store_url }}",
+      "downloadUrl": "{{ pact.app_store_url }}",
+      "sameAs": [
+        "{{ pact.app_store_url }}"
+      ],
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "{{ pact.app_store_url }}",
+        "description": {{ pact.price_model | strip | jsonify }}
+      },
+      "featureList": {{ pact.features | jsonify }},
+      "author": { "@id": "{{ pact.org.url }}#org" },
+      "publisher": { "@id": "{{ pact.org.url }}#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ pact.org.url }}#org",
+      "name": {{ pact.org.name | strip | jsonify }},
+      "legalName": {{ pact.org.legal_name | strip | jsonify }},
+      "description": {{ pact.org.description | strip | jsonify }},
+      "url": "{{ pact.org.url }}",
+      "email": {{ pact.org.email | strip | jsonify }}
+    }
+  ]
+}
+</script>
+{%- endif %}
+
+{%- if is_home %}
+{%- comment -%}
+Organization on the site root. seo-tag already emits a WebSite node here; this
+adds the publisher identity that the Pact page's @id reference resolves against.
+{%- endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ pact.org.url }}#org",
+  "name": {{ pact.org.name | strip | jsonify }},
+  "legalName": {{ pact.org.legal_name | strip | jsonify }},
+  "description": {{ pact.org.description | strip | jsonify }},
+  "url": "{{ pact.org.url }}",
+  "email": {{ pact.org.email | strip | jsonify }}
+}
+</script>
+{%- endif %}
+
+{%- if is_faq %}
+{%- comment -%}
+FAQPage — emitted only on the page whose own text produced it.
+
+The questions come from _data/faq.yml, which tools/build-faq-data.rb derives
+from pact-faq.md. So the markup is the page, with Markdown stripped; it cannot
+say something the reader does not see. `is_faq` is matched against
+site.data.faq.page_url rather than a hard-coded path, so moving the FAQ moves
+its markup with it.
+
+Google restricted FAQ RICH RESULTS to a narrow set of authoritative sites in
+2023, so expect no accordion in search results. That is not what this is for.
+The value is machine-readable answer text — 22 direct answers to questions
+creators actually type — which is the single most extractable thing on this
+site.
+{%- endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "{{ site.url }}{{ page.url }}#faq",
+  "name": {{ page.title | strip | jsonify }},
+  "isPartOf": { "@id": "{{ pact.page_url }}#app" },
+  "mainEntity": [
+    {%- for item in site.data.faq.questions %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | strip | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | strip | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}
+
+{%- if url == '/pact/how-to-invoice-a-brand-deal/' %}
+{%- comment -%}
+Article for the guide page. This is the only genuinely editorial page on the
+site — it answers "how do I invoice a brand deal" for someone who has never
+heard of Pact, which is exactly the kind of question an assistant is asked and
+the kind of page it quotes. Typing it as an Article, with a named publisher,
+tells a crawler it is written guidance rather than a product page.
+
+`dateModified` is emitted only if the page carries a `last_modified_at:` key in
+its front matter. A date hard-coded here would be a claim that goes stale on its
+own, which is the one thing nothing in this project is allowed to do — so it is
+omitted rather than guessed. Add to the page's front matter to enable it:
+
+    last_modified_at: 2026-08-13
+{%- endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "{{ site.url }}{{ page.url }}#article",
+  "headline": {{ page.title | strip | jsonify }},
+  "description": {{ page.description | strip | jsonify }},
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}",
+  "inLanguage": "{{ site.lang | default: 'en' }}",
+  {%- if page.last_modified_at %}
+  "dateModified": "{{ page.last_modified_at | date: '%Y-%m-%d' }}",
+  {%- endif %}
+  "author": { "@id": "{{ pact.org.url }}#org" },
+  "publisher": { "@id": "{{ pact.org.url }}#org" }
+}
+</script>
+{%- endif %}
+
+{%- if in_pact and is_pact_home == false %}
+{%- comment -%}
+BreadcrumbList on every Pact subpage — /pact/faq/, /pact/support/,
+/pact/how-to-invoice-a-brand-deal/, /pact/privacy/ and /pact/terms/ — so a
+crawler can see they belong to the Pact product rather than floating loose under
+the organisation root.
+{%- endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": {{ pact.org.name | strip | jsonify }}, "item": "{{ pact.org.url }}" },
+    { "@type": "ListItem", "position": 2, "name": {{ pact.name | strip | jsonify }}, "item": "{{ pact.page_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | strip | jsonify }} }
+  ]
+}
+</script>
+{%- endif %}

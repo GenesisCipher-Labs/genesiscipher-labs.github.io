@@ -1,0 +1,164 @@
+# robots.txt — genesiscipher-labs.github.io
+#
+# Until this file existed the site returned 404 here, which under the Robots
+# Exclusion Protocol means allow-all. So nothing was ever being blocked. This
+# file changes almost nothing about who may crawl; it exists to do three things
+# that the 404 could not:
+#
+#   1. Point crawlers at the sitemap (there is no other discovery mechanism).
+#   2. Record why the private Guardian Live-Link viewer is NOT disallowed here
+#      (it carries its own noindex, which a Disallow would prevent a crawler
+#      from ever reading — see the note in the wildcard group below).
+#   3. WRITE THE DECISION DOWN, so that nobody later pastes a "block the AI
+#      bots" template from a blog post and silently removes Pact from ChatGPT,
+#      Claude and Perplexity answers. That is a real risk: most such templates
+#      block GPTBot, which governs TRAINING, while leaving the reader believing
+#      they have opted out of AI search — which is a different agent entirely.
+#
+# THE DECISION THIS FILE MAKES
+# ----------------------------
+# Everything is allowed, including model-training crawlers. Three reasons:
+#   * Pact wants to be cited. Roughly half of app installs no longer start in
+#     App Store search, and an assistant that cannot fetch this site will
+#     describe Pact from the App Store listing alone — or not at all.
+#   * There is nothing here to protect. Every page is public marketing or a
+#     public legal document. No user data of any kind reaches this host; Pact
+#     makes no network requests of its own.
+#   * Blocking a training crawler is not a way to control an answer engine.
+#     Citation is governed by the SEARCH agents below, and those must stay open.
+#
+# If the founder ever wants to opt out of TRAINING while staying citable, the
+# way to do it is to Disallow GPTBot, CCBot and meta-externalagent, and to flip
+# the two Extended tokens that ALREADY have stanzas below — Google-Extended and
+# Applebot-Extended need their Allow changed to Disallow, NOT adding a second
+# time, because the first matching group wins and a duplicate stanza would make
+# the opt-out silently do nothing. Add ClaudeBot to that flip too: it is
+# Anthropic's general crawler and its content can inform training, but its
+# stanza currently sits in the citation block above. Leave OAI-SearchBot,
+# ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User,
+# Applebot and Googlebot exactly as they are. Do not confuse the two lists.
+
+# ---------------------------------------------------------------------------
+# Default policy for everything not named below.
+# ---------------------------------------------------------------------------
+User-agent: *
+Allow: /
+# The Guardian Live-Link viewer is a token-keyed private page for one trip, and
+# it is deliberately NOT disallowed here. It already serves
+# <meta name="robots" content="noindex,nofollow">, and a crawler has to be able
+# to FETCH a page to read that tag — a Disallow would leave the URL indexable by
+# reference and permanently impossible to de-index, defeating the protection it
+# was meant to reinforce.
+#
+# Note also that a rule written in THIS group reaches none of the agents named
+# below: under RFC 9309 a crawler obeys only the single most specific group
+# matching its own token, so Googlebot, Applebot, GPTBot and the rest each see
+# only their own stanza and inherit nothing from here. If a path ever genuinely
+# needs blocking, it must be repeated in EVERY group.
+
+# ---------------------------------------------------------------------------
+# AI SEARCH AND CITATION AGENTS
+# These are the ones that decide whether Pact can appear in an assistant's
+# answer. Blocking any of these removes the site from that product's answers.
+# All are explicitly allowed.
+# ---------------------------------------------------------------------------
+
+# OpenAI's search index crawler. OpenAI states that sites opted out of
+# OAI-SearchBot will not be shown in ChatGPT search answers. This is the single
+# most consequential line in the file.
+User-agent: OAI-SearchBot
+Allow: /
+
+# Fetches a page because a ChatGPT user asked about it in that moment. OpenAI
+# documents that because the action is user-initiated, robots.txt rules may not
+# apply to it — so this stanza is a statement of intent as much as a rule.
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic's search/citation crawler for Claude.
+User-agent: Claude-SearchBot
+Allow: /
+
+# Anthropic's user-initiated fetch, when a Claude user asks about this page.
+User-agent: Claude-User
+Allow: /
+
+# Anthropic's general crawler. Anthropic states that blocking it may reduce a
+# site's visibility.
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity's index crawler.
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity's user-initiated fetch. Like ChatGPT-User, documented as possibly
+# not subject to robots.txt.
+User-agent: Perplexity-User
+Allow: /
+
+# ---------------------------------------------------------------------------
+# APPLE
+# Named explicitly and deliberately. Apple documents that if robots instructions
+# do not mention Applebot but do mention Googlebot, Applebot follows the
+# Googlebot rules. Since Googlebot is named below, leaving Applebot unnamed
+# would hand Apple's crawler whatever policy Google gets — and Applebot is what
+# feeds Siri, Spotlight and Safari suggestions, on the only platform Pact ships
+# to. This stanza makes that inheritance impossible.
+# ---------------------------------------------------------------------------
+User-agent: Applebot
+Allow: /
+
+# Apple's model-training token (not a crawler — it grants or withholds use of
+# already-crawled content). Allowed, per the decision above. Apple states that
+# content remains discoverable in Spotlight, Siri and Safari either way.
+User-agent: Applebot-Extended
+Allow: /
+
+# ---------------------------------------------------------------------------
+# CONVENTIONAL SEARCH ENGINES
+# ---------------------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+# Google's model-training token. Google states plainly that it does not affect
+# a site's inclusion in Google Search — so this line has no bearing on ranking
+# in either direction. Allowed, per the decision above.
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# MODEL-TRAINING CRAWLERS
+# These do NOT govern whether an assistant can cite this site today. They govern
+# whether its content may inform a future model. Allowed — see the decision at
+# the top of this file. This is the block to change, and the ONLY block to
+# change, if that decision is ever reversed.
+# ---------------------------------------------------------------------------
+
+# OpenAI's training crawler. OpenAI states that blocking GPTBot does not affect
+# search results; it affects training only.
+User-agent: GPTBot
+Allow: /
+
+# Common Crawl. Not a product crawler — its archive is an input to many models.
+User-agent: CCBot
+Allow: /
+
+# Meta's AI crawler.
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# ---------------------------------------------------------------------------
+# Sitemap. Generated by jekyll-sitemap from _config.yml — do not hand-write
+# sitemap.xml, the plugin overwrites it on every build.
+# ---------------------------------------------------------------------------
+Sitemap: https://genesiscipher-labs.github.io/sitemap.xml

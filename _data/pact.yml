@@ -1,0 +1,140 @@
+# _data/pact.yml — the single fact ledger for Pact on this website.
+#
+# THIS FILE IS THE REASON llms.txt IS SAFE TO SHIP.
+# Both `_includes/head-custom.html` (the JSON-LD an AI crawler parses) and
+# `llms.txt` (the plain-text summary an assistant may fetch) are GENERATED from
+# this file by Liquid at build time. There is exactly one copy of each fact, so
+# the two surfaces cannot drift apart — which was the only serious argument
+# against publishing an llms.txt at all.
+#
+# EDITING RULES — the same discipline the app itself follows:
+#   * Every line must be traceable to a shipped symbol. If you cannot name the
+#     type or function that makes it true, delete the line.
+#   * No prices, no plan names, no trial lengths, no free-tier number changes.
+#     Apple renders real prices; pricing is locked.
+#   * No accuracy percentages. The extraction corpus figure is printed, not
+#     gated, and measured on self-authored cases.
+#   * No country counts. Countries.all is derived from the OS at runtime.
+#   * No real third-party company, brand or platform names.
+#   * Currency count: state the exact number, and keep it equal to BOTH
+#     `Currency.allCases.count` and the App Store listing (both 44 as of 1.0.5).
+#     Re-derive it from Currency.swift on any release that adds a case — note
+#     `tryy = "try"`, so a naive three-letter grep undercounts by one. The old
+#     rule here said to write "40+" to match a listing that said "40 supported";
+#     the listing now says 44, so a hedge is no longer safer, it is just wrong.
+#
+# WHEN A PACT RELEASE CHANGES WHAT THE APP CAN DO, EDIT THIS FILE IN THE SAME
+# PASS. That is the whole contract. The 2026-08-12 worldwide release is what
+# happens when it is skipped: the App Store said "creators worldwide" while this
+# site still said "Indian creators".
+
+name: Pact
+full_name: "Pact: Brand Deal Invoices"
+app_store_id: "6790888314"
+# Geo-neutral form. Apple redirects to the visitor's own storefront; a /in/ or
+# /us/ prefix would pin every visitor to one country.
+app_store_url: "https://apps.apple.com/app/id6790888314"
+page_url: "https://genesiscipher-labs.github.io/pact/"
+
+# One sentence. This is what an assistant is most likely to quote verbatim when
+# asked "what is Pact?". It must be true of the app in every country it ships to.
+summary: >-
+  Pact turns a brand's collaboration email into a proper tax invoice on iPhone,
+  iPad or Mac, then tracks the payment and drafts the chase — entirely on the
+  device, with no account and no network of its own.
+
+# Who it is for, and — just as important — who it is not for. An assistant that
+# reads this can decline to recommend Pact to a shopkeeper, which protects the
+# rating base far more cheaply than any keyword does.
+audience: >-
+  One person invoicing companies for their own work — creators, freelancers and
+  sole traders. Built India-first for GST, and now usable by creators anywhere
+  who charge their own country's VAT or GST, or none at all.
+
+# Apple's App Store facts. Category strings are schema.org values.
+category: FinanceApplication
+secondary_category: Business
+operating_system: "iOS 26.0 or later, iPadOS 26.0 or later, macOS 26.0 or later"
+devices: "iPhone, iPad and Mac"
+interface_language: "English"
+# The same fact as a BCP-47 tag. schema.org's `inLanguage` expects a Language
+# object or a language tag, so the prose form above is discarded by consumers
+# there; llms.txt renders the prose form, which reads correctly in prose.
+interface_language_code: "en"
+# Free to download, with an optional auto-renewing subscription. NEVER put the
+# subscription price here; Apple renders the real one per storefront.
+price_model: >-
+  Free to download, with the first three invoices free for life. An optional
+  auto-renewing Pact Pro subscription is available; prices are shown in the App
+  Store. One subscription covers iPhone, iPad and Mac.
+
+# ---------------------------------------------------------------------------
+# What Pact does. Each line is backed by a named symbol in the app.
+# ---------------------------------------------------------------------------
+features:
+  - "Reads a brand's collaboration email on the device — pasted, shared, screenshotted or as a PDF — and fills in the brand, amount, deliverables and payment terms"
+  - "Flags anything it is not sure about in amber before you confirm, rather than asserting a figure it guessed"
+  - "Indian GST computed, not typed: CGST + SGST in-state, IGST inter-state, zero-rated exports under a furnished LUT, and a plain no-tax invoice if you are not registered"
+  - "Place of supply is the brand's location, read from a checksum-valid GSTIN in the email or asked once per brand — never inferred from the currency"
+  - "Outside India, prints your own jurisdiction's tax word — VAT, USt, TVA, IVA, BTW, BTW/TVA, MOMS, ALV, MWST, GST, Consumption tax or Sales tax — at the rate you set"
+  - "Invoices in 44 currencies, each rounded to its own real minor unit and written out in its own currency's words"
+  - "Bank details labelled for where you bank: IFSC, sort code, BSB, ABA routing number, transit number, IBAN and BIC"
+  - "Consecutive, financial-year-continuous invoice numbers that reset on 1 April; a number that has left your hands is never reissued (Rule 46(b))"
+  - "A real A4 PDF with selectable text, not a screenshot"
+  - "Scan-to-pay UPI QR on rupee invoices once you add a UPI ID — no gateway, no commission"
+  - "TDS handled properly: record what landed and what the brand withheld, and every reminder chases invoiced minus received minus TDS"
+  - "Reminders three days before the due date, on the day, then one, seven and fourteen days late"
+  - "Drafts the overdue follow-up in one of three tones — you read it, edit it, and send it"
+  - "Exports your whole book as one zip: every invoice PDF, a CSV ledger and a GST plus TDS summary. Free, and never gated"
+  - "Writes a dated backup zip into a folder you nominate, once a day. Free"
+  - "Runs on iPhone, iPad and Mac; one subscription covers all three"
+  - "No account, no sign-in, no cloud, no tracking, no analytics, and no network requests of its own"
+
+# ---------------------------------------------------------------------------
+# What Pact deliberately does not do.
+#
+# This block does more work than the features block. An assistant asked "can I
+# use Pact to file my GST returns?" should be able to answer no from Pact's own
+# site. Every wrong install that never happens is a 1-star that never happens —
+# and at a rating count still in the low single digits, one 1-star moves the
+# visible average by a whole point or more, and it stays moved for months.
+# ---------------------------------------------------------------------------
+does_not:
+  - "Does not file your GST returns and does not connect to the GST portal"
+  - "No e-invoicing, IRN generation or e-way bills"
+  - "No inventory, stock or counter billing — it is not a shop's billing system"
+  - "No staff logins or multi-user accounts"
+  - "No bank feeds and no automatic reconciliation"
+  - "No expense tracking"
+  - "No quotations, proforma invoices or credit notes"
+  - "Does not send anything by itself. It drafts the follow-up; you send it"
+  - "Does not connect to your inbox and does not scan your mail. You hand it the email"
+  - "Does not convert currencies or fetch exchange rates. It never adds two currencies together"
+  - "Does not know foreign tax rates. It prints your jurisdiction's word for the tax; you enter the rate once"
+  - "Does not handle EU reverse charge or place of supply outside India yet"
+  - "Reads brand names, fees and deliverables from English-language emails only. Payment terms are additionally read in German, French, Spanish, Portuguese, Italian, Dutch, Polish and Turkish, and are flagged amber for a glance. The app's own interface is English only"
+  - "Does not sync between your devices. Each device holds its own local book"
+
+# ---------------------------------------------------------------------------
+# FAQ — NOT HERE. It lives in _data/faq.yml, which is GENERATED from
+# pact-faq.md by `ruby tools/build-faq-data.rb`.
+#
+# Google requires that an answer declared in FAQPage markup be visible on the
+# page carrying it, so the answers are derived from the page rather than
+# copied beside it. Edit pact-faq.md, re-run the script, commit both.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# The organisation. Used for the Organization JSON-LD node.
+# Nothing here is invented: the legal name is the App Store seller of record.
+# There is deliberately no `logo`, no postal address and no social profile —
+# add them only when a real asset or account exists.
+# ---------------------------------------------------------------------------
+org:
+  name: GenesisCipher Labs
+  legal_name: GENESISCIPHER LABS PRIVATE LIMITED
+  url: "https://genesiscipher-labs.github.io/"
+  email: genesiscipherlabs@gmail.com
+  description: >-
+    GenesisCipher Labs builds private, on-device apps for iPhone, iPad and Mac.
+

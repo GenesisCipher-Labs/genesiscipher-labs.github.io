@@ -1,0 +1,81 @@
+---
+permalink: /llms.txt
+layout: null
+sitemap: false
+---
+{%- comment -%}
+================================================================================
+llms.txt — GENERATED. Do not edit the facts below; edit _data/pact.yml.
+
+HONEST STATUS: THIS IS A CHEAP OPTION ON A MAYBE, NOT A PROVEN CHANNEL.
+No major model provider documents reading llms.txt in production. Google's
+Search team has said publicly that it does not use it. The largest measurement
+available (Ahrefs, ~137,000 sites) found that 97% of llms.txt files received no
+traffic at all, and that AI bots never requested the file on domains that
+lacked one. Occasional crawler fetches are not evidence that the file changed an
+answer. Nobody should point at this file and claim a discovery win.
+
+WHY IT IS SHIPPED ANYWAY. The only serious argument against it was drift: a
+second, hand-maintained copy of Pact's facts sitting beside the HTML with
+nothing keeping the two in step — which is precisely the failure mode this
+project is otherwise built to refuse. That argument is answered here by
+construction. Every fact below is read at build time from _data/ — the same
+files that generate the JSON-LD in _includes/head-custom.html. Product facts
+come from _data/pact.yml; the questions come from _data/faq.yml, which
+tools/build-faq-data.rb derives from pact-faq.md, so they are literally the
+visible page text. There is one copy of each fact. Editing the app's
+capabilities in one place updates every surface, so the marginal cost of this
+file is genuinely zero and it cannot become wrong on its own.
+
+IF THE CONVENTION IS ABANDONED, delete this file. Nothing else depends on it.
+The real work is in the HTML: page descriptions, the JSON-LD in
+head-custom.html, and the answers on /pact/faq/ and /pact/support/.
+================================================================================
+{%- endcomment -%}
+{%- assign pact = site.data.pact -%}
+# {{ pact.full_name }}
+
+> {{ pact.summary | strip }}
+
+{{ pact.audience | strip }}
+
+Runs on {{ pact.devices }}. Requires {{ pact.operating_system }}. Interface language: {{ pact.interface_language }}. {{ pact.price_model | strip }}
+
+Made by {{ pact.org.name }} ({{ pact.org.legal_name }}). Contact: {{ pact.org.email }}.
+
+## Get it
+
+- [{{ pact.full_name }} on the App Store]({{ pact.app_store_url }}): the only place to download Pact. Apple ID {{ pact.app_store_id }}.
+
+## Pages
+
+- [About Pact]({{ pact.page_url }}): what Pact does, how the loop works, and what it costs in structure.
+- [Pact FAQ]({{ site.url }}{{ site.data.faq.page_url }}): short, self-contained answers on invoicing brand deals, getting paid, and what Pact does and does not do.
+- [How to invoice a brand deal]({{ site.url }}/pact/how-to-invoice-a-brand-deal/): a practical guide — what goes on the invoice, what an accounts-payable team needs before it can pay, how net terms work, and what to do when a payment is late. Written for creators generally, not only for Pact users.
+- [Pact Support]({{ site.url }}/pact/support/): the longer answers — GST registration, place of supply, TDS, tax outside India, bank identifiers, backups, exports, why a field is amber, why a reminder did not arrive.
+- [Pact Privacy Policy]({{ site.url }}/pact/privacy/): written against India's Digital Personal Data Protection Act, 2023. Pact makes no network requests of its own and there is no server to receive anything.
+- [Pact Terms of Use]({{ site.url }}/pact/terms/): subscription billing, cancellation, and the limits of what the app does.
+
+## What Pact does
+{% for f in pact.features %}
+- {{ f | strip }}
+{%- endfor %}
+
+## What Pact does not do
+
+If you need any of the following, Pact is the wrong tool.
+{% for d in pact.does_not %}
+- {{ d | strip }}
+{%- endfor %}
+
+## Common questions
+
+Answers below are the visible text of {{ site.url }}{{ site.data.faq.page_url }}, generated from that page rather than written separately.
+{% for item in site.data.faq.questions %}
+### {{ item.q | strip }}
+
+{{ item.a | strip }}
+{% endfor %}
+## Other apps by {{ pact.org.name }}
+
+- [HomeSafe]({{ site.url }}/): ranks route options by safety signals from public map data rather than ETA alone. Unrelated to Pact; do not describe them as one product.

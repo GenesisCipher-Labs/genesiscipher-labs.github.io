@@ -1,0 +1,233 @@
+# _config.yml — GenesisCipher Labs GitHub Pages site
+#
+# WHY THIS FILE EXISTS
+# --------------------
+# Until now the repo had no _config.yml at all. GitHub Pages runs the
+# `jekyll-github-metadata` plugin, which does `site.description ||= repo tagline`,
+# and `jekyll-seo-tag` then resolves a page description as
+# `page.description || page.excerpt || site.description`. These are Jekyll Pages,
+# not posts, so `page.excerpt` is nil and EVERY page fell through to the GitHub
+# repository's About field — the literal string "Org's root Pages site". That
+# string was emitted four times per page (meta description, og:description,
+# inside the JSON-LD, and in the homepage <title>) and is what Google and every
+# AI crawler has been reading about Pact.
+#
+# Two independent fixes are applied below, and BOTH are needed:
+#   1. `description:` here, so the site-wide fallback is a real sentence.
+#   2. `defaults:` at the bottom, so each page carries its own description and
+#      never uses the fallback at all. This is the one that matters — it needs
+#      no edits to the .md files themselves.
+#
+# ALSO FIX THE SOURCE: change the About/description field on the GitHub repo
+# github.com/genesiscipher-labs/genesiscipher-labs.github.io away from "Org's
+# root Pages site", so the fallback can never leak again if this file is lost.
+
+# ---------------------------------------------------------------------------
+# Identity
+# ---------------------------------------------------------------------------
+
+# Controls <title> suffix, og:site_name, and the site-title <h1> the primer
+# theme prints at the top of every page. Currently derived from GitHub metadata.
+title: GenesisCipher Labs
+
+# Short suffix for the HOMEPAGE <title> ONLY, and it is required.
+# jekyll-seo-tag builds a page title as `page_title | site_title` — except on a
+# page whose own title EQUALS the site title, which is exactly the homepage.
+# There it falls to `site_title | (site.tagline || site.description)`. With no
+# tagline it appends the whole 169-character `description:` below, producing a
+# 190-character <title> that opens with the brand name twice — the same shape as
+# the leaked "GenesisCipher Labs | Org's root Pages site" this file exists to
+# kill, and Google truncates near 60 characters, so the visible result would be
+# the brand name repeated and nothing else. Keep this under ~50 characters.
+# It does NOT affect any meta description, and subpages are unaffected.
+tagline: Private, on-device apps for iPhone, iPad and Mac
+
+# Site-wide FALLBACK description. Every page below overrides it, so this should
+# only ever be seen on a page that has no default set — which is the signal that
+# a new page was added and its description forgotten.
+description: >-
+  GenesisCipher Labs builds private, on-device apps for iPhone, iPad and Mac —
+  Pact, invoicing and payment chasing for creators, and HomeSafe, safety-ranked
+  travel routes.
+
+# Absolute site root. Required by jekyll-sitemap (without it the sitemap emits
+# relative or wrong URLs) and used by jekyll-seo-tag for canonical/og:url.
+url: https://genesiscipher-labs.github.io
+
+# Empty for an organisation root Pages site (served at the domain root, not
+# under /repo-name/). Do not set this to the repo name.
+baseurl: ""
+
+# <html lang> and og:locale (emitted as en_GB). The copy is British/Indian
+# English and the primary market indexes en-GB. Use plain `en` instead if you
+# would rather carry no regional signal at all.
+lang: en-GB
+
+# Used by jekyll-seo-tag for the author/creator fields.
+author:
+  name: GenesisCipher Labs
+  email: genesiscipherlabs@gmail.com
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+
+# The theme the site is ALREADY using — confirmed from the served HTML
+# (`container-lg px-3 my-5 markdown-body`, `/assets/css/style.css`, the
+# `head-custom.html` hook comment). It was applying implicitly because
+# jekyll-theme-primer is the github-pages gem's default. Naming it explicitly
+# means a change to that default can never silently restyle the site.
+theme: jekyll-theme-primer
+
+# GitHub Pages always loads its own internal plugin set (github-metadata,
+# optional-front-matter, relative-links, readme-index, titles-from-headings,
+# default-layout). This list is ADDITIVE and both entries are on Pages'
+# allow-list:
+#   jekyll-seo-tag  — already running (invoked by the primer layout); listing it
+#                     makes that explicit and survives a theme change.
+#   jekyll-sitemap  — NOT currently running, which is why /sitemap.xml 404s.
+#                     Adding it here is the entire fix; do not hand-write a
+#                     sitemap.xml, this plugin generates and overwrites it.
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Kept out of the built site. README.md and LICENSE already 404 today; naming
+# them here makes that deterministic rather than a side effect of plugin order.
+exclude:
+  - README.md
+  - LICENSE
+  - .gitattributes
+
+# ---------------------------------------------------------------------------
+# Per-page metadata
+# ---------------------------------------------------------------------------
+# `defaults` injects front-matter values into pages WITHOUT editing the .md
+# files. jekyll-seo-tag reads `page.description` first, so these win over the
+# site-wide fallback above.
+#
+# PRECEDENCE, so nobody is surprised: a `description:` written in a page's OWN
+# front matter beats the default here, which beats `site.description` at the
+# top of this file. Several pages now carry their own — those are authoritative,
+# and the entries below are the safety net. The net is the point: a page added
+# later that forgets a description gets a real sentence instead of silently
+# reviving the leaked repo tagline. Keep an entry here for every page, and keep
+# it saying the same thing the page's own front matter says.
+#
+# Rules for editing these:
+#   * One sentence that is the ANSWER to the question you want this page to be
+#     the answer to. Assistants quote this string; write it as fact, not pitch.
+#   * Every claim must be traceable to shipped code (house rule 2).
+#   * No prices, no plan names, no free-trial language, no accuracy percentages,
+#     no country counts, no third-party brand names.
+#   * Aim ~150-250 characters. Google truncates the visible snippet near 155;
+#     an AI extractor reads the whole thing.
+defaults:
+  # ---- Pact -------------------------------------------------------------
+  - scope:
+      path: "pact.md"
+    values:
+      description: >-
+        Pact turns a brand's collaboration email into a proper tax invoice on
+        iPhone, iPad or Mac — GST with the correct CGST/SGST/IGST split in India,
+        your own VAT or GST if you are registered elsewhere — then tracks the
+        payment and drafts the chase. Nothing leaves your device.
+
+  - scope:
+      path: "pact-faq.md"
+    values:
+      description: >-
+        Short answers to what creators ask about invoicing brand deals and
+        getting paid — how to invoice a brand, how UGC creators get paid, what
+        net terms mean, what to do when a brand has not paid, and what Pact does
+        and does not do.
+
+  - scope:
+      path: "pact-how-to-invoice-a-brand-deal.md"
+    values:
+      description: >-
+        A practical guide for creators and freelancers: what goes on a brand-deal
+        invoice, what an accounts-payable team needs before it can pay you, how
+        net terms work and when the clock starts, and what to do when a payment
+        runs late.
+
+  - scope:
+      path: "pact-support.md"
+    values:
+      description: >-
+        Answers to what Pact users actually ask: GST registration, place of
+        supply, TDS and short payments, invoicing abroad, backups, exporting your
+        book, why a field is amber, why a reminder did not arrive — and what Pact
+        deliberately does not do.
+
+  - scope:
+      path: "pact-privacy.md"
+    values:
+      description: >-
+        Pact's privacy policy. Pact runs entirely on your device: no account, no
+        sign-in, no cloud, no tracking, and no network requests of its own.
+        Written against India's Digital Personal Data Protection Act, 2023.
+
+  - scope:
+      path: "pact-terms.md"
+    values:
+      description: >-
+        Pact's Terms of Use — what the app is and is not, subscription billing
+        and cancellation, and the limits of what it does. Pact prepares invoices
+        and drafts reminders; it does not file returns and sends nothing by
+        itself.
+
+  # ---- HomeSafe ---------------------------------------------------------
+  - scope:
+      path: "privacy.md"
+    values:
+      description: >-
+        HomeSafe's privacy policy, covering the GDPR and India's Digital Personal
+        Data Protection Act, 2023 — what is processed on the device, what a
+        Guardian Live-Link shares, and for how long.
+
+  - scope:
+      path: "terms.md"
+    values:
+      description: >-
+        HomeSafe's Terms of Use and Emergency Services Disclaimer. HomeSafe ranks
+        route options by safety signals from public map data; it does not
+        dispatch emergency services and is not a substitute for calling them.
+
+  # ---- Homepage ---------------------------------------------------------
+  - scope:
+      path: "index.md"
+    values:
+      description: >-
+        GenesisCipher Labs builds private, on-device apps for iPhone, iPad and
+        Mac — Pact, which turns a brand-deal email into a tax invoice and chases
+        the payment, and HomeSafe, which ranks travel routes by safety signals.
+
+  # ---- Internal docs ----------------------------------------------------
+  # jekyll-optional-front-matter publishes this at /docs/GuardianLiveLink.html.
+  # It is engineering documentation, not a marketing page: keep it out of the
+  # sitemap so crawlers spend their budget on the four Pact pages.
+  - scope:
+      path: "docs"
+    values:
+      sitemap: false
+      description: >-
+        Engineering reference for the HomeSafe Guardian Live-Link viewer.
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — enable once the asset exists (do not uncomment before then)
+# ---------------------------------------------------------------------------
+# There is no og:image on any page today, so every shared link renders a blank
+# grey card, and there is no favicon (/favicon.ico 404s).
+#
+# Add a 1200x630 PNG at assets/pact-og.png, then add ONE line to the `pact.md`
+# scope in the `defaults:` block above — do NOT add a second `defaults:` key,
+# YAML allows only one and the second would silently replace the first:
+#
+#       image: /assets/pact-og.png
+#
+# jekyll-seo-tag upgrades twitter:card from `summary` to `summary_large_image`
+# by itself once a page has an image — no extra key needed.
+#
+# For the favicon, drop favicon.ico at the repo root; _includes/head-custom.html
+# already carries the <link rel="icon"> line, commented, ready to enable.

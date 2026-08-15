@@ -1,0 +1,187 @@
+# GENERATED FILE — DO NOT EDIT BY HAND.
+#
+# Regenerate with:  ruby tools/build-faq-data.rb
+#
+# Source of truth: pact-faq.md (published at /pact/faq/).
+# Every answer below is the visible text of that page with Markdown stripped,
+# which is what Google requires of FAQPage markup and what makes the JSON-LD
+# trustworthy to an extractor. Edit the page, re-run the script, commit both.
+#
+# Consumed by: _includes/head-custom.html (FAQPage JSON-LD) and llms.txt.
+# Questions: 22
+
+page_url: "/pact/faq/"
+questions:
+- section: Getting paid for brand deals
+  q: How do I invoice a brand?
+  a: 'Send a PDF containing: your legal name and address, the brand''s legal entity
+    name and billing address, a unique sequential invoice number, the date of issue,
+    a description naming the actual deliverables and when you delivered them, the
+    fee, any tax as its own line at its own rate, the total, the due date as a calendar
+    date, and your bank details. Add a purchase-order number if the brand uses one,
+    and send it to accounts payable as well as to the person who briefed you.'
+- section: Getting paid for brand deals
+  q: How do UGC creators get paid?
+  a: Usually by bank transfer against an invoice, on net terms — most commonly 30
+    days from the invoice date, though agencies and large brands often propose 45,
+    60 or 90. Payment goes through the brand's accounts-payable process, not through
+    the marketing contact who briefed you, which is why an invoice can sit for weeks
+    without anyone saying anything. Some creators negotiate 50% upfront and 50% on
+    delivery, which is the single most effective change you can make to your cash
+    flow.
+- section: Getting paid for brand deals
+  q: What does Net 30 mean?
+  a: The full amount is due within 30 days — on or before day 30, not on day 31. The
+    clock normally starts from the date on the invoice rather than the date you delivered
+    the work, which is why sending the invoice promptly matters. Net 15, Net 45, Net
+    60 and Net 90 work the same way with different counts. "EOM + 30" means 30 days
+    from the end of the month the invoice was raised in, which can be anywhere from
+    30 to 60 days depending on when you sent it.
+- section: Getting paid for brand deals
+  q: Should I ask for a deposit?
+  a: If you can. 50% before work starts and 50% on delivery is a common and reasonable
+    structure for brand work, and it is far easier to agree before you start than
+    after. Whether a deposit is non-refundable is a contract question, so put it in
+    writing along with what it covers and what happens if the brand cancels.
+- section: Getting paid for brand deals
+  q: The brand hasn't paid. What do I do?
+  a: Escalate slowly, in writing, in one thread, re-attaching the invoice every time.
+    A friendly note the day after it falls due; a week later add the accounts-payable
+    address and ask a question that needs answering ("has this been scheduled, and
+    for which payment run?"); at two weeks write to accounts payable directly and
+    ask whether anything is blocking approval, because often something is — a missing
+    PO number, the wrong legal entity, an unsigned approval — and nobody has told
+    you. At 30 days, a formal notice referencing the agreed terms.
+- section: Getting paid for brand deals
+  q: How do I follow up on an invoice without damaging the relationship?
+  a: Keep it short, assume an oversight, and ask about their process rather than about
+    their intentions. "Could you confirm which payment run this is scheduled for?"
+    is easier to answer and harder to ignore than a reminder that it is overdue. Always
+    re-attach the invoice, always quote the invoice number and the amount still outstanding,
+    and never quote the original total if a part payment has already landed.
+- section: Getting paid for brand deals
+  q: The brand paid less than I invoiced. Were they short?
+  a: Usually not. Many countries require the payer to withhold tax at source and remit
+    it to the government on your behalf — in India this is TDS, typically 10% under
+    Section 194J on the taxable value — so the cash that arrives is lawfully less
+    than the invoice and you claim credit for the difference when you file. Other
+    causes are international transfer fees deducted in transit, a currency conversion
+    at their rate, or a deduction agreed in the contract. Ask for the remittance advice;
+    it itemises exactly this.
+- section: Getting paid for brand deals
+  q: Do I have to charge tax on a brand deal?
+  a: 'Only if you are registered for a consumption tax where you live, and the rate
+    is whatever your own tax authority says it is. Below a country''s registration
+    threshold you charge nothing and issue a plain invoice — and you should not head
+    that document "Tax Invoice", because in several countries that heading is a defined
+    term implying a registration you do not have. Which side''s location decides the
+    treatment varies: in India, GST''s place of supply is the recipient''s location;
+    in the EU, a cross-border B2B supply of services generally shifts to the customer,
+    who accounts for the tax themselves.'
+- section: About Pact
+  q: What is Pact?
+  a: An iPhone, iPad and Mac app that turns a brand's collaboration email into a proper
+    tax invoice, tracks the payment, and drafts the follow-up when it runs late. Reading
+    the email, the tax arithmetic and the PDF all happen on your device. There is
+    no account, no cloud, and no network connection of Pact's own.
+- section: About Pact
+  q: Can I use Pact if I'm not in India?
+  a: 'Yes. You state which country you invoice from, and everything follows from that.
+    If you are registered for tax where you live, you enter your rate once and Pact
+    charges it and calls it by the right word — VAT, USt, TVA, IVA, BTW, MOMS, ALV,
+    MWST, GST or Sales tax, for 31 countries. If you are not registered, you get a
+    clean invoice with no tax line. Your bank details are labelled the way your country
+    labels them: sort code, BSB, ABA routing number, transit number, BIC beside an
+    IBAN, IFSC, or SWIFT/BIC. Nothing about India''s tax code is printed on an invoice
+    India does not govern.'
+- section: About Pact
+  q: Does Pact know my country's VAT rate?
+  a: No, and it will not guess. Pact knows the word — that Germany calls it USt and
+    France TVA — because that is a stable fact about language. The rate is a fact
+    about current legislation in a country the app cannot see, and Pact has no network
+    of any kind, so a built-in rate table would go stale the day a jurisdiction legislates.
+    You enter your rate once. A wrong number on a statutory document is worse than
+    a question.
+- section: About Pact
+  q: Does Pact handle EU reverse charge?
+  a: No. A creator outside India charges their own stated rate to every client regardless
+    of where that client is, and there is no reverse-charge wording on the document.
+    For a cross-border B2B supply inside the EU, where the customer should account
+    for the VAT themselves, Pact's invoice will be wrong and you should not use it
+    for that invoice. It is on the list; it needs a recipient-location question, and
+    we would rather ship it properly than half-build it.
+- section: About Pact
+  q: Which currencies does Pact support?
+  a: 44, covering Asia-Pacific, the Americas, Europe, the Middle East, Africa and
+    South Asia. Each uses its own decimal rules — a yen invoice shows no decimals,
+    a Kuwaiti dinar three — and the amount-in-words line uses that currency's own
+    nouns. Pact never converts one currency into another and never adds two together.
+- section: About Pact
+  q: Does Pact do Indian GST properly?
+  a: 'Yes, and it computes it rather than asking you to type it: CGST + SGST intra-state,
+    IGST inter-state, zero-rated exports under a furnished LUT, IGST-paid exports
+    without one, and a plain no-tax invoice if you are not registered. Place of supply
+    is the recipient''s location under Section 12(2)(a) of the IGST Act, read from
+    a checksum-valid GSTIN in the email or asked once per brand — never inferred from
+    your own state or from the currency. Invoice numbers are financial-year-continuous
+    and reset on 1 April. TDS is computed from the invoice for you to confirm, and
+    rounding follows Section 170.'
+- section: About Pact
+  q: Does Pact send the follow-up email for me?
+  a: No. Pact writes the draft in one of three tones; you read it, edit it and send
+    it from your own mail app, share sheet or chat app. Pact makes no network requests
+    of its own and there is no server behind it, so it has no way to send an email
+    even in principle. Your payment details are attached beneath the draft as text
+    you cannot accidentally reword.
+- section: About Pact
+  q: When does Pact remind me?
+  a: Three days before the due date, on the due date, then one, seven and fourteen
+    days after — at 10am your local time. Each reminder lets you mark the deal paid,
+    draft a follow-up, or snooze three days without opening the app. Marking a payment
+    paid from a notification requires your face or passcode. Snoozing never moves
+    the due date printed on the invoice the brand is holding.
+- section: About Pact
+  q: Is my data private?
+  a: There is no account, no sign-in, no cloud, no analytics and no network request
+    Pact makes on its own. Pact's App Privacy answer on the App Store is Data Not
+    Collected. Your invoices live in local storage on your device and it works offline,
+    on a plane.
+- section: About Pact
+  q: Do my invoices sync between my iPhone, iPad and Mac?
+  a: No. One subscription covers all three devices, but each holds its own separate
+    book. There is no iCloud sync, because there is no cloud and no server. There
+    is also no way to move a book between devices. Pact can export a book but it cannot
+    import one, so each device's book is the one built on it. Export and backup keep
+    a complete, readable copy of everything you have issued — PDFs and CSVs you can
+    open anywhere — but Pact will not load them back in.
+- section: About Pact
+  q: Can I get my invoices out of Pact?
+  a: Yes, free, and it will never be gated. Export gives you one zip with every invoice
+    PDF, a ledger.csv with a row per invoice, and a tax-summary.csv with tax by the
+    April–March financial year — Pact's only grouping, wherever you invoice from —
+    and a TDS reconciliation, the pack an accountant can open directly. Backup lets
+    you nominate a folder once, and Pact drops a dated zip into it at most once a
+    day. Pact holds the only copy of a record you are required to keep for around
+    six years, so charging for the exit would be the wrong trade.
+- section: About Pact
+  q: What does Pact cost?
+  a: Your first three invoices are free for life, and trying a sample never spends
+    one. Pact Pro adds unlimited invoices, your own logo with no "Made with Pact"
+    line, zero-rated export invoicing for GST-registered Indian creators billing abroad,
+    and follow-ups rewritten in your own voice on devices with Apple Intelligence.
+    It is an auto-renewing subscription billed weekly, monthly, every three months
+    or every six months; prices are shown in the app and on the App Store in your
+    own currency, and one subscription covers iPhone, iPad and Mac.
+- section: About Pact
+  q: What does Pact deliberately not do?
+  a: It does not file returns or connect to any tax portal. No e-invoicing, IRN or
+    e-way bills. No inventory, stock or counter billing. No staff logins. No bank
+    feeds or automatic reconciliation. No expense tracking. No quotations, proforma
+    invoices or credit notes. No EU or UK reverse charge. No currency conversion.
+    No sync between devices. No purchase-order field of its own. The interface is
+    English only. Pact prepares the invoice, tracks the payment, chases it, and hands
+    your accountant a clean export — that is the whole job.
+- section: About Pact
+  q: What do I need to run Pact?
+  a: iOS 26 or later, or macOS 26 or later, on iPhone, iPad or Mac. It is a universal
+    purchase, so one subscription covers all three.

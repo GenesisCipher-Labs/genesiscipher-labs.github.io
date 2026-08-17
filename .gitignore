@@ -1,0 +1,15 @@
+# Jekyll build output. GitHub Pages builds this site server-side from source, so a
+# local `jekyll serve` is the only thing that produces these — and committing a built
+# _site/ into a Pages repo is how a stale copy of a legal page outlives its source.
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Bundler, if a Gemfile is ever added for local previews. Gemfile.lock is deliberately
+# NOT ignored — when a Gemfile exists its lock belongs in the repo.
+.bundle/
+vendor/
+
+# macOS
+.DS_Store

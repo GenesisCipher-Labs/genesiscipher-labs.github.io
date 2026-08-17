@@ -17,6 +17,8 @@ HomeSafe is available on iOS. The Android app is in development — coming soon.
 - [Get HomeSafe on the App Store](https://apps.apple.com/in/app/homesafe-safest-travel-routes/id6775227516)
 - [HomeSafe Privacy Policy](./privacy/)
 - [HomeSafe Terms & Emergency Services Disclaimer](./terms/)
+- [HomeSafe for Android — Privacy Policy](./privacy/android/)
+- [HomeSafe for Android — Terms & Emergency Services Disclaimer](./terms/android/)
 
 ## Pact
 
@@ -33,6 +35,7 @@ Free for your first three invoices. Pact Pro is an auto-renewing subscription, a
 - [Pact Support](./pact/support/)
 - [Pact Privacy Policy](./pact/privacy/)
 - [Pact Terms of Use](./pact/terms/)
+- [Pact for Android — Privacy Policy](./pact/android/privacy/)
 
 ## Contact
 

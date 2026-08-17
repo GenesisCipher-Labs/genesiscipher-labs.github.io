@@ -177,6 +177,17 @@ defaults:
         and drafts reminders; it does not file returns and sends nothing by
         itself.
 
+  # The Android build is a different binary with different components, so it
+  # carries its own policy rather than sharing the iOS one. The Play listing
+  # points here.
+  - scope:
+      path: "pact-android-privacy.md"
+    values:
+      description: >-
+        What Pact for Android processes, where it goes, and the one thing that
+        does leave your device — Google's ML Kit diagnostics — stated plainly.
+        Written against India's Digital Personal Data Protection Act, 2023.
+
   # ---- HomeSafe ---------------------------------------------------------
   - scope:
       path: "privacy.md"
@@ -193,6 +204,30 @@ defaults:
         HomeSafe's Terms of Use and Emergency Services Disclaimer. HomeSafe ranks
         route options by safety signals from public map data; it does not
         dispatch emergency services and is not a substitute for calling them.
+
+  # The Android build has different data flows from the iPhone one — no shared
+  # community-report database, a different set of map and weather providers —
+  # so it carries its own policy and terms rather than sharing the iOS pages.
+  # `LegalLinks` in the Android app links directly to these two permalinks, and
+  # the Play listing points at the privacy one. Do not change either permalink
+  # without shipping an app update: the URLs are compiled into the binary.
+  - scope:
+      path: "homesafe-android-privacy.md"
+    values:
+      description: >-
+        What HomeSafe for Android processes on your device, the public map and
+        weather services it queries directly, and the components Google's
+        billing library brings with it — stated plainly. Written against the
+        GDPR and India's Digital Personal Data Protection Act, 2023.
+
+  - scope:
+      path: "homesafe-android-terms.md"
+    values:
+      description: >-
+        HomeSafe for Android's Terms of Use and Emergency Services Disclaimer.
+        HomeSafe ranks route options by safety signals from public map data; it
+        does not dispatch emergency services and is not a substitute for calling
+        them.
 
   # ---- Homepage ---------------------------------------------------------
   - scope:

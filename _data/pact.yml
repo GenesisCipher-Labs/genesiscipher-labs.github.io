@@ -111,7 +111,6 @@ does_not:
   - "Does not connect to your inbox and does not scan your mail. You hand it the email"
   - "Does not convert currencies or fetch exchange rates. It never adds two currencies together"
   - "Does not know foreign tax rates. It prints your jurisdiction's word for the tax; you enter the rate once"
-  - "Does not handle EU reverse charge or place of supply outside India yet"
   - "Reads brand names, fees and deliverables from English-language emails only. Payment terms are additionally read in German, French, Spanish, Portuguese, Italian, Dutch, Polish and Turkish, and are flagged amber for a glance. The app's own interface is English only"
   - "Does not sync between your devices. Each device holds its own local book"
 

@@ -271,11 +271,13 @@ follow-up when a payment runs late. It records what landed *and* what was
 withheld, so the balance it chases is the real one. Everything runs on your
 device, and export is free because the record is yours.
 
-Two things on this page it does **not** do, stated plainly because you should not
-find out later: it has no purchase-order field of its own — put the reference into
-the description line — and it does not handle EU or UK reverse charge, so for a
-cross-border B2B supply inside the EU it will charge your own rate when it should
-not.
+Two edges worth knowing before you rely on them: the brand's PO number goes in
+the client reference field and prints on the document, and a cross-border B2B
+supply inside the EU gets the reverse charge — no VAT charged, the required
+statement printed — provided you have set the client's country and VAT number on
+the brand record. One thing it does **not** do, stated plainly because you should
+not find out later: there is no credit note yet, so a correction to an invoice
+you have already sent has to be agreed with the brand outside the app.
 
 [About Pact](../) · [Support](../support/) · [FAQ](../faq/) ·
 [Download on the App Store](https://apps.apple.com/app/id6790888314)

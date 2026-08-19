@@ -12,7 +12,8 @@ GenesisCipher Labs ("we", "us") builds Pact, an invoicing and payment-tracking a
 freelancers — it turns a brand-deal email into a tax invoice and tracks when you get paid. **Pact
 stores your records on your device and we operate no server that receives them.** This policy
 explains exactly what is processed, what leaves the device, and the rights you have under India's
-**Digital Personal Data Protection Act, 2023 (DPDP Act)**.
+**Digital Personal Data Protection Act, 2023 (DPDP Act)** and, if you live elsewhere, under laws
+such as the **EU/UK GDPR** and the **California Consumer Privacy Act (CCPA)**.
 
 > **This is the Android policy.** The iOS and macOS version of Pact is a different build with
 > different components — it uses Apple Intelligence and Apple's StoreKit, neither of which exists
@@ -50,7 +51,7 @@ data-rights requests and grievances (including the grievance contact required un
 
 | Data | Where it is processed | Why | Lawful basis (DPDP Act) |
 |---|---|---|---|
-| Your business profile — legal name, PAN, GSTIN, registered address, email, bank account name/number/IFSC, UPI ID | On your device | To render legally-formatted tax invoices identifying you as the supplier | The specified purpose you voluntarily provided the data for |
+| Your business profile — legal name, PAN, GSTIN, registered address, email, bank account name/number/IFSC, UPI ID | On your device | To render tax invoices identifying you as the supplier | The specified purpose you voluntarily provided the data for |
 | Brand / client records — name, tax registration, billing address, place-of-supply state, contact name, accounts-payable email, phone, notes | On your device | To address invoices and determine the correct GST treatment (CGST+SGST, IGST, or export) | The specified purpose you voluntarily provided the data for |
 | Deal details — title, deliverables, amount, currency, payment terms, and the original pasted/shared text or screenshot | On your device | To create the deal, generate the invoice, and let you re-read it if needed | Your consent when you paste or share it |
 | Invoices and payment records — invoice PDFs, tax breakup, supplier/brand snapshots, due dates, amounts, paid/overdue status | On your device | To track who owes you what, and to keep each invoice reproducible | The specified purpose you voluntarily provided the data for |
@@ -139,12 +140,20 @@ it**, because there is no server copy to survive. We hold nothing to delete on y
 data-deletion request to us would find no data. Files you have already exported or shared are outside
 Pact and must be deleted wherever you sent them.
 
-## Your rights under the DPDP Act
+## Your rights
 
-You have the right to access, correct and erase your personal data, and to grievance redressal.
-Because Pact holds your data only on your device, you exercise access, correction and erasure
-**directly in the app** — every field is editable and every record is deletable. For anything else,
-including grievances, write to **genesiscipherlabs@gmail.com**.
+Under the DPDP Act you have the right to access, correct and erase your personal data, and to
+grievance redressal. Because Pact holds your data only on your device, you exercise access,
+correction and erasure **directly in the app** — every field is editable and every record is
+deletable. For anything else, including grievances, write to **genesiscipherlabs@gmail.com**.
+
+**If you are outside India:** the same direct, on-device control is how you exercise your rights
+under the EU/UK GDPR, the CCPA, or your own local law — access, rectification, erasure, portability
+and objection are all in your hands, because your device is the only place your records exist and
+we receive, sell and share nothing. The one transmission from the app — Google's ML Kit diagnostics,
+described above — is Google's own processing under [Google's privacy policy](https://policies.google.com/privacy),
+and never includes your records. You can also contact us at the address above, or lodge a complaint
+with your local supervisory authority.
 
 ## Children
 

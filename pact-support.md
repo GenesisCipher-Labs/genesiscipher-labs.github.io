@@ -120,31 +120,41 @@ a line naming somebody else's statute is not.
 
 Your registration number gets its own label too — VAT no., USt-IdNr, No. TVA, NIF-IVA, Partita IVA,
 BTW-nummer, MWST-Nr, ABN, GST number, GST reg. no., GST/HST no., TRN, EIN, or a neutral
-"Tax registration no." where Pact doesn't have a specific one. The number itself is deliberately not
-validated: every jurisdiction has its own format, and refusing a number Pact cannot check would block
-a legitimately registered creator from issuing a compliant invoice.
+"Tax registration no." where Pact doesn't have a specific one. The number is checked only where the
+check is arithmetic rather than legislation: around twenty jurisdictions publish a real check digit
+(the UK's mod-97 in both of its live variants, Germany's mod-11 chain, Australia's ABN, and so on),
+and a number that fails its own checksum is refused — that is a typo worth catching before it prints
+on a document your client reclaims tax against. A shape Pact doesn't recognise only warns, and a
+jurisdiction it has no checksum for is accepted without comment, so a legitimately registered
+creator is never blocked by a format Pact cannot check.
 
 ### I'm in the EU billing a business in another EU country. Does Pact handle reverse charge?
 
-**No, and this is the clearest limitation Pact currently has.**
+**Yes — provided Pact knows where your client is and that they are a business.**
 
 For a cross-border B2B supply of services inside the EU, the place of supply is generally the
-customer's country and the customer accounts for the VAT themselves — your invoice should charge no
-VAT and should carry wording saying the reverse charge applies, along with the customer's VAT number.
+customer's country and the customer accounts for the VAT themselves — your invoice charges no VAT
+and must carry wording saying the reverse charge applies, along with the customer's VAT number.
 
-Pact does not do this. A creator outside India charges their own stated rate to every client
-regardless of where that client is. There is no recipient-location question outside India, and there
-is no reverse-charge wording on the document. For those specific invoices, Pact will be wrong, and
-you should not use it for them.
+Pact does this. Put your client's country and VAT registration number on the brand record: the
+registration number is what makes the supply B2B — that is Article 44's own test, never the currency
+or the email domain — and the invoice then charges no VAT, prints the reverse-charge statement the
+VAT Directive makes mandatory content (Article 226(11a)), and shows the client's number in the
+Bill To block. The statement is frozen onto the invoice when it is issued, so a later edit to the
+brand record can never silently add or remove statutory wording from a document your client already
+holds.
 
-Two things it *does* get right and that are worth knowing: you can store your client's own tax
-registration number against the brand, and it prints in the Bill To block, which is mandatory content
-on a UK or EU B2B invoice. And the Reverse Charge row that appears on Indian invoices is not printed
-on yours — the CGST Act defines that mechanism the opposite way round from EU Article 196, so
-printing a permanent "No" there would have been a false statement rather than a blank one.
+Three edges, stated plainly:
 
-This is on the list. It needs a recipient-location question, which is the foreign mirror of India's
-place of supply, and we would rather ship it properly than half-build it.
+- **If Pact does not know your client's country, it keeps charging your rate.** It never zero-rates
+  on a guess: over-charging is correctable between the parties, while under-charging comes out of
+  your own fee. Set the country on the brand before you confirm the deal.
+- **The UK is not in the EU VAT area** — it has been a third country since 2021. A Dublin creator
+  billing London, or a London creator billing Dublin, is treated as outside the scope of your VAT,
+  not as an EU reverse charge, and the document is worded accordingly.
+- **A VAT number that fails its check digit still counts as a business.** That is a typo, not
+  evidence your client is a consumer, and refusing the reverse charge over it would charge tax that
+  is not due.
 
 ### What if I'm registered but charge zero, or I'm not registered at all?
 
@@ -397,10 +407,8 @@ system, and if you need any of the following, Pact is the wrong tool and we'd ra
 - No bank feeds or automatic reconciliation.
 - No expense tracking.
 - No quotations, proforma invoices or credit notes.
-- No EU or UK reverse charge, and no recipient-location question outside India.
 - No currency conversion and no exchange-rate lookup.
 - No sync between your devices.
-- No purchase-order or brand-reference field of its own.
 - English interface only.
 
 Pact prepares the invoice, tracks the payment, chases it, and hands your accountant a clean export.

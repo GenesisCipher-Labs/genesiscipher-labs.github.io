@@ -104,12 +104,13 @@ questions:
     a question.
 - section: About Pact
   q: Does Pact handle EU reverse charge?
-  a: No. A creator outside India charges their own stated rate to every client regardless
-    of where that client is, and there is no reverse-charge wording on the document.
-    For a cross-border B2B supply inside the EU, where the customer should account
-    for the VAT themselves, Pact's invoice will be wrong and you should not use it
-    for that invoice. It is on the list; it needs a recipient-location question, and
-    we would rather ship it properly than half-build it.
+  a: 'Yes. Set your client''s country and VAT number on the brand record: for a cross-border
+    B2B supply inside the EU, the invoice then charges no VAT and prints the reverse-charge
+    statement the VAT Directive requires, with the client''s number in the Bill To
+    block. If Pact does not know where your client is, it keeps charging your own
+    rate rather than guessing — over-charging is correctable between the parties,
+    while under-charging comes out of your fee. The UK counts as outside the EU VAT
+    area, as it has been since 2021.'
 - section: About Pact
   q: Which currencies does Pact support?
   a: 44, covering Asia-Pacific, the Americas, Europe, the Middle East, Africa and
@@ -177,10 +178,9 @@ questions:
   a: It does not file returns or connect to any tax portal. No e-invoicing, IRN or
     e-way bills. No inventory, stock or counter billing. No staff logins. No bank
     feeds or automatic reconciliation. No expense tracking. No quotations, proforma
-    invoices or credit notes. No EU or UK reverse charge. No currency conversion.
-    No sync between devices. No purchase-order field of its own. The interface is
-    English only. Pact prepares the invoice, tracks the payment, chases it, and hands
-    your accountant a clean export — that is the whole job.
+    invoices or credit notes. No currency conversion. No sync between devices. The
+    interface is English only. Pact prepares the invoice, tracks the payment, chases
+    it, and hands your accountant a clean export — that is the whole job.
 - section: About Pact
   q: What do I need to run Pact?
   a: iOS 26 or later, or macOS 26 or later, on iPhone, iPad or Mac. It is a universal

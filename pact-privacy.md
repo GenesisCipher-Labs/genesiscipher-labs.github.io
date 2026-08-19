@@ -5,9 +5,9 @@ permalink: /pact/privacy/
 
 # Pact Privacy Policy
 
-Last updated: August 3, 2026
+Last updated: August 19, 2026
 
-GenesisCipher Labs ("we", "us") builds Pact, an invoicing and payment-tracking app for Indian creators and freelancers — it turns a brand-deal email into a GST-compliant invoice and tracks when you get paid. Privacy is the architecture, not a footnote: **Pact runs entirely on your device and we do not operate any server that receives your data.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)**.
+GenesisCipher Labs ("we", "us") builds Pact, an invoicing and payment-tracking app for creators and freelancers — it turns a brand-deal email into a professional tax invoice and tracks when you get paid. Privacy is the architecture, not a footnote: **Pact runs entirely on your device and we do not operate any server that receives your data.** This policy explains exactly what is processed, where it goes, and the rights you have under India's **Digital Personal Data Protection Act, 2023 (DPDP Act)** and, if you live elsewhere, under laws such as the **EU/UK GDPR** and the **California Consumer Privacy Act (CCPA)**.
 
 ## The short version
 
@@ -26,8 +26,8 @@ GenesisCipher Labs is the controller for the limited processing described here. 
 
 | Data | Where it is processed | Why | Lawful basis (DPDP Act) |
 |---|---|---|---|
-| Your business profile — legal name, PAN, GSTIN, registered address, email, phone, bank account name/number/IFSC, UPI ID, business logo and signature image | On your device | To render legally-formatted GST invoices that identify you as the supplier | The specified purpose you voluntarily provided the data for |
-| Brand / client records — name, GSTIN, billing address, place-of-supply state, contact name, email, phone, notes | On your device | To address invoices and determine the correct GST treatment (CGST+SGST, IGST, or export) | The specified purpose you voluntarily provided the data for |
+| Your business profile — legal name, tax registration numbers (GSTIN, VAT/tax registration number, PAN), registered address, email, phone, bank details (account name/number or IBAN, and your routing code — IFSC, sort code, BIC, ABA or BSB), UPI ID, business logo and signature image | On your device | To render invoices that identify you as the supplier | The specified purpose you voluntarily provided the data for |
+| Brand / client records — name, tax registration number (GSTIN or VAT number), billing address, place-of-supply state, contact name, email, phone, notes | On your device | To address invoices and determine the correct tax treatment (Indian CGST+SGST/IGST/export, your own VAT/GST rate, or EU reverse charge) | The specified purpose you voluntarily provided the data for |
 | Deal details — title, deliverables, amount, currency, payment terms, and the original pasted/shared text | On your device | To create the deal, generate the invoice, and let you re-extract if needed | Your consent when you paste or share the text |
 | Invoices and payment records — invoice documents, tax breakup, supplier/brand snapshots, due dates, amounts, and paid/overdue status | On your device | To track who owes you what and when, and to keep each invoice reproducible | The specified purpose you voluntarily provided the data for |
 | Local notification identifiers | On your device | To schedule and cancel payment reminders | Your consent via the iOS notification permission |
@@ -69,6 +69,14 @@ Under the DPDP Act, you can **access, correct, update, erase, and grieve** the p
 - **Notifications:** revoke or limit permission in **iOS/macOS Settings → Notifications**.
 - **Grievance / complaints:** email **genesiscipherlabs@gmail.com** — this is the grievance contact under the DPDP Act. You also have the right to lodge a complaint with the **Data Protection Board of India** once it is operational.
 
+## If you are outside India
+
+Pact is available worldwide, and the architecture answers most jurisdictional questions the same way: **we receive no personal data, so there is no server-side processing, no cross-border transfer by us, and nothing for us to disclose, sell, or share.**
+
+- **EU / EEA / UK (GDPR and UK GDPR).** GenesisCipher Labs does not collect or process your personal data on any server. The rights the GDPR gives you — access, rectification, erasure, restriction, portability, and objection — are all exercisable directly and immediately on your own device, because that is the only place the data exists: edit or delete any record in the app, or delete everything via *Settings → Delete all my data*. Nothing is transferred outside your country by us. If you believe we have processed your data unlawfully, you can contact us at the address below or lodge a complaint with your local supervisory authority.
+- **California (CCPA/CPRA).** We do not collect, sell, or share personal information, and we have collected none in the preceding 12 months. There is nothing to opt out of and nothing to request deletion of from us — the data is on your device, under your direct control.
+- **Everywhere else.** The same facts apply: your data stays on your device, and the controls in the app are how you exercise whatever rights your local law grants.
+
 ## Children
 
 Pact is a professional invoicing tool and is not directed to children. We do not knowingly process the personal data of a child. Because all data is on-device, you can clear it directly at any time.
@@ -84,5 +92,3 @@ We will update this page when our practices change and revise the "Last updated"
 ## Contact
 
 GenesisCipher Labs — **genesiscipherlabs@gmail.com**
-
-*This policy describes Pact's actual on-device behaviour. It is provided in good faith and should be reviewed by qualified counsel before publication in your specific jurisdiction.*

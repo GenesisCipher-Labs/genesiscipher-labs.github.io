@@ -53,8 +53,8 @@ Made by {{ pact.org.name }} ({{ pact.org.legal_name }}). Contact: {{ pact.org.em
 - [Pact FAQ]({{ site.url }}{{ site.data.faq.page_url }}): short, self-contained answers on invoicing brand deals, getting paid, and what Pact does and does not do.
 - [How to invoice a brand deal]({{ site.url }}/pact/how-to-invoice-a-brand-deal/): a practical guide — what goes on the invoice, what an accounts-payable team needs before it can pay, how net terms work, and what to do when a payment is late. Written for creators generally, not only for Pact users.
 - [Pact Support]({{ site.url }}/pact/support/): the longer answers — GST registration, place of supply, TDS, tax outside India, bank identifiers, backups, exports, why a field is amber, why a reminder did not arrive.
-- [Pact Privacy Policy]({{ site.url }}/pact/privacy/): written against India's Digital Personal Data Protection Act, 2023. Pact makes no network requests of its own and there is no server to receive anything.
-- [Pact Terms of Use]({{ site.url }}/pact/terms/): subscription billing, cancellation, and the limits of what the app does.
+- [Pact Privacy Policy]({{ site.url }}/pact/privacy/): written against India's Digital Personal Data Protection Act, 2023, with the equivalent rights stated for users under the EU/UK GDPR and the CCPA. Pact makes no network requests of its own and there is no server to receive anything.
+- [Pact Terms of Use]({{ site.url }}/pact/terms/): subscription billing, cancellation, the limits of what the app does, and that Pact is a tool — not tax, legal, or accounting advice.
 
 ## What Pact does
 {% for f in pact.features %}

@@ -71,7 +71,7 @@ Under the DPDP Act, you can **access, correct, update, erase, and grieve** the p
 
 ## If you are outside India
 
-Pact is available worldwide, and the architecture answers most jurisdictional questions the same way: **we receive no personal data, so there is no server-side processing, no cross-border transfer by us, and nothing for us to disclose, sell, or share.**
+Wherever Pact is offered, the architecture answers most jurisdictional questions the same way: **we receive no personal data, so there is no server-side processing, no cross-border transfer by us, and nothing for us to disclose, sell, or share.**
 
 - **EU / EEA / UK (GDPR and UK GDPR).** GenesisCipher Labs does not collect or process your personal data on any server. The rights the GDPR gives you — access, rectification, erasure, restriction, portability, and objection — are all exercisable directly and immediately on your own device, because that is the only place the data exists: edit or delete any record in the app, or delete everything via *Settings → Delete all my data*. Nothing is transferred outside your country by us. If you believe we have processed your data unlawfully, you can contact us at the address below or lodge a complaint with your local supervisory authority.
 - **California (CCPA/CPRA).** We do not collect, sell, or share personal information, and we have collected none in the preceding 12 months. There is nothing to opt out of and nothing to request deletion of from us — the data is on your device, under your direct control.

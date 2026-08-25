@@ -51,9 +51,13 @@ audience: >-
   sole traders. Built India-first for GST, and now usable by creators anywhere
   who charge their own country's VAT or GST, or none at all.
 
-# Apple's App Store facts. Category strings are schema.org values.
-category: FinanceApplication
-secondary_category: Business
+# Apple's App Store facts. Category strings are schema.org values, and must track
+# the App Store Connect categories — these feed applicationCategory /
+# applicationSubCategory in the JSON-LD, so a mismatch tells search engines and
+# assistants a different category from the one the listing actually sits in.
+# App Store Connect (2026-08-26): Business primary, Productivity secondary.
+category: BusinessApplication
+secondary_category: Productivity
 operating_system: "iOS 26.0 or later, iPadOS 26.0 or later, macOS 26.0 or later"
 devices: "iPhone, iPad and Mac"
 interface_language: "English"

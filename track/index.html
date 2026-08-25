@@ -116,7 +116,7 @@
       <div class="endmark" id="endMark">💚</div>
       <div class="endtitle" id="endTitle">Made it safe</div>
       <div class="endsub" id="endSub">This trip has ended and the live link has closed — thanks for keeping watch. 💚</div>
-      <div class="endcta" id="endCta" style="display:none">Plan safer trips and let your people follow along, too.</div>
+      <div class="endcta" id="endCta" style="display:none">Plan safer trips and keep your people updated, too.</div>
       <a class="getapp" id="getApp" href="https://genesiscipher-labs.github.io/get/" target="_blank" rel="noopener" style="display:none">Get HomeSafe <span class="arrow">↗</span></a>
     </div>
   </div>
@@ -171,7 +171,14 @@
     document.getElementById('etaMin').textContent = (s.etaMin==null?'—':s.etaMin);
     document.getElementById('distKm').textContent = (s.distKm==null?'—':s.distKm.toFixed(1));
     document.getElementById('score').textContent = (s.score==null?'—':s.score);
-    lastUpdateMs = Date.now();
+    // 🔴 THE RECORD'S STAMP, NOT THE BROWSER'S CLOCK. This was `Date.now()`, i.e. "when I last
+    // polled successfully" — which is always ~now, so the footer read "updated just now" while the
+    // pin, the ETA and the km-left could be nearly three minutes old. A watcher was shown a stale
+    // position labelled current, then the page jumped straight to "No updates for a few minutes"
+    // with none of the staleness he could have watched building. `s.at` is the record's own
+    // `modified` timestamp; the demo path passes nothing and keeps browser time, which is correct
+    // there because the scripted trip IS being generated now.
+    lastUpdateMs = (typeof s.at === 'number' && isFinite(s.at)) ? s.at : Date.now();
   }
 
   // THREE end states, and ONLY the arrival tombstone may claim the green one.
@@ -188,7 +195,19 @@
   // 'arrived' is now claimable ONLY by that tombstone. Silence is its own state and says so —
   // a guardian being told "safe" when the truth is "we don't know" is the worst output this
   // page can produce.
-  function showEnded(state){   // 'arrived' | 'closed' | 'silent'
+  // The end state the page is currently showing, or null while following. Tracked because two of
+  // the four are RECOVERABLE and two are terminal, and the page used to treat all of them as a
+  // one-way latch — see `clearEnded` and the arrival guard below.
+  var latchedState = null;
+
+  // 🔴 A CONFIRMED ARRIVAL IS TERMINAL AND MUST NEVER BE DOWNGRADED. She arrives at 23:10 and her
+  // father's tab shows "Made it safe". He leaves it open; at 23:40 the app's cold-launch janitor
+  // purges the record, `!rec` fires, and his tab flipped to "Trip ended — if you're worried, give
+  // them a call". A person who had already been told she was safe was handed a prompt to worry,
+  // with no new information and no way to tell why.
+  function showEnded(state){   // 'arrived' | 'closed' | 'silent' | 'unreachable'
+    if(latchedState === 'arrived') return;
+    latchedState = state;
     document.getElementById('liveBadge').style.display='none';
     var mark, title, sub;
     if(state === 'arrived'){
@@ -197,6 +216,14 @@
     } else if(state === 'silent'){
       mark = '🛡️'; title = 'No updates for a few minutes';
       sub = 'Their phone has stopped sending updates. That can just be a dead battery or no signal — but if you can’t reach them and you’re worried, give them a call.';
+    } else if(state === 'unreachable'){
+      // 🔴 THE FOURTH STATE, AND THE ONLY ONE THAT IS ABOUT THIS PAGE RATHER THAN ABOUT THE TRIP.
+      // The other three report something we learned from the record. This one reports that we
+      // could not open the link at all, which is NOT evidence about the walk either way — so it
+      // must not borrow 'closed' ("Trip ended", which asserts the trip is over) and obviously not
+      // 'arrived'. It exists because the failure path used to render a scripted demo instead.
+      mark = '🛡️'; title = 'Can’t follow this link right now';
+      sub = 'We couldn’t open the live view — that’s a problem on this page, not a signal about their trip. Reload in a moment, and if you can’t reach them and you’re worried, give them a call.';
     } else {
       mark = '🛡️'; title = 'Trip ended';
       sub = 'The live link has closed. If you can’t reach them and you’re worried, give them a call.';
@@ -213,6 +240,22 @@
     document.getElementById('overlay').classList.add('show');
   }
 
+  // 🔴 SILENCE IS RECOVERABLE; ARRIVAL AND A CLOSED LINK ARE NOT. A 6-minute Metro leg or 21 s of
+  // watcher-side network loss latched the page into "No updates for a few minutes" permanently:
+  // underground the phone correctly stops publishing, the overlay covers the page, and when she
+  // surfaces and the heartbeat resumes — her own chip back to solid LIVE, having told her sharing
+  // would resume on its own — `tick()` succeeds and `render()` updates the map UNDERNEATH an
+  // opaque overlay that never lifts. The guardian is left believing the trip is still dark.
+  //
+  // Only 'silent' and 'unreachable' lift. 'arrived' is a tombstone and 'closed' means the record is
+  // gone, so neither can be contradicted by a later successful read.
+  function clearEnded(){
+    if(latchedState !== 'silent' && latchedState !== 'unreachable') return;
+    latchedState = null;
+    document.getElementById('overlay').classList.remove('show');
+    document.getElementById('liveBadge').style.display='';
+  }
+
   // "updated Ns ago" ticker.
   setInterval(()=>{
     const sec=Math.round((Date.now()-lastUpdateMs)/1000);
@@ -221,9 +264,27 @@
   },1000);
 
   // ── LIVE mode: read the public token-keyed CloudKit record, poll, render. ──
+  // 🔴 A REAL TOKEN MUST NEVER REACH THE DEMO. THIS PAGE USED TO FALL BACK TO IT, AND THE DEMO
+  // ENDS BY DECLARING AN ARRIVAL.
+  //
+  // Both failure paths below — an unconfigured `CONFIG.apiToken`, and any throw out of
+  // `CloudKit.configure` (the commonest being that the CloudKit JS bundle never loaded, so the
+  // global is undefined) — called `runDemo(true)`. `runDemo` is a SCRIPTED Connaught Place → Khan
+  // Market walk: it animates a puck, counts an ETA down, prints `score: 82`, and after 42 s calls
+  // `showEnded('arrived')` → "Made it safe 💚" plus the install CTA.
+  //
+  // So a guardian who opened a genuine share link for someone walking home in San Francisco, on a
+  // flaky connection, watched a fabricated trip across Delhi and was then told the person arrived
+  // safely. The "Demo" badge in the corner is not consent to that: the content is invented, and the
+  // arrival overlay makes the same claim it makes for a real tombstone. It is precisely the
+  // inversion `showEnded`'s own header calls "the worst output this page can produce", arriving
+  // through a path the staleness/purge guards in `check_legal_mirror.sh` do not cover.
+  //
+  // Failing to open the link is not information about the walk, so we say exactly that and stop.
+  // Demo remains reachable only where it is honest — an explicit `#demo`, or no fragment at all.
   function runLive(token){
-    if(!CONFIG.apiToken){ // not configured yet → fall back to demo so the page is never blank.
-      return runDemo(true);
+    if(!CONFIG.apiToken){
+      return showEnded('unreachable');
     }
     try{
       CloudKit.configure({ containers:[{
@@ -231,7 +292,7 @@
         apiTokenAuth:{ apiToken:CONFIG.apiToken, persist:false },
         environment:CONFIG.environment
       }]});
-    }catch(e){ return runDemo(true); }
+    }catch(e){ return showEnded('unreachable'); }
     const db = CloudKit.getDefaultContainer().publicCloudDatabase;
     let misses=0;
     async function tick(){
@@ -259,11 +320,14 @@
         // reporting, which is the event the net exists to surface.)
         if((Date.now()-modified)/1000 > CONFIG.staleSeconds) return showEnded('silent');
         misses=0;
+        // A fresh, well-formed read contradicts a 'silent'/'unreachable' overlay — lift it.
+        clearEnded();
         render({
           lat:val('latitude'), lng:val('longitude'), course:val('course'),
           etaMin:val('etaMinutes'), distKm:val('distanceKm'), score:val('score'),
           dest:val('destinationLabel'),
-          destLat:val('destinationLatitude'), destLng:val('destinationLongitude')
+          destLat:val('destinationLatitude'), destLng:val('destinationLongitude'),
+          at:modified
         });
       }catch(e){ misses++; if(misses>=3) showEnded('closed'); }
     }
@@ -272,9 +336,17 @@
   }
 
   // ── DEMO mode: a scripted Delhi trip so the experience is visible with zero backend. ──
-  function runDemo(fellBack){
+  // Reached ONLY from the explicit entry points below (`#demo`, or no fragment) — never as a
+  // fallback from a real token. The guard is belt-and-braces against a future edit reintroducing
+  // that call: this function fabricates a trip and ends it with an arrival, so the presence of a
+  // share token in the URL is by itself disqualifying, whatever the caller believed.
+  function runDemo(){
+    const frag=(location.hash||'').replace(/^#/,'').trim();
+    if(frag && frag.toLowerCase()!=='demo'){ return showEnded('unreachable'); }
     document.getElementById('demoFlag').style.display='block';
-    if(fellBack) document.getElementById('modeLine').textContent='Demo — add your CloudKit token to go live';
+    // Say so in the status line too, not only in the corner badge. The line otherwise reads
+    // "Following live", which is the one thing a scripted trip is not.
+    document.getElementById('modeLine').textContent='Demo — a sample trip, not a real one';
     // Connaught Place → Khan Market, a few waypoints.
     const route=[[28.6315,77.2167],[28.6280,77.2190],[28.6230,77.2210],[28.6170,77.2235],
                  [28.6100,77.2250],[28.6040,77.2262],[28.6000,77.2272]];
@@ -301,7 +373,7 @@
 
   // ── Route by the URL fragment (token never leaves the browser). ──
   const hash=(location.hash||'').replace(/^#/,'').trim();
-  if(!hash || hash.toLowerCase()==='demo') runDemo(false);
+  if(!hash || hash.toLowerCase()==='demo') runDemo();
   else runLive(hash);
   </script>
 </body>

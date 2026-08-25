@@ -10,7 +10,7 @@ the default branch and Pages publishes.
 | Path | Source | Purpose |
 |---|---|---|
 | `/` | `index.md` | Org landing page and links. |
-| `/privacy/` | `privacy.md` | HomeSafe Privacy Policy (GDPR + India DPDP Act). App Review and the App Store Connect privacy section hit this URL. |
+| `/privacy/` | `privacy.md` | HomeSafe Privacy Policy (India DPDP Act + California privacy law). App Review and the App Store Connect privacy section hit this URL. |
 | `/terms/` | `terms.md` | HomeSafe Terms & Emergency Services Disclaimer. Mirrors the in-app EULA; App Review verifies the non-dispatch 5.1.5 language here. |
 | `/track/` | `track/index.html` | The **Guardian Live-Link** viewer (see below). |
 | `/get/` | `get/index.html` | HomeSafe download page. |
@@ -32,6 +32,12 @@ its destination on invoices that have already reached brands and cannot be corre
 previously read `getpact.app`, which has no DNS record at all.
 
 ## Guardian Live-Link (`/track/`)
+
+**Guardian Live-Link publishing is disabled in the shipping build.** `/privacy/` and `/terms/` both
+state this, so nothing else on this site — `/get/`, `index.md`, the `_config.yml` descriptions — may
+advertise live sharing as a working feature until publishing is re-enabled and those two pages are
+updated in the same change. The page below stays published and serves its scripted `#demo` trip, but
+no build currently mints a token for it to read.
 
 `track/index.html` is the no-app-needed live-trip viewer: a HomeSafe user texts a trusted person a
 secret link and they watch the trip on a map in any browser until it ends. It uses Leaflet + CARTO dark

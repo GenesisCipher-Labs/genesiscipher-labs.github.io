@@ -193,9 +193,9 @@ defaults:
       path: "privacy.md"
     values:
       description: >-
-        HomeSafe's privacy policy, covering the GDPR and India's Digital Personal
-        Data Protection Act, 2023 — what is processed on the device, what a
-        Guardian Live-Link shares, and for how long.
+        HomeSafe's privacy policy, covering India's Digital Personal Data
+        Protection Act, 2023 and California privacy law — what is processed on
+        the device, what leaves it, and for how long.
 
   - scope:
       path: "terms.md"

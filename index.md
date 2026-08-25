@@ -10,11 +10,11 @@ We build private, on-device mobile tools — for personal safety and for creator
 
 ## HomeSafe
 
-HomeSafe ranks route options by safety signals from public map data, not ETA alone. It covers Delhi NCR, Mumbai, Bengaluru, Pune and Hyderabad in India, and San Francisco, Silicon Valley, Los Angeles and New York City in the United States.
+HomeSafe ranks route options by safety signals from public map data, not ETA alone. It is published on the United States App Store. Its in-app travel coverage spans San Francisco, Silicon Valley, Los Angeles and New York City in the United States, and Delhi NCR, Mumbai, Bengaluru, Pune and Hyderabad in India — those are places HomeSafe can route you through, not additional store listings.
 
 HomeSafe is available on iOS. The Android app is in development — coming soon.
 
-- [Get HomeSafe on the App Store](https://apps.apple.com/in/app/homesafe-safest-travel-routes/id6775227516)
+- [Get HomeSafe on the App Store](https://apps.apple.com/us/app/homesafe-safest-travel-routes/id6775227516)
 - [HomeSafe Privacy Policy](./privacy/)
 - [HomeSafe Terms & Emergency Services Disclaimer](./terms/)
 - [HomeSafe for Android — Privacy Policy](./privacy/android/)

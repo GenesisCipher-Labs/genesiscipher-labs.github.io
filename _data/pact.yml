@@ -81,7 +81,7 @@ features:
   - "Indian GST computed, not typed: CGST + SGST in-state, IGST inter-state, zero-rated exports under a furnished LUT, and a plain no-tax invoice if you are not registered"
   - "Place of supply is the brand's location, read from a checksum-valid GSTIN in the email or asked once per brand — never inferred from the currency"
   - "Outside India, prints your own jurisdiction's tax word — VAT, USt, TVA, IVA, BTW, BTW/TVA, MOMS, ALV, MWST, GST, Consumption tax or Sales tax — at the rate you set"
-  - "Invoices in 44 currencies, each rounded to its own real minor unit and written out in its own currency's words"
+  - "Invoices in 47 currencies, each rounded to its own real minor unit and written out in its own currency's words"
   - "Bank details labelled for where you bank: IFSC, sort code, BSB, ABA routing number, transit number, IBAN and BIC"
   - "Consecutive, financial-year-continuous invoice numbers that reset on 1 April; a number that has left your hands is never reissued (Rule 46(b))"
   - "A real A4 PDF with selectable text, not a screenshot"

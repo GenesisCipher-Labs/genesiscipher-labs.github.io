@@ -76,7 +76,7 @@ Yes, and this is the part of the app that changed most recently.
   in Australia, ABA routing number in the United States, transit number in
   Canada, BIC beside an IBAN across the SEPA zone, IFSC in India, SWIFT/BIC
   everywhere else.
-- **44 currencies**, each with its own decimal rules and its own words. A yen
+- **47 currencies**, each with its own decimal rules and its own words. A yen
   invoice shows no decimals; a Kuwaiti dinar invoice shows three. The
   amount-in-words line reads "US Dollars and Cents", not "Rupees and Paise".
 

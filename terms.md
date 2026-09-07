@@ -6,7 +6,7 @@ description: Terms for HomeSafe on Apple platforms.
 
 # HomeSafe Terms & Emergency Services Disclaimer
 
-Last updated: September 4, 2026
+Last updated: September 6, 2026
 
 These terms are between you and GenesisCipher Labs Private Limited. By using HomeSafe on an Apple platform, you agree to them.
 
@@ -64,7 +64,7 @@ Apple Watch action delivery records (random request identifier, check-in/help ac
 
 ## Data sources
 
-- Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather near your route. In the US launch cities, the National Weather Service may be queried for the fixed county alert zones covering that city. In San Francisco only, DataSF may be queried for delayed city-wide open fight-dispatch calls. The 511 SF Bay service-alert integration is disabled in this build because no HomeSafe proxy endpoint is configured, so the app makes no 511 alert request. Enabled civic-feed requests contain no user coordinate, destination, or route: the county zones and city-wide filter are fixed values for the city, identical for every user in that market. Public OpenStreetMap (Overpass) route-corridor requests and NYC Open Data sidewalk-work permit requests are disabled in this build: the public Overpass instance is not an approved production backend, and the NYC dataset's production-use licence is unresolved. No route geometry is sent to Overpass and no NYC permit request is made. Open-Meteo local-conditions requests are disabled in this build and may be enabled only after a commercially licensed customer endpoint and credential are configured and this disclosure is updated. Enabled requests go to those providers, not to us.
+- Apple Maps and Apple Weather may be queried directly from your device for directions, points of interest, and weather near your route. In the US launch cities, the National Weather Service may be queried for the fixed county alert zones covering that city. In San Francisco only, DataSF may be queried for delayed city-wide open fight-dispatch calls. In the US launch cities, the United States Geological Survey may be queried for its public worldwide catalog of recent magnitude-2.5-and-above earthquakes; that request is one fixed address with no query of any kind, so it is identical for every user on earth and the filtering to your city happens on your device. The 511 SF Bay service-alert integration is disabled in this build because no HomeSafe proxy endpoint is configured, so the app makes no 511 alert request. Enabled civic-feed requests contain no user coordinate, destination, or route: the county zones and city-wide filter are fixed values for the city, identical for every user in that market. Public OpenStreetMap (Overpass) route-corridor requests and NYC Open Data sidewalk-work permit requests are disabled in this build: the public Overpass instance is not an approved production backend, and the NYC dataset's production-use licence is unresolved. No route geometry is sent to Overpass and no NYC permit request is made. Open-Meteo local-conditions requests are disabled in this build and may be enabled only after a commercially licensed customer endpoint and credential are configured and this disclosure is updated. Enabled requests go to those providers, not to us.
 
 ## Purchases, third-party services and liability
 

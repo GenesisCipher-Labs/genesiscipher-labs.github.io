@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: September 4, 2026
+Last updated: September 6, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -29,7 +29,7 @@ The current visionOS edition keeps only a destination draft or verified destinat
 | Apple Watch delivery records | Used to deliver and deduplicate actions. Stored on your Apple devices for up to seven days. |
 | Safety reports created in older versions | Category, location, time and an opaque Apple identifier may remain in Apple's public CloudKit database until deleted. New reports are not currently uploaded or used. |
 
-HomeSafe also requests fixed regional public information from the US National Weather Service and DataSF. Those requests do not include your location, route, destination or account identifier.
+HomeSafe also requests fixed regional public information from the US National Weather Service, DataSF, and the United States Geological Survey. Those requests do not include your location, route, destination or account identifier.
 
 Apple receives the requests described above under its own privacy terms. A person or service receives data only when you deliberately share it using the system share sheet. GenesisCipher Labs does not operate a server that receives your routes, contacts, trip history or continuous location. We do not sell personal data or use advertising or analytics SDKs.
 
@@ -69,17 +69,19 @@ Apple Watch action delivery records (random request identifier, check-in/help ac
 
 ### Civic data sources
 
-Three provider groups receive requests from the app, and only to deliver a feature you asked for: (1) **Apple** (Maps directions and points of interest, reverse geocoding, weather near your route's start and end, and deletion requests for community-report records submitted previously), (2) the **US National Weather Service** for active official alerts using fixed county codes, and (3) **DataSF** for a city-wide delayed dispatch feed in San Francisco. The NWS and DataSF requests contain no user coordinate, account identifier, destination, or route. **511 SF Bay, public Overpass, and NYC Open Data requests are disabled in this build**, as are Open-Meteo local-conditions requests, all new community-report submission and product use, and Guardian Live-Link publishing.
+Four provider groups receive requests from the app, and only to deliver a feature you asked for: (1) **Apple** (Maps directions and points of interest, reverse geocoding, weather near your route's start and end, and deletion requests for community-report records submitted previously), (2) the **US National Weather Service** for active official alerts using fixed county codes, (3) **DataSF** for a city-wide delayed dispatch feed in San Francisco, and (4) the **United States Geological Survey** for its public worldwide catalog of recent magnitude-2.5-and-above earthquakes. The NWS, DataSF and USGS requests contain no user coordinate, account identifier, destination, or route. **511 SF Bay, public Overpass, and NYC Open Data requests are disabled in this build**, as are Open-Meteo local-conditions requests, all new community-report submission and product use, and Guardian Live-Link publishing.
 
 - **Open-Meteo local-conditions requests are disabled in this build.** The app contains a fail-closed integration for local temperature, air quality, and rain outlook, but it cannot make an Open-Meteo request unless a commercially licensed customer endpoint and credential are deliberately configured in a future build. Enabling it requires an updated disclosure; any such reading would remain display-only and never become a safety-score input.
 
 - **511 SF Bay.** The 511 SF Bay service-alert integration is disabled in this build because no HomeSafe proxy endpoint is configured, so the app makes no 511 alert request. If a later build enables it, its legal and privacy disclosures must be reviewed before release.
 
+- **United States Geological Survey (USGS) — earthquakes.** In the US launch cities the app requests the USGS public summary feed of catalogued magnitude-2.5-and-above earthquakes from the past day. That request is a single fixed web address with no query parameters at all: it is byte-for-byte identical for every user of the app anywhere in the world, so USGS cannot tell from it which city you are in, let alone where you are. The whole worldwide answer is filtered to your city's fixed boundary **on your device**. USGS-authored data is stated by USGS to be in the U.S. Public Domain; USGS asks that proper credit be given, and the app carries that credit where the data is shown. A catalogued earthquake is a record of something that already happened: it is shown to you and can be discussed, and it never changes a route's safety rating.
+
 ### Guardian Live-Link page (recipient's browser only)
 
 - **CARTO and unpkg — the Guardian Live-Link page only, and only in your recipient's browser. The app does not cause either to be contacted in this build.** Guardian Live-Link publishing is switched off in this release (see the section below), so the app cannot create or share a working `/track/#<token>` link. The rest of this entry describes what would apply if sharing is re-enabled, and is kept here so that change would be visible rather than silent. When you share a live trip, the `/track/` page the recipient opens draws its map with OpenStreetMap data rendered by **CARTO**, and loads the open-source Leaflet mapping library from **unpkg**. Because that page follows the trip, their browser requests map tiles covering the area being watched: those requests carry the tile coordinates and their own IP address. They never carry the link token (it rides in the URL fragment, which browsers do not transmit, and the page sends no referrer), your destination label, or your safety score. **No request is made from your phone** — this is the only entry on this page describing something a recipient's device does rather than yours, and it happens only while a share is live.
 
-Apple, the National Weather Service, and DataSF are the complete list of third-party provider groups anything from the app reaches in this build. CARTO and unpkg remain described above because the checked-in, unreachable Guardian page references them, but Guardian publishing is off. The 511 SF Bay, public Overpass, NYC Open Data, and Open-Meteo integrations are disabled and receive no request. There are no advertising SDKs, no analytics SDKs, and no data brokers.
+Apple, the National Weather Service, DataSF, and the United States Geological Survey are the complete list of third-party provider groups anything from the app reaches in this build. CARTO and unpkg remain described above because the checked-in, unreachable Guardian page references them, but Guardian publishing is off. The 511 SF Bay, public Overpass, NYC Open Data, and Open-Meteo integrations are disabled and receive no request. There are no advertising SDKs, no analytics SDKs, and no data brokers.
 
 ## Retention and control
 

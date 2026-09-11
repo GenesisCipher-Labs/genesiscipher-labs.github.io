@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: September 6, 2026
+Last updated: September 11, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -66,6 +66,10 @@ Voice input begins only after you tap the microphone button. It stops when you t
 ### Apple Watch action delivery
 
 Apple Watch action delivery records (random request identifier, check-in/help action, tap time, tap-time opaque privacy-generation token, opaque trip token for a check-in, delivery result, and received time) — stored on your paired apple watch for delivery and receipt recovery, and on your iphone after receipt. Recover a queued wrist action or its receipt after process death, keep a delayed check-in bound to the trip shown on the Watch, and prevent duplicate WatchConnectivity deliveries from applying it twice. A versioned action can affect the phone only if it arrives within five minutes of its tap time (with up to five seconds allowed for clock skew); a missing, malformed, stale, or farther-future time is review-only before any action record, check-in, or Help handoff is created. The Watch first keeps a bounded delivery-recovery copy with at most one record per action type; a copy bearing an older privacy-generation token is erased when a reset reaches the Watch, and removing the Watch app erases its local copy. An iPhone Export or Delete all covers only records the iPhone has received; a Watch-only copy cannot appear in an iPhone export. Readable records expire individually after seven days and are removed the next time that app executes its delivery ledger; unreadable Watch bytes use the same execution-time bound. A versioned tokenless cold-start request remains review-only and is removed under that bound
+
+### Bundled city knowledge
+
+City knowledge on iPhone and iPad includes separate, read-only bundled extracts of Overture Places and Overture Transportation, limited to the supported United States service areas. Mapped names, categories, locations and source-supplied addresses support local place and street lookup. These dated map records do not establish current opening hours, staffing, pedestrian access, incidents or safety, and never change route scores. City lookup runs on your device, makes no request to Overture or its contributors, and adds no stored search history. The city data source details offer the public data and its license notices for export without a membership; that export contains no personal searches or trips. The data retains its source licenses. Those permissions apply to the city data, not to the HomeSafe app software.
 
 ### Civic data sources
 

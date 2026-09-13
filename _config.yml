@@ -14,3 +14,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vercel.json
+  - RELEASE_AVAILABILITY.md
+  - content-sync.json
+  - tools

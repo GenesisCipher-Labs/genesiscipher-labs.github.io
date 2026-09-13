@@ -4,13 +4,17 @@ permalink: /terms/android/
 description: Terms for HomeSafe on Android.
 ---
 
-# HomeSafe for Android Terms
+# HomeSafe Terms — Android
 
-Last updated: September 2, 2026
+Last updated: September 14, 2026
 
 These terms are between you and GenesisCipher Labs Private Limited. By using HomeSafe for Android, you agree to them.
 
-HomeSafe is a route-planning and location-sharing aid. Its routes, scores, alerts and estimates may be incomplete, delayed or wrong. They do not guarantee safety and are not professional advice. HomeSafe does not contact, dispatch or communicate with emergency or crisis services for you. In an emergency, contact the appropriate service directly and use your own judgment.
+HomeSafe is a routing aid with optional user-controlled messages. Guardian Live-Link is disabled in the current Android build. Its routes, scores, alerts and estimates may be incomplete, delayed or wrong. They do not guarantee safety and are not professional advice. HomeSafe does not contact, dispatch or communicate with emergency or crisis services for you. In an emergency, contact the appropriate service directly and use your own judgment.
+
+## Emergency Services
+
+HomeSafe does not contact emergency services on your behalf.
 
 You control whether to place a call, send a message, share information or follow a route. Use HomeSafe lawfully and do not use it to harm, harass, mislead or track anyone without consent. You must be at least 13; if you are under the age of majority, a parent or guardian must approve your use.
 

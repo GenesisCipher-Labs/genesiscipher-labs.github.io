@@ -6,7 +6,7 @@ description: How Pact handles data on Apple platforms.
 
 # Pact Privacy Policy
 
-Last updated: September 2, 2026
+Last updated: September 14, 2026
 
 This policy applies to Pact on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -18,7 +18,7 @@ This data is stored on your device. GenesisCipher Labs does not receive it and d
 
 Any provider processing data for GenesisCipher Labs must protect it consistently with this policy and applicable law.
 
-Pact sends a document, export, message, payment link or backup only when you choose a destination. That destination may store it under its own privacy terms.
+Pact sends a document, export, message, payment link or backup only when you choose a destination. That destination may store it under its own privacy terms. If you enable automatic backups, Pact writes dated exports and a restorable book to the folder you choose. A cloud-synced folder may upload those files through its provider. Deleting data in Pact does not delete previously exported files or those backups.
 
 ## Retention and control
 

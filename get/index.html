@@ -1,16 +1,232 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>HomeSafe</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0e17" />
+<title>HomeSafe — understand the safety context around your trip</title>
+<meta name="description" content="Compare route tradeoffs across sixteen bounded US and Indian markets, with city-specific availability, on-device privacy, and no account." />
+<!-- Social/preview (Open Graph). Image is optional — the founder can add /get/og.png later. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="HomeSafe — understand the safety context around your trip" />
+<meta property="og:description" content="Compare route tradeoffs across sixteen bounded US and Indian markets using available signals, with on-device privacy and no account." />
+<meta property="og:url" content="https://genesiscipher-labs.github.io/get/" />
+<link rel="canonical" href="https://genesiscipher-labs.github.io/get/" />
+<!--
+  Machine-readable facts for search engines and AI agents.
+
+  This is the modern equivalent of "SEO" for an app: when someone asks an assistant "is there a
+  personal-safety app for San Francisco?", the assistant answers from pages it can fetch and parse. Prose alone is
+  ambiguous; this block states the same facts unambiguously, so an agent that cites HomeSafe cites
+  it CORRECTLY — the bounded coverage markets, the platform, the price model, and above all the two things the
+  app does NOT do.
+
+  Every value here is deliberately durable:
+    • NO `aggregateRating`. The listing has a handful of ratings; a number baked in here goes stale
+      the day the next review lands, and search engines penalise structured data that disagrees with
+      the page. An absent field is honest; a wrong one is worse than none.
+    • NO subscription prices. The app is free to download with in-app purchases, which is TRUE
+      permanently. Amounts are founder-owned, can change, and are rendered live by Apple on the
+      product page — hardcoding them here creates a claim nobody will remember to update.
+    • The `disambiguatingDescription` carries the 2.3.7 qualifier and the 5.1.5 non-dispatch fact,
+      because those are exactly the two things an agent summarising this app could otherwise get
+      dangerously wrong.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "@id": "https://genesiscipher-labs.github.io/get/#app",
+      "name": "HomeSafe: Safest Travel Routes",
+      "alternateName": "HomeSafe",
+      "applicationCategory": "TravelApplication",
+      "applicationSubCategory": "Navigation",
+      "operatingSystem": "iOS 26.0 or later",
+      "url": "https://apps.apple.com/app/id6775227516",
+      "installUrl": "https://apps.apple.com/app/id6775227516",
+      "description": "Compare route tradeoffs across sixteen bounded US and Indian markets using only available signals. Chicago, Seattle, Boston, Miami, Dallas, Houston and Las Vegas launch with route planning and fixed-zone National Weather Service alerts while unsupported local data stays unavailable.",
+      "disambiguatingDescription": "Signal availability varies by market. Missing local incidents, transit feeds, lighting or camera coverage, complete closures, live traffic, and city calibration are never inferred into a favorable route signal. Every rating is decision support, never a guarantee of safety. HomeSafe does not contact emergency services on anyone's behalf and cannot dispatch help; every message and every call is placed by the user from their own phone.",
+      "featureList": [
+        "Compare locally supported travel modes in one view",
+        "Published fare and transit context where complete source-backed data is available",
+        "A transparent 0-100 route rating with a free breakdown of what produced it",
+        "User-reviewed departure, late and arrival updates through Messages",
+        "Works without an account or sign-in"
+      ],
+      "countriesSupported": ["US", "IN"],
+      "availableOnDevice": ["iPhone", "iPad", "Apple Watch"],
+      "inLanguage": "en-US",
+      "isFamilyFriendly": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "category": "free with in-app purchases",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": { "@id": "https://genesiscipher-labs.github.io/#org" },
+      "privacyPolicy": "https://genesiscipher-labs.github.io/privacy/",
+      "termsOfService": "https://genesiscipher-labs.github.io/terms/",
+      "areaServed": [
+        { "@type": "City", "name": "San Francisco" },
+        { "@type": "City", "name": "New York City", "alternateName": ["New York", "NYC"] },
+        { "@type": "City", "name": "Los Angeles", "alternateName": ["LA"] },
+        { "@type": "AdministrativeArea", "name": "Peninsula & South Bay", "alternateName": ["Silicon Valley", "San Jose", "Santa Clara County"] },
+        { "@type": "City", "name": "Chicago" },
+        { "@type": "City", "name": "Seattle" },
+        { "@type": "City", "name": "Boston" },
+        { "@type": "City", "name": "Miami" },
+        { "@type": "City", "name": "Dallas" },
+        { "@type": "City", "name": "Houston" },
+        { "@type": "City", "name": "Las Vegas" },
+        { "@type": "AdministrativeArea", "name": "Delhi NCR" },
+        { "@type": "City", "name": "Mumbai" },
+        { "@type": "City", "name": "Bengaluru" },
+        { "@type": "City", "name": "Pune" },
+        { "@type": "City", "name": "Hyderabad" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://genesiscipher-labs.github.io/#org",
+      "name": "GenesisCipher Labs",
+      "url": "https://genesiscipher-labs.github.io/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://genesiscipher-labs.github.io/get/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which cities does HomeSafe cover?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HomeSafe currently supports eleven bounded US markets: San Francisco, New York City, Los Angeles, the Peninsula & South Bay, Chicago, Seattle, Boston, Miami, Dallas, Houston and Las Vegas. The latter seven launch with route planning and fixed-zone National Weather Service alerts; unsupported local data stays unavailable. The five Indian city packs are also available: Delhi NCR, Mumbai, Bengaluru, Pune and Hyderabad. HomeSafe supports its mapped Indian cities for people who downloaded it through another country’s App Store. It is not offered in the Indian App Store; travelling to India does not disable supported Indian city coverage. Outside launch envelopes the app says it is not in your area yet rather than guessing." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does HomeSafe call the police or an ambulance for me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. HomeSafe never contacts emergency services on your behalf and has no ability to dispatch anyone. Within verified coverage, its Help screen offers numbers you dial yourself: 911 in the United States and 112 in India; outside verified coverage it does not guess an emergency number. Messages to trusted contacts are composed for you and sent only when you tap Send." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the safety rating actually mean?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It is a 0-100 rating of a route against signals the app can genuinely observe, such as locally supported mapped street-lighting surveys, mapped place results, road type and available weather context. Place results do not establish current opening hours, staffing or crowds. Community reporting is disabled in this build and contributes nothing to the score. Tapping the score shows the full breakdown, free, on every route. It supports your judgement; it is never a guarantee that a route is safe." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does HomeSafe need an account, and where does my location go?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No HomeSafe account is required. Trips, saved places and history stay on the device. Community reporting is disabled in this build for all markets, so no new report is accepted or sent to CloudKit. Previously submitted records may remain and can still be deleted or moderated; trip updates leave through Messages only after you review them and tap Send." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is HomeSafe free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The app is free to download and the safety rating, the full score breakdown, the fare comparison and the Help screen are free for everyone. An optional HomeSafe+ membership adds depth such as route alternatives and the money ledger. Paying never buys a different safety score or faster check-ins." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0b0e17; --card:rgba(20,24,38,.72); --stroke:rgba(255,255,255,.10);
+    --mint:#5ce0a0; --indigo:#7d8cff; --amber:#ffc24b; --ink:#eef1f8; --muted:#9aa3bd;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  /* Soft aurora wash behind the content, on-brand with the app's hero. */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(60% 45% at 20% 8%, rgba(125,140,255,.20), transparent 60%),
+      radial-gradient(55% 40% at 85% 12%, rgba(92,224,160,.16), transparent 60%),
+      radial-gradient(70% 50% at 50% 100%, rgba(125,140,255,.10), transparent 60%)}
+  .wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 40px) 22px calc(env(safe-area-inset-bottom) + 40px);
+    min-height:100dvh;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:.2px}
+  .brand .shield{font-size:20px}
+  .hero{margin-top:auto;padding-top:34px}
+  h1{font-size:34px;line-height:1.12;font-weight:850;letter-spacing:-.5px;margin:0 0 14px}
+  h1 .accent{color:var(--mint)}
+  .sub{font-size:16px;line-height:1.5;color:var(--muted);margin:0 0 26px;max-width:30ch}
+  .points{list-style:none;margin:0 0 30px;padding:0;display:flex;flex-direction:column;gap:13px}
+  .points li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.4;font-weight:600}
+  .points .ic{flex:0 0 auto;width:26px;height:26px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+    font-size:14px;background:rgba(125,140,255,.16);border:1px solid rgba(125,140,255,.28)}
+  .points b{font-weight:800}
+  .points span.d{display:block;color:var(--muted);font-weight:500;font-size:1rem;margin-top:1px}
+  /* App Store button */
+  .store{display:inline-flex;align-items:center;gap:11px;text-decoration:none;
+    padding:15px 26px;border-radius:16px;background:#fff;color:#000;font-weight:700;
+    box-shadow:0 12px 34px rgba(0,0,0,.4);transition:transform .15s ease}
+  .store:active{transform:scale(.97)}
+  .store .apple{font-size:26px;line-height:0;margin-top:-2px}
+  .store .lines{display:flex;flex-direction:column;line-height:1.05}
+  .store .lines small{font-size:.875rem;font-weight:600;opacity:.7}
+  .store .lines strong{font-size:19px;font-weight:800;letter-spacing:-.2px}
+  .meta{margin-top:16px;font-size:1rem;color:var(--muted);font-weight:600}
+  .foot{margin-top:34px;display:flex;gap:16px;align-items:center;font-size:.875rem;color:var(--muted)}
+  .foot a{color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(154,163,189,.3)}
+  .rating-note{font-size:.875rem;color:var(--muted);margin-top:22px;line-height:1.45;max-width:34ch}
+  @media (max-width:380px){ h1{font-size:30px} }
+.faq{margin:32px 0;text-align:left}.faq h2{font-size:1.4rem}.faq details{border-top:1px solid var(--stroke);padding:16px 0}.faq summary{cursor:pointer;font-size:1rem;line-height:1.5}.faq p{font-size:1rem;line-height:1.6;color:var(--muted)}.foot{flex-wrap:wrap}a:focus-visible,summary:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+</style>
 </head>
 <body>
-  <main>
-    <h1>HomeSafe</h1>
-    <p><a href="https://apps.apple.com/us/app/homesafe-safest-travel-routes/id6775227516" rel="noopener">View on the App Store</a></p>
-    <p><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
-  </main>
+<!-- Community reporting is disabled in this build for all markets pending an authenticated Production SafetyReport schema, index, and role probe. -->
+  <div class="wrap">
+    <div class="brand"><span class="shield">🛡️</span><span>HomeSafe</span></div>
+
+    <div class="hero">
+      <h1>Understand the <span class="accent">safety context</span> around your trip.</h1>
+      <p class="sub">Compare route tradeoffs across sixteen bounded US and Indian markets and keep trusted people updated, with on-device privacy and no account.</p>
+
+      <ul class="points">
+        <li><span class="ic">🧭</span><span><b>Your whole journey, not just the ride.</b><span class="d">The walk, the wait, the auto, the metro, the walk home — rated on the signals actually around you.</span></span></li>
+        <li><span class="ic">🔒</span><span><b>Privacy-first.</b><span class="d">On-device, no account, no sign-up. We never sell your location.</span></span></li>
+        <li><span class="ic">💚</span><span><b>Keep your people updated.</b><span class="d">HomeSafe prepares departure, late and arrival updates; you review and send them in Messages.</span></span></li>
+      </ul>
+
+      <!-- The real product URL lives in the MARKUP, not only in script: with JS blocked or broken an
+           href="#" made the one button this page exists for a dead control. The script below still
+           runs and may re-point it, so there remains a single place to change the URL. -->
+      <a class="store" id="storeLink" href="https://apps.apple.com/app/id6775227516" target="_blank" rel="noopener" aria-label="Download HomeSafe on the App Store">
+        <span class="apple"></span>
+        <span class="lines"><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+      <div class="meta">For iPhone · 16 supported city areas · features vary by city</div>
+      <p class="meta">Available in every country except India. HomeSafe supports its mapped Indian cities for people who downloaded it through another country’s App Store. It is not offered in the Indian App Store; travelling to India does not disable supported Indian city coverage.</p>
+
+      <p class="rating-note">HomeSafe rates routes safer based on available signals — never a guarantee of safety. HomeSafe does not contact emergency services on your behalf.</p>
+    </div>
+
+<section class="faq" aria-labelledby="faq-title"><h2 id="faq-title">About HomeSafe</h2>
+<details><summary>Which cities does HomeSafe cover?</summary><p>HomeSafe currently supports eleven bounded US markets: San Francisco, New York City, Los Angeles, the Peninsula &amp; South Bay, Chicago, Seattle, Boston, Miami, Dallas, Houston and Las Vegas. The latter seven launch with route planning and fixed-zone National Weather Service alerts; unsupported local data stays unavailable. The five Indian city packs are also available: Delhi NCR, Mumbai, Bengaluru, Pune and Hyderabad. HomeSafe supports its mapped Indian cities for people who downloaded it through another country’s App Store. It is not offered in the Indian App Store; travelling to India does not disable supported Indian city coverage. Outside launch envelopes the app says it is not in your area yet rather than guessing.</p></details>
+<details><summary>Does HomeSafe call the police or an ambulance for me?</summary><p>No. HomeSafe never contacts emergency services on your behalf and has no ability to dispatch anyone. Within verified coverage, its Help screen offers numbers you dial yourself: 911 in the United States and 112 in India; outside verified coverage it does not guess an emergency number. Messages to trusted contacts are composed for you and sent only when you tap Send.</p></details>
+<details><summary>What does the safety rating actually mean?</summary><p>It is a 0-100 rating of a route against signals the app can genuinely observe, such as locally supported mapped street-lighting surveys, mapped place results, road type and available weather context. Place results do not establish current opening hours, staffing or crowds. Community reporting is disabled in this build and contributes nothing to the score. Tapping the score shows the full breakdown, free, on every route. It supports your judgement; it is never a guarantee that a route is safe.</p></details>
+<details><summary>Does HomeSafe need an account, and where does my location go?</summary><p>No HomeSafe account is required. Trips, saved places and history stay on the device. Community reporting is disabled in this build for all markets, so no new report is accepted or sent to CloudKit. Previously submitted records may remain and can still be deleted or moderated; trip updates leave through Messages only after you review them and tap Send.</p></details>
+<details><summary>Is HomeSafe free?</summary><p>The app is free to download and the safety rating, the full score breakdown, the fare comparison and the Help screen are free for everyone. An optional HomeSafe+ membership adds depth such as route alternatives and the money ledger. Paying never buys a different safety score or faster check-ins.</p></details>
+</section>
+    <div class="foot">
+      <a href="https://genesiscipher-labs.github.io/privacy/">Privacy</a>
+      <a href="https://genesiscipher-labs.github.io/terms/">Terms</a>
+      <a href="/privacy/android/">Android privacy</a>
+      <a href="/terms/android/">Android terms</a>
+      <a href="mailto:genesiscipherlabs@gmail.com">Support</a>
+      <a href="/">All apps</a>
+      <span style="margin-left:auto">© GenesisCipher Labs</span>
+    </div>
+  </div>
+
+  <script>
+  // HomeSafe – Safest Travel Routes, available through App Store storefronts outside India (id6775227516).
+  // If the product page is ever relocated, update APP_STORE_URL; the search fallback
+  // keeps the button alive if it's ever blanked.
+  var APP_STORE_URL = 'https://apps.apple.com/app/id6775227516';
+  var FALLBACK_SEARCH = 'https://apps.apple.com/search?term=HomeSafe%20safety';
+  document.getElementById('storeLink').href = APP_STORE_URL || FALLBACK_SEARCH;
+  </script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+{
+  "mirrors": [
+    {
+      "source": "genesiscipher-labs.github.io/RELEASE_AVAILABILITY.md",
+      "target": "genesiscipherlabs-HomeSafe-iOS/RELEASE_AVAILABILITY.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/RELEASE_AVAILABILITY.md",
+      "target": "genesiscipherlabs-HomeSafe-Android/RELEASE_AVAILABILITY.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/RELEASE_AVAILABILITY.md",
+      "target": "genesiscipherlabs-Pact-iOS/RELEASE_AVAILABILITY.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/RELEASE_AVAILABILITY.md",
+      "target": "genesiscipherlabs-Pact-Android/RELEASE_AVAILABILITY.md"
+    },
+    {
+      "source": "genesiscipherlabs-HomeSafe-iOS/dist/privacy.md",
+      "target": "genesiscipher-labs.github.io/privacy.md"
+    },
+    {
+      "source": "genesiscipherlabs-HomeSafe-iOS/dist/terms.md",
+      "target": "genesiscipher-labs.github.io/terms.md"
+    },
+    {
+      "source": "genesiscipherlabs-HomeSafe-iOS/dist/get/index.html",
+      "target": "genesiscipher-labs.github.io/get/index.html"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/homesafe-android-privacy.md",
+      "target": "genesiscipherlabs-HomeSafe-Android/dist/privacy.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/homesafe-android-terms.md",
+      "target": "genesiscipherlabs-HomeSafe-Android/dist/terms.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact.md",
+      "target": "genesiscipherlabs-Pact-iOS/AppStore/web/pact.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-support.md",
+      "target": "genesiscipherlabs-Pact-iOS/AppStore/web/pact-support.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-privacy.md",
+      "target": "genesiscipherlabs-Pact-iOS/AppStore/web/pact-privacy.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-android-privacy.md",
+      "target": "genesiscipherlabs-Pact-iOS/AppStore/web/pact-android-privacy.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-terms.md",
+      "target": "genesiscipherlabs-Pact-iOS/AppStore/web/pact-terms.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact.md",
+      "target": "genesiscipherlabs-Pact-Android/dist/pact.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-support.md",
+      "target": "genesiscipherlabs-Pact-Android/dist/support.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-android-privacy.md",
+      "target": "genesiscipherlabs-Pact-Android/dist/privacy.md"
+    },
+    {
+      "source": "genesiscipher-labs.github.io/pact-terms.md",
+      "target": "genesiscipherlabs-Pact-Android/dist/terms.md"
+    }
+  ]
+}

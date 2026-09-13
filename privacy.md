@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: September 12, 2026
+Last updated: September 14, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -17,6 +17,8 @@ Data comes from information you enter or select and from device permissions and 
 ## visionOS journey-card edition
 
 The current visionOS edition keeps only a destination draft or verified destination, travel mode, and departure choice in process memory. It does not request location, contacts, Motion & Fitness, microphone, or speech recognition; calculate a route or safety rating; start or monitor a live trip; submit a community report; or contact a weather, civic-data, or CloudKit provider. Its Membership tab shows HomeSafe's in-app purchases through Apple's own store interface, and Restore Purchases asks the App Store about purchases already made with your Apple Account; HomeSafe never sees your Apple Account credentials, Apple processes any purchase, and this edition unlocks no feature with a membership. When you verify a destination, HomeSafe sends the place query and a fixed search region for the selected city — never your device location or HomeSafe account — directly to Apple Maps, and accepts a result only inside that city's supported service area. The journey card is not written to persistent storage: clearing it removes it immediately, and otherwise it disappears when the app process ends. The route, communication, and data-control features described below apply to the iPhone, iPad, and Apple Watch editions unless a section says otherwise.
+
+HomeSafe supports its mapped Indian cities for people who downloaded it through another country’s App Store. It is not offered in the Indian App Store; travelling to India does not disable supported Indian city coverage.
 
 ## Data handling
 
@@ -61,7 +63,7 @@ Voice input begins only after you tap the microphone button. It stops when you t
 
 ### Personal learning profile
 
-| Personal learning profile (aggregate walking pace, travel-time error and a bounded set of recent dimensionless ETA residuals by travel mode/time band, travel rhythm, coarse place familiarity, and check-in responsiveness) | On your device | Adapt walking estimates, show a private planning allowance after enough comparable arrivals, time overdue nudges more realistically, and explain your own patterns. It never changes a route's safety score and stores no route, endpoint, timestamp, or trip identifier in the ETA residual buckets. It also keeps an on-device per-region mean travel-time error and sample count; an existing aggregate may retain India or United States as its category, but current market availability is United States only. That regional aggregate carries no city, route, or timestamp. The whole profile is included in Export and Delete all | The specified purpose you voluntarily provided the data for |
+| Personal learning profile (aggregate walking pace, travel-time error and a bounded set of recent dimensionless ETA residuals by travel mode/time band, travel rhythm, coarse place familiarity, and check-in responsiveness) | On your device | Adapt walking estimates, show a private planning allowance after enough comparable arrivals, time overdue nudges more realistically, and explain your own patterns. It never changes a route's safety score and stores no route, endpoint, timestamp, or trip identifier in the ETA residual buckets. It also keeps an on-device per-region mean travel-time error and sample count; an existing aggregate may retain India or United States as its category, and city coverage exists in both regions. Store distribution is separate: HomeSafe is available in every country except India. That regional aggregate carries no city, route, or timestamp. The whole profile is included in Export and Delete all | The specified purpose you voluntarily provided the data for |
 
 ### Apple Watch action delivery
 
@@ -85,7 +87,7 @@ Four provider groups receive requests from the app, and only to deliver a featur
 
 - **CARTO and unpkg — the Guardian Live-Link page only, and only in your recipient's browser. The app does not cause either to be contacted in this build.** Guardian Live-Link publishing is switched off in this release (see the section below), so the app cannot create or share a working `/track/#<token>` link. The rest of this entry describes what would apply if sharing is re-enabled, and is kept here so that change would be visible rather than silent. When you share a live trip, the `/track/` page the recipient opens draws its map with OpenStreetMap data rendered by **CARTO**, and loads the open-source Leaflet mapping library from **unpkg**. Because that page follows the trip, their browser requests map tiles covering the area being watched: those requests carry the tile coordinates and their own IP address. They never carry the link token (it rides in the URL fragment, which browsers do not transmit, and the page sends no referrer), your destination label, or your safety score. **No request is made from your phone** — this is the only entry on this page describing something a recipient's device does rather than yours, and it happens only while a share is live.
 
-Apple, the National Weather Service, DataSF, and the United States Geological Survey are the complete list of third-party provider groups anything from the app reaches in this build. Links you choose to tap — a venue's website, a data source's licence page, the WhatsApp reach-home note, or a helpline number — open in Safari, in that app, or in the Phone app; those services see that request, and HomeSafe does not. Indian city packs are currently unavailable; no Indian civic, weather or transit feed is contacted in this build. CARTO and unpkg remain described above because the checked-in, unreachable Guardian page references them, but Guardian publishing is off. The 511 SF Bay, public Overpass, NYC Open Data, and Open-Meteo integrations are disabled and receive no request. There are no advertising SDKs, no analytics SDKs, and no data brokers.
+Apple, the National Weather Service, DataSF, and the United States Geological Survey are the complete list of third-party provider groups anything from the app reaches in this build. Links you choose to tap — a venue's website, a data source's licence page, the WhatsApp reach-home note, or a helpline number — open in Safari, in that app, or in the Phone app; those services see that request, and HomeSafe does not. Indian city packs provide bundled local data and supported Apple lookups; no Indian civic or transit live feed is contacted in this build. Store distribution excludes India. CARTO and unpkg remain described above because the checked-in, unreachable Guardian page references them, but Guardian publishing is off. The 511 SF Bay, public Overpass, NYC Open Data, and Open-Meteo integrations are disabled and receive no request. There are no advertising SDKs, no analytics SDKs, and no data brokers.
 
 ## Retention and control
 

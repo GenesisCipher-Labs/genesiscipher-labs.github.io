@@ -6,13 +6,11 @@ description: HomeSafe and Pact app information, support and platform-specific pr
 
 # GenesisCipher Labs
 
-HomeSafe and Pact are available in every country except India.
-
-HomeSafe supports its mapped Indian cities for people who downloaded it through another country’s App Store. It is not offered in the Indian App Store; travelling to India does not disable supported Indian city coverage.
+HomeSafe and Pact are available in most countries.
 
 ## HomeSafe
 
-A route-planning aid with safety context and user-controlled trip updates. Features and city coverage depend on the platform and version; worldwide store availability does not mean worldwide route coverage.
+A route-planning aid with safety context and user-controlled trip updates. Features and city coverage depend on the platform and version; store availability does not mean worldwide route coverage.
 
 - [HomeSafe for iPhone](/get/)
 - [Apple platforms: privacy](/privacy/) · [terms](/terms/)

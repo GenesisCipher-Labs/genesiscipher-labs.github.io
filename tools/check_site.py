@@ -89,8 +89,8 @@ def main():
                             failures.append(f'{route}: structured FAQ differs from visible content')
                 if node.get('@type') == 'MobileApplication':
                     areas = {area['name'] for area in node['areaServed']}
-                    if not {'Delhi NCR', 'Mumbai', 'Bengaluru', 'Pune', 'Hyderabad'} <= areas:
-                        failures.append('HomeSafe structured coverage omits supported Indian cities')
+                    if not {'San Francisco', 'New York City', 'Los Angeles', 'Chicago', 'Seattle'} <= areas:
+                        failures.append('HomeSafe structured coverage omits supported US cities')
     for route, page in pages.items():
         for href in page.links:
             url = urllib.parse.urlsplit(urllib.parse.urljoin(ORIGIN + route, href))

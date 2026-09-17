@@ -52,9 +52,9 @@ def main():
                     if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'EXCLUDED' for t in node.targets))
     if excluded != {'IND'}:
         failures.append('Availability script contradicts the India-only exclusion')
-    for file in ['index.md', 'privacy.md', 'terms.md', 'get/index.html']:
-        if 'another country’s App Store' not in (SITE / file).read_text():
-            failures.append(f'{file}: missing Indian-city/storefront distinction')
+    for file in ['index.md', 'privacy.md', 'terms.md']:
+        if 'except India' in (SITE / file).read_text():
+            failures.append(f'{file}: public pages state availability in general terms only')
     if failures:
         print('\n'.join('FAIL: ' + item for item in failures), file=sys.stderr)
         return 1

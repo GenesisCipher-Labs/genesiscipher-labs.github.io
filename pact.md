@@ -8,7 +8,7 @@ description: Pact information and support.
 
 Pact is an invoicing and record-keeping app for preparing invoices and tracking payment records. Extraction runs on your device; review the results before issuing a document. Features differ between Apple and Android versions.
 
-Available in every country except India.
+Available in most countries.
 
 [View Pact on the App Store](https://apps.apple.com/app/id6790888314).
 

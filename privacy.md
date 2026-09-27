@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: September 17, 2026
+Last updated: September 24, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -71,7 +71,7 @@ Apple Watch action delivery records (random request identifier, check-in/help ac
 
 ### Bundled city knowledge
 
-City knowledge on iPhone and iPad includes separate, read-only bundled extracts of Overture Places and Overture Transportation, limited to the app’s mapped service areas. The 11 United States and nine international city packs are reachable in this version; the five retained Indian packs remain unavailable. Mapped names, categories, locations and source-supplied addresses support local place and street lookup. These dated map records do not establish current opening hours, staffing, pedestrian access, incidents or safety, and never change route scores. City lookup runs on your device, makes no request to Overture or its contributors, and adds no stored search history. The city data source details offer the public data and its license notices for export without a membership; that export contains no personal searches or trips. The data retains its source licenses. Those permissions apply to the city data, not to the HomeSafe app software. Some curated place and street descriptions draw on Wikipedia articles, which are available under the Creative Commons Attribution-ShareAlike 4.0 licence; those descriptions are available under the same licence and the article used is cited beside each one. The bundled OpenStreetMap-derived street-lighting and camera surveys and international mapped-area identities are Derived Databases under the Open Database License 1.0 (© OpenStreetMap contributors); a copy of that database and the method used to build it are available on request at genesiscipherlabs@gmail.com.
+City knowledge on iPhone and iPad includes separate, read-only bundled extracts of Overture Places and Overture Transportation, limited to the app’s mapped service areas. The 11 United States and nine international city packs are reachable in this version; the five retained Indian packs remain unavailable. Mapped names, categories, locations and source-supplied addresses support local place and street lookup. These dated map records do not establish current opening hours, staffing, pedestrian access, incidents or safety, and never change route scores. City lookup runs on your device, makes no request to Overture or its contributors, and adds no stored search history. The city data source details offer the public data and its license notices for export without a membership; that export contains no personal searches or trips. The data retains its source licenses. Those permissions apply to the city data, not to the HomeSafe app software. Some curated place and street descriptions draw on Wikipedia articles, which are available under the Creative Commons Attribution-ShareAlike 4.0 licence; those descriptions are available under the same licence, and every article used is listed, with a link, in Settings → Data sources → Wikipedia articles. The bundled OpenStreetMap-derived street-lighting and camera surveys and international mapped-area identities are Derived Databases under the Open Database License 1.0 (© OpenStreetMap contributors); a copy of that database and the method used to build it are available on request at genesiscipherlabs@gmail.com.
 
 ### Civic data sources
 
@@ -95,7 +95,7 @@ Apple, the National Weather Service, DataSF, NYC Open Data, and the United State
 
 On-device data remains until you delete it in **Settings → Privacy & Data** or uninstall HomeSafe. Short-lived trip state expires automatically. Apple Watch delivery records expire after seven days. Older public safety reports remain until you delete them under **Settings → Privacy & Data → My flags** or ask us to delete them.
 
-You can view, export or delete on-device data in the app. You can revoke location, contacts, motion, microphone, speech or notification access in system Settings. These controls also let you withdraw consent. Files or messages you choose to share are controlled by their recipients and the services you select.
+You can view, export or delete on-device data in the app. Deleting all data in the app also asks iOS to delete the Siri and Shortcuts suggestions that HomeSafe's actions recorded on that device. You can revoke location, contacts, motion, microphone, speech or notification access in system Settings. These controls also let you withdraw consent. Files or messages you choose to share are controlled by their recipients and the services you select.
 
 ## Who is the data controller, and your rights
 

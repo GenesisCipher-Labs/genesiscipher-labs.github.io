@@ -6,7 +6,7 @@ description: How Pact handles data on Apple platforms.
 
 # Pact Privacy Policy
 
-Last updated: September 14, 2026
+Last updated: October 31, 2026
 
 This policy applies to Pact on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -23,6 +23,8 @@ Pact sends a document, export, message, payment link or backup only when you cho
 ## Retention and control
 
 Your data remains on your device until you edit or delete it in Pact or uninstall the app. You can revoke notification access in system Settings. Files you exported or shared must be deleted from their destination separately.
+
+One record is kept differently. To apply the free plan's invoice limit, Pact stores a small allowance record in this device's Keychain. It holds invoice counts and, while an invoice is being saved, random identifiers for that deal and your Pact book — no amounts, invoice numbers, client details or other invoice contents. It is not synced or sent anywhere. It can remain on the device after you delete Pact's data or uninstall the app; erasing the device removes it.
 
 Depending on where you live, you may have rights to access, correct, erase, restrict or obtain your personal data and to complain to a regulator. The app's controls provide access, correction, export and deletion for on-device data. Email us to exercise any right involving data we can access or to raise a grievance.
 

@@ -29,6 +29,10 @@
       "target": "genesiscipher-labs.github.io/get/index.html"
     },
     {
+      "source": "genesiscipherlabs-HomeSafe-iOS/dist/ghost/index.html",
+      "target": "genesiscipher-labs.github.io/ghost/index.html"
+    },
+    {
       "source": "genesiscipher-labs.github.io/homesafe-android-privacy.md",
       "target": "genesiscipherlabs-HomeSafe-Android/dist/privacy.md"
     },

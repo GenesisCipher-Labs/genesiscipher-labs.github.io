@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: October 31, 2026
+Last updated: November 1, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -82,6 +82,8 @@ Legacy CloudKit community reporting is disabled in this build for all markets pe
 ## Travel tools on iPhone and iPad
 
 On iPhone and iPad, Plate Snap and Transit Sign Check open the camera only after you choose the camera action and grant permission. Apple Vision recognizes text on this device. HomeSafe does not save captured images to Photos or its own files, upload them, or retain a camera history. Captured image references are released after recognition completes or the camera flow ends; cancellation retires the result and does not promise immediate erasure of system-managed memory. Recognized text stays in the open tool for review and editing and is cleared when you leave it or delete all data. A number plate is not verified vehicle identity. A transit graph match establishes only mapped stop membership, not vehicle direction, current service or boarding access.
+
+Ghost notes on iPhone and iPad let you leave a short note pinned to where you are standing. HomeSafe takes one location reading when you ask to leave a note or open notes, using location permission you have already granted; it never asks for permission or uses background location for this feature, and opening notes while the planner is on screen uses the reading the planner already holds. A note you keep stays on your device with its words, the reading’s coordinates and accuracy, a place name from the bundled city data, and when it was left and opened, until you delete it or delete all data. A note for a friend travels inside the link you choose to share: its words, the spot’s coordinates to about one metre, the reading’s accuracy, when it was left, an expiry seven days later and any name you type sit in the part of the link after “#”, which browsers do not send to a website. HomeSafe receives no copy and runs no server for ghost notes, and anyone who has the link can read the note. The genesiscipher-labs.github.io page such a link opens is static, makes no network request and only hands the link to the app. When you open a friend’s link, HomeSafe keeps that note on your device until it expires or you delete it, and shows its words only when a reading places you within about 100 metres of the spot. HomeSafe cannot verify who made a link or the name on it. Ghost notes do not change route scores and make no provider or model request. Export includes your ghost notes and Delete all my data removes them.
 
 Driver Phrase Card uses Apple Translation after you choose a language and request translation. Translation uses on-device language models; Apple may ask you to approve a language download, which needs a connection. Apple controls language availability and any framework usage metrics under its own privacy terms. HomeSafe operates no translation server, saves no translation history, and clears its destination text and translated card when you leave the tool or delete all data. Translation may be wrong; keep the original destination visible and confirm it with the driver.
 

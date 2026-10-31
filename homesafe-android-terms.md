@@ -6,7 +6,7 @@ description: Terms for HomeSafe on Android.
 
 # HomeSafe Terms — Android
 
-Last updated: September 14, 2026
+Last updated: November 1, 2026
 
 These terms are between you and GenesisCipher Labs Private Limited. By using HomeSafe for Android, you agree to them.
 
@@ -17,6 +17,8 @@ HomeSafe is a routing aid with optional user-controlled messages. Guardian Live-
 HomeSafe does not contact emergency services on your behalf.
 
 You control whether to place a call, send a message, share information or follow a route. Use HomeSafe lawfully and do not use it to harm, harass, mislead or track anyone without consent. You must be at least 13; if you are under the age of majority, a parent or guardian must approve your use.
+
+Ghost notes (optional) let you leave a short note pinned to where you are standing. HomeSafe takes one location reading when you open Ghost notes, leave a note or ask to open notes, using precise location you have already granted; it never asks for permission or uses background location for this feature. A note you keep stays on this device with its words, the reading’s coordinates and accuracy, and when it was left and opened, until you delete it or erase your data. A note for a friend travels inside the link you choose to share: its words, the spot’s coordinates to about one metre, the reading’s accuracy, when it was left, an expiry seven days later and any name you type sit in the part of the link after “#”, which browsers do not send to a website. HomeSafe receives no copy and runs no server for ghost notes, and anyone who has the link can read the note. The genesiscipher-labs.github.io page such a link opens is static, makes no network request and only hands the link to the app. When you open a friend’s link, HomeSafe keeps that note on this device until it expires or you delete it, and shows its words only when a reading places you within about 100 metres of the spot. HomeSafe cannot verify who made a link or the name on it. Ghost notes do not change route scores. Export includes your ghost notes and erasing your data removes them.
 
 Third-party map, weather, communications and platform services remain subject to their own terms and availability. Any purchase is handled by Google Play under the price and terms shown before purchase.
 

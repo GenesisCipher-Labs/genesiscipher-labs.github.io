@@ -6,7 +6,7 @@ description: How Pact for Android handles data.
 
 # Pact for Android Privacy Policy
 
-Last updated: September 14, 2026
+Last updated: November 1, 2026
 
 GenesisCipher Labs Private Limited is the data controller.
 
@@ -16,11 +16,13 @@ Pact processes the information you enter or share with it: business and contact 
 
 Screenshot text recognition runs on your device using Google ML Kit. Google may receive device and app information, a per-installation identifier, performance measurements, configuration details and error codes for diagnostics. Google does not receive the screenshot, recognized text or your Pact records through this feature. See [Google’s ML Kit data disclosure](https://developers.google.com/ml-kit/android-data-disclosure) for its diagnostics and usage analytics, and [Android’s backup documentation](https://developer.android.com/identity/data/autobackup) for platform backup and transfer behavior. Data Google receives is governed by Google’s privacy terms.
 
-Pact sends a document, export, message, payment link or backup only when you choose a destination. That destination may store it under its own privacy terms. Pact has no account, advertising, analytics of its own or payment processing.
+Pact sends a document, export, message, payment link or backup only when you choose a destination. That destination may store it under its own privacy terms. Pact has no account, advertising, analytics of its own or payment processing. If you subscribe to Pact Pro, Google Play processes the payment under Google's terms; Pact receives only the purchase status Google Play reports (which plan, whether it is active and whether it will renew), never your payment details.
 
 ## Retention and control
 
 Your data remains on your device until you edit or delete it in Pact or uninstall the app. Pact disables Android cloud backup. Device-to-device transfer behavior can vary by device manufacturer; the current build does not declare separate transfer-exclusion rules. Files you exported or shared must be deleted from their destination separately.
+
+One record is kept differently. To apply the free plan's invoice limit, Pact keeps a single count of the invoices this installation has issued, in its own app-private file. It holds only that number — no amounts, invoice numbers, client details or other invoice contents — and is not synced or sent anywhere. Erasing Pact's data inside the app does not reset it; uninstalling the app removes it.
 
 You can access, correct, export or delete on-device data in the app and revoke notification access in Android Settings. Depending on where you live, you may also have rights to restrict processing or complain to a regulator. Email us to exercise any right involving data we can access or to raise a grievance.
 

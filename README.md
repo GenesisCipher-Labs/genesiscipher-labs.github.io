@@ -4,7 +4,7 @@ The GitHub Pages site provides HomeSafe and Pact information, platform-specific 
 
 ## Verify before publishing
 
-Keep all five repositories checked out alongside each other, fetch their current branches, then run:
+Keep all six repositories checked out alongside each other, fetch their current branches, then run:
 
 ```sh
 python3 tools/check_content_sync.py
@@ -14,7 +14,7 @@ python3 tools/check_site.py
 bash ../genesiscipherlabs-HomeSafe-iOS/Tools/legal/check_legal_mirror.sh
 ```
 
-`content-sync.json` declares ownership for 18 exact mirrors. HomeSafe iOS owns its public legal pages and landing page; this repository owns the concise Android and Pact pages and the shared release record. `python3 tools/check_content_sync.py --sync` updates only those declared mirrors. Review and commit every affected repository together.
+`content-sync.json` declares ownership for 19 exact mirrors, and one repository mirror: `gcl-privacy-policy` is kept identical to this repository, every tracked file byte-for-byte with nothing extra. HomeSafe iOS owns its public legal pages and landing page; this repository owns the concise Android and Pact pages and the shared release record. `python3 tools/check_content_sync.py --sync` updates only those declared mirrors. Review and commit every affected repository together.
 
 The Pact August marketing package is archived in its app repository and is not a deployment source. The retained Guardian implementations in the app repositories are dormant reference implementations: `/track/` deliberately stays unavailable while both apps disable publishing. Do not deploy either dormant viewer without reviewing both platform gates and the privacy disclosures.
 

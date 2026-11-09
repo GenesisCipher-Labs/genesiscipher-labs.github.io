@@ -76,5 +76,11 @@
       "source": "genesiscipher-labs.github.io/pact-terms.md",
       "target": "genesiscipherlabs-Pact-Android/dist/terms.md"
     }
+  ],
+  "repositoryMirrors": [
+    {
+      "source": "genesiscipher-labs.github.io",
+      "target": "gcl-privacy-policy"
+    }
   ]
 }

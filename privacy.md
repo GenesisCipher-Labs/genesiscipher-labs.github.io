@@ -6,7 +6,7 @@ description: How HomeSafe handles data on Apple platforms.
 
 # HomeSafe Privacy Policy
 
-Last updated: November 9, 2026
+Last updated: November 11, 2026
 
 This policy applies to HomeSafe on Apple platforms. GenesisCipher Labs Private Limited is the data controller.
 
@@ -95,6 +95,8 @@ Driver Phrase Card uses Apple Translation after you choose a language and reques
 Get Everyone Home keeps the names, chosen destinations, proposed drop-off order and manually recorded arrival confirmations only in the open tool. Its distance comparison is straight-line geometry, not road directions, an arrival estimate, a safety ranking or a promise that a shared ride is available. HomeSafe cannot read Messages or receive automatic replies from friends; the organiser records a confirmation only after hearing from that person. Plate and group messages open your own Messages composer for your review to user-chosen trusted contacts. You decide whether to send; HomeSafe never sends a message automatically. Leaving the tool or deleting all data clears this working group.
 
 Year in Motion summarizes the current-year trip counters already kept on this device. It creates no additional trip history and cannot reconstruct trips that were not recorded. A share contains aggregate counts and distances, no destination name, coordinate, route geometry or contact. Sharing is your action through the system share sheet. Clearing the journal or deleting all data removes the source for future summaries.
+
+Remember my usual ways is off until you turn it on in Settings. While it is on, each arrival by a route HomeSafe planned keeps a rough outline of that route on this device: the map squares of about 100 metres it passed through, the city, the travel mode, how many times you have arrived that way and the date of the latest arrival. It keeps no GPS track and no time of day, keeps at most 40 routes and drops one unused for 180 days. It only marks a planned route as “Your usual way”; it never changes a route's rating or order and is never uploaded. Turning it off, clearing the journal or deleting all data erases it, and your data export includes it.
 
 City and airport briefs are dated, cited offline reference facts. An absent fact is not an all-clear, and a city selection does not establish your location or jurisdiction. Source links open only when you choose them. Step-free travel review describes mapped surface tags and missing evidence; it cannot establish kerbs, stairs, slopes, usable lifts, width or a continuous accessible path. These reference tools do not change route scores or check-in timing.
 
